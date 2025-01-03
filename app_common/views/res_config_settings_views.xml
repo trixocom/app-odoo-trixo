@@ -24,6 +24,15 @@
 								</div>
 							</div>
 						</div>
+						<h2>SaaS Settings</h2>
+						<div class="col-xs-12 col-md-6 row o_settings_container" id="app_saas_settings" name="app_saas_settings">
+							<div class="border-start-0">
+								<div class="row mt0">
+									<label class="col-4" for="app_saas_common_token"/>
+									<field name="app_saas_common_token" password="True"/>
+								</div>
+							</div>
+						</div>
                     </div>
 				</xpath>
 			</field>
