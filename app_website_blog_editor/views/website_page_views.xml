@@ -26,9 +26,10 @@
 			<xpath expr="//field[@name='is_seo_optimized']" position="attributes">
 				<attribute name="optional">show</attribute>
 			</xpath>
-			<xpath expr="//field[@name='website_id'][2]" position="attributes">
-				<attribute name="optional">show</attribute>
-			</xpath>
+            <!--    修正，当没开启多站点时，这里会报错-->
+<!--			<xpath expr="//field[@name='website_id'][2]" position="attributes">-->
+<!--				<attribute name="optional">show</attribute>-->
+<!--			</xpath>-->
 			<xpath expr="//field[@name='is_published']" position="before">
                 <field name="is_force_all" widget="boolean_toggle" optional="show"/>
             </xpath>
