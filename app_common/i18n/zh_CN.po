@@ -29,6 +29,11 @@ msgid "Base"
 msgstr "基础"
 
 #. module: app_common
+#: model_terms:ir.ui.view,arch_db:app_common.app_res_config_settings_view_form
+msgid "Checked and Save to Enable odoo China cloud service."
+msgstr "勾选并保存，即可启用Odoo中文应用商店云服务"
+
+#. module: app_common
 #: model:ir.model.fields,help:app_common.field_res_config_settings__app_saas_ok
 msgid "Checked to Enable www.odooapp.cn cloud service."
 msgstr "勾选后启用Odoo中文应用商店云服务"
@@ -44,6 +49,15 @@ msgid "Contact"
 msgstr "联系人"
 
 #. module: app_common
+#: model_terms:ir.ui.view,arch_db:app_common.app_res_config_settings_view_form
+msgid ""
+"Easy Get Odoo Chinese App, Theme, and industry solution. You can get the SaaS client from\n"
+"                                                <br/>"
+msgstr ""
+"您可快速获取Odoo中文应用模块，主题，行业应用方案等。我们不会搜索您系统的敏感信息，信息上传前都会征得您的同意。"
+"SaaS云客户端在此免费下载<br/>"
+
+#. module: app_common
 #. odoo-python
 #: code:addons/app_common/models/ir_mail_server.py:0
 #, python-format
@@ -52,8 +66,18 @@ msgstr "忽略的邮箱: %s"
 
 #. module: app_common
 #: model:ir.model.fields,field_description:app_common.field_res_config_settings__app_saas_ok
+#: model_terms:ir.ui.view,arch_db:app_common.app_res_config_settings_view_form
 msgid "Enable CN SaaS"
 msgstr "启用Odoo中文云服务"
+
+#. module: app_common
+#: model_terms:ir.ui.view,arch_db:app_common.app_res_config_settings_view_form
+msgid ""
+"Get the Industry Apps, Themes and Support from China odooapp store.\n"
+"                                        https://www.odooapp.cn"
+msgstr ""
+"获取Odoo行业应用，模块，主题。请访问Odoo中国应用商店\n"
+"                                        https://www.odooapp.cn"
 
 #. module: app_common
 #: model:ir.model,name:app_common.model_ir_http
@@ -81,6 +105,11 @@ msgid "Scheduled Actions"
 msgstr "安排的动作"
 
 #. module: app_common
+#: model_terms:ir.ui.view,arch_db:app_common.app_res_config_settings_view_form
+msgid "Setup the communication to odooAi Cloud"
+msgstr "设置云面板"
+
+#. module: app_common
 #. odoo-python
 #: code:addons/app_common/wizard/mail_compose_message.py:0
 #, python-format
@@ -100,6 +129,11 @@ msgid ""
 msgstr ""
 "欢迎访问欧度智能官方网站，获取Odoo企业级运营支持。\n"
 "\t\t\t\t\t\t\t\t\t\t\t\t\t https://www.odooai.cn"
+
+#. module: app_common
+#: model_terms:ir.ui.view,arch_db:app_common.app_res_config_settings_view_form
+msgid "https://www.odooapp.cn/apps/modules/app_saas"
+msgstr "https://www.odooapp.cn/apps/modules/app_saas"
 
 #. module: app_common
 #. odoo-python

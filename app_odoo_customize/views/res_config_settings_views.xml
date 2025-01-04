@@ -11,8 +11,8 @@
                     <label class="h2 bg-warning text-white" for="app_system_name"/>
                     <field name="app_system_name"/>
                 </xpath>
-				<xpath expr="//div[@name='app_settings_header']" position="after">
-                    <h2>Security and Boost</h2>
+				<xpath expr="//div[@id='app_slot2']" position="before">
+                    <h2 name="app_security_boost_begin">Security and Boost</h2>
                     <div class="row mt16 o_settings_container" name="app_security_boost">
                         <group>
                             <group>
@@ -117,7 +117,6 @@
                         </div>
                     </group>
                     </div>
-
                     <h2 name="data-clean" class="o_horizontal_separator">Data Cleaning (Be careful to do that!)</h2>
                     <div class="mt16 o_settings_container" name="data-clean">
                         <div class="col-12 col-lg-12 mb4">
