@@ -100,7 +100,7 @@ msgid "Outgoing Mails"
 msgstr "发出邮件"
 
 #. module: app_common
-#: model:ir.model.fields,field_description:app_common.field_res_config_settings__app_saas_common_token
+#: model:ir.model.fields,field_description:app_common.field_res_config_settings__app_saas_db_token
 msgid "SaaS Common Token"
 msgstr "云通讯Token"
 

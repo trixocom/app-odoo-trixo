@@ -58,8 +58,8 @@
                             </div>
                         </div>
 						<div class="row mt16 o_settings_container" id="odooai_cloud_saas_common_token">
-							<label class="col-4" for="app_saas_common_token"/>
-							<field name="app_saas_common_token" password="True"/>
+							<label class="col-4" for="app_saas_db_token"/>
+							<field name="app_saas_db_token" password="True"/>
 						</div>
                         <div id="app_slot2" class="o_hidden"></div>
                     </div>
