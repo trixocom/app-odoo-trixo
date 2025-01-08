@@ -74,7 +74,7 @@ msgstr "收据/发票"
 #. module: app_base_chinese
 #: model_terms:ir.ui.view,arch_db:app_base_chinese.app_view_order_form
 msgid "Make Collections"
-msgstr "收款"
+msgstr "通知收款"
 
 #. module: app_base_chinese
 #: model:ir.model.fields,field_description:app_base_chinese.field_res_partner__name
