@@ -3,6 +3,7 @@
 import os
 from openai import OpenAI
 from openai import AzureOpenAI
+# from openai.error import OpenAIError
 import requests, json
 import base64
 
@@ -192,8 +193,12 @@ GPT-3	A set of models that can understand and generate natural language
                 # _logger.warning('===========Ai响应:%s' % content)
             elif self.provider == 'azure':
                 # azure 格式
-                usage = res['usage']
-                content = res['choices'][0]['message']['content']
+                if res.get('error'):
+                    usage = False
+                    content = res.get('error')
+                else:
+                    usage = res['usage']
+                    content = res['choices'][0]['message']['content']
             else:
                 usage = False
                 content = res
@@ -338,20 +343,28 @@ GPT-3	A set of models that can understand and generate natural language
             api_key=self.openapi_api_key,
             timeout=request_timeout
         )
-        response = client.chat.completions.create(
-            model=self.engine,
-            messages=messages,
-            # 返回的回答数量
-            n=1,
-            max_tokens=max_tokens,
-            temperature=temperature,
-            top_p=top_p,
-            frequency_penalty=frequency_penalty,
-            presence_penalty=presence_penalty,
-            stop=None,
-        )
-        res = response.model_dump()
-        if 'choices' in res:
+        try:
+            response = client.chat.completions.create(
+                model=self.engine,
+                messages=messages,
+                # 返回的回答数量
+                n=1,
+                max_tokens=max_tokens,
+                temperature=temperature,
+                top_p=top_p,
+                frequency_penalty=frequency_penalty,
+                presence_penalty=presence_penalty,
+                stop=None,
+            )
+            res = response.model_dump()
+        except Exception as e:
+            # 处理OpenAI相关错误
+            res = {
+                'code': e.code,
+                'usage': False,
+                'error': str(e),
+            }
+        if 'choices' in res or 'error' in res:
             return res
         else:
             _logger.warning('=====================azure output data: %s' % response.json())
