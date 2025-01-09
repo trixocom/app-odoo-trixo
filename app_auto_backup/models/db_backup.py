@@ -4,11 +4,13 @@ import os
 import datetime
 import time
 import shutil
+import subprocess
 import json
 import tempfile
 
 from odoo import models, fields, api, tools, _
 from odoo.exceptions import Warning, AccessDenied
+from odoo.tools import find_pg_tool, exec_pg_environ
 import odoo
 
 import logging
@@ -293,8 +295,10 @@ class DbBackup(models.Model):
 
         _logger.info('DUMP DB: %s format %s', db_name, backup_format)
 
-        cmd = ['pg_dump', '--no-owner']
-        cmd.append(db_name)
+        # cmd = ['pg_dump', '--no-owner']
+        # cmd.append(db_name)
+        cmd = [find_pg_tool('pg_dump'), '--no-owner', db_name]
+        env = exec_pg_environ()
 
         if backup_format == 'zip':
             with tempfile.TemporaryDirectory() as dump_dir:
@@ -306,7 +310,7 @@ class DbBackup(models.Model):
                     with db.cursor() as cr:
                         json.dump(self._dump_db_manifest(cr), fh, indent=4)
                 cmd.insert(-1, '--file=' + os.path.join(dump_dir, 'dump.sql'))
-                odoo.tools.exec_pg_command(*cmd)
+                subprocess.run(cmd, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT, check=True)
                 if stream:
                     odoo.tools.osutil.zip_dir(dump_dir, stream, include_dir=False, fnct_sort=lambda file_name: file_name != 'dump.sql')
                 else:
@@ -314,6 +318,14 @@ class DbBackup(models.Model):
                     odoo.tools.osutil.zip_dir(dump_dir, t, include_dir=False, fnct_sort=lambda file_name: file_name != 'dump.sql')
                     t.seek(0)
                     return t
+                # odoo.tools.exec_pg_command(*cmd)
+                # if stream:
+                #     odoo.tools.osutil.zip_dir(dump_dir, stream, include_dir=False, fnct_sort=lambda file_name: file_name != 'dump.sql')
+                # else:
+                #     t=tempfile.TemporaryFile()
+                #     odoo.tools.osutil.zip_dir(dump_dir, t, include_dir=False, fnct_sort=lambda file_name: file_name != 'dump.sql')
+                #     t.seek(0)
+                #     return t
         else:
             cmd.insert(-1, '--format=c')
             stdin, stdout = odoo.tools.exec_pg_command_pipe(*cmd)
