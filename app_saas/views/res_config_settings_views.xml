@@ -13,7 +13,7 @@
                         </div>
                         <div class="o_setting_right_pane">
                             <label for="module_app_cn_po"/>
-                            <div class="content-group" id="msg_module_app_cn_po" invisible="not module_app_cn_po">
+                            <div class="content-group" id="msg_module_app_cn_po" attrs="{'invisible': [('module_app_cn_po', '=', False)]}">
                                 <div class="mt16 text-warning">
                                     <strong>Save</strong> to Install Chinese PO App if downloaded.
                                 </div>
