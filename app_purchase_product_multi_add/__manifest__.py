@@ -16,7 +16,7 @@
 # description:
 
 {
-    'name': "Multi Add Purchase Product,采购订单批量加产品",
+    'name': "Multi Add Purchase Product,采购订单批量下单加产品",
     'version': '13.21.12.30',
     'author': 'odooai.cn',
     'category': 'Inventory/Purchase',

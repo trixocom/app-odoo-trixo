@@ -16,7 +16,7 @@
 # description:
 
 {
-    'name': "Multi Add Sale Product,订单批量加产品",
+    'name': "Multi Add Sale Product,销售订单批量下单加产品",
     'version': '13.21.12.30',
     'author': 'odooai.cn',
     'category': 'Sales',
