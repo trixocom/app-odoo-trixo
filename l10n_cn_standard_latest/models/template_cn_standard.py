@@ -16,7 +16,7 @@ class AccountChartTemplate(models.AbstractModel):
     #     'account.reconcile.model',
     #     'account.fiscal.position',
     # )
-    
+
     @template('cn_standard')
     def _get_cn_standard_template_data(self):
         return {
@@ -57,7 +57,7 @@ class AccountChartTemplate(models.AbstractModel):
                 'account_journal_early_pay_discount_loss_account_id': 'account_6603',
             },
         }
-    
+
     @template('cn_standard', 'account.journal')
     def _get_cn_account_journal(self):
         return {
