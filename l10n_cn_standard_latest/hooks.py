@@ -27,10 +27,10 @@ def pre_init_hook(env):
 def post_init_hook(env):
     """
     数据初始化，只在安装后执行，更新时不执行
-    注意 account.account 中 code 处理已不同，主要用 json 存在 code_store 中，故要不可使用 sql，
-    同时 group_id 已为 compute 字段，无需设置
-    
+    中国公司，会计科目表非本模块中国企业会计科目表时，重载
+
     """
+    env['res.company'].search(['|', ('country_id', '=', env.ref('base.cn')), ('country_id.code', '=', 'CN')]).app_set_to_odooai_cn()
     # cr.execute("UPDATE account_account_template set group_id = "
     #            "(select id from account_group where account_group.code_prefix_start=trim(substring(account_account_template.code from 1 for 1)) limit 1);")
 

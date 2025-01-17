@@ -11,18 +11,18 @@ except ImportError:
 
 class AccountMove(models.Model):
     _inherit = 'account.move'
-    
+
     @api.model
     def check_cn2an(self):
         return an2cn
-    
+
     @api.model
     def _convert_to_amount_in_word(self, number):
         """Convert number to ``amount in words`` for Chinese financial usage."""
         if not self.check_cn2an():
             return None
         return an2cn(number, 'rmb')
-    
+
     def _count_attachments(self):
         domains = [[('res_model', '=', 'account.move'), ('res_id', '=', self.id)]]
         statement_ids = self.line_ids.mapped('statement_id')

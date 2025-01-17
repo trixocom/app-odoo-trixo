@@ -9,17 +9,17 @@
 
 {
     'name': '2025最新中国会计科目表.企业标准会计.Latest Chinese Accounting for odoo18',
-    'version': '18.0.24.12.13',
+    'version': '18.0.25.01.15',
     'author': 'odooai.cn',
     'category': 'Accounting/Localizations/Account Charts',
     'website': 'https://www.odooai.cn',
     'live_test_url': 'https://demo.odooapp.cn',
     'license': 'LGPL-3',
     'sequence': 12,
-    'summary': """    
+    'summary': """
     Multi level account chart. Chinese enhance. Focus on account chart.
     Add account chart group data. Account group, Chinese tax.
-    Set chinese account report. 
+    Set chinese account report.
     """,
     'description': """
     最新中国化财务，主要针对标准会计科目表作了优化。
