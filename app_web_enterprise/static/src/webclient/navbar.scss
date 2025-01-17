@@ -15,5 +15,10 @@
     .o_menu_toggle  {
       color: var(--NavBar-entry-color, #e7e9ed);
     }
+    .o_menu_systray.o_website_systray {
+      .o-website-btn-custo-secondary  {
+        --btn-bg: $o-navbar-entry-bg--active;
+      }
+    }
   }
 }
