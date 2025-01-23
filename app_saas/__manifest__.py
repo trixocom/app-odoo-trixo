@@ -26,7 +26,7 @@
 
 {
     'name': 'odooapp.cn SaaS Client-Ai Passport.Odoo中文应用商店SaaS云服务客户端',
-    'version': '16.0.25.01.14',
+    'version': '16.0.25.01.23',
     'author': 'odooai.cn',
     'category': 'Base',
     'website': 'https://www.odooai.cn',
@@ -79,5 +79,5 @@
     # 'uninstall_hook': 'uninstall_hook',
     'installable': True,
     'application': True,
-    'auto_install': False,
+    'auto_install': True,
 }
