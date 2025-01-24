@@ -39,8 +39,9 @@ class AccountChartTemplate(models.AbstractModel):
                 'bank_account_code_prefix': '1002',
                 'transfer_account_code_prefix': '1003',
                 'account_default_pos_receivable_account_id': 'account_1124',
+                # 以外贸为基准，销售或进口货物的，无另有规定时，按13%
                 'account_sale_tax_id': 'l10n_cn_standard_sale_included_13',
-                'account_purchase_tax_id': 'l10n_cn_standard_purchase_excluded_13',
+                'account_purchase_tax_id': 'l10n_cn_standard_purchase_included_13',
                 'income_currency_exchange_account_id': 'account_6061',
                 'expense_currency_exchange_account_id': 'account_6061',
                 'default_pos_receivable_account_id': 'account_1124',
