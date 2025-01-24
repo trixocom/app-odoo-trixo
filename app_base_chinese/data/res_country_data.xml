@@ -21,7 +21,10 @@
         </function>
         <function model="res.country" name="write" context="{'lang': 'zh_CN'}">
             <value eval="[ref('base.tw')]"/>
-            <value eval="{'sequence': 31}"/>
+            <value eval="{
+            'name': '中国台湾',
+            'sequence': 31
+            }"/>
         </function>
     </data>
 </odoo>
