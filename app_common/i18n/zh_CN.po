@@ -108,9 +108,11 @@ msgid "Setup the communication to odooAi Cloud"
 msgstr "设置云面板"
 
 #. module: app_common
-#: model:ir.model.fields,help:app_common.field_res_users__login
-msgid "Used to log into the system"
-msgstr "用于用户登录系统"
+#. odoo-python
+#: code:addons/app_common/wizard/mail_compose_message.py:0
+#, python-format
+msgid "This only available in Sale Order or Purchase Order"
+msgstr "本操作只对销售订单和采购订单生效"
 
 #. module: app_common
 #: model_terms:ir.ui.view,arch_db:app_common.app_res_config_settings_view_form
@@ -127,7 +129,16 @@ msgid "https://www.odooapp.cn/apps/modules/app_saas"
 msgstr "https://www.odooapp.cn/apps/modules/app_saas"
 
 #. module: app_common
+#. odoo-python
+#: code:addons/app_common/models/ir_ui_view.py:0
+#, python-format
+msgid ""
+"You can Ignore this. Failed to load RelaxNG XML schema for views validation,"
+" file: %s"
+msgstr "此警告可忽略：载入文件失败 RelaxNG XML schema for views validation, 文件名: %s"
+
+#. module: app_common
 #: model:ir.actions.act_window,name:app_common.action_odooai_cloud_config
 #: model_terms:ir.ui.view,arch_db:app_common.app_res_config_settings_view_form
-msgid "odooAi Cloud Settings"
+msgid "odooAi Cloud"
 msgstr "欧度智能云"
