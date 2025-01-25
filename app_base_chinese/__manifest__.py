@@ -18,7 +18,7 @@
 
 {
     'name': 'odoo中国版，中文本土化套件,中国会计基础,Odoo Chinese localization Enhance All in One',
-    'version': '18.0.25.01.17',
+    'version': '18.0.25.01.25',
     'author': 'odooai.cn',
     'category': 'Base',
     'website': 'https://www.odooai.cn',
@@ -90,6 +90,7 @@
         'views/sale_order_views.xml',
         'views/account_move_views.xml',
         'views/ir_default_views.xml',
+        'views/ir_module_module_views.xml',
         # 'views/templates.xml',
         'wizard/sale_make_invoice_advance_views.xml',
         'data/base_data.xml',
@@ -105,7 +106,7 @@
         'data/stock_location_data.xml',
         'data/sales_team_data.xml',
         'data/ir_default_data.xml',
-        'views/ir_module_module_views.xml',
+        'data/ir_config_parameter_data.xml',
     ],
     'assets': {
         'web.assets_backend': [
