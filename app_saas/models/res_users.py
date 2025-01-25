@@ -12,15 +12,7 @@ except:
 
 
 from odoo import api, fields, models, _
-from odoo.exceptions import AccessDenied, UserError
-from odoo.addons.auth_signup.models.res_users import SignupError
-from odoo.http import request, Response
-
-from ast import literal_eval
-import json
 import requests
-from datetime import timedelta
-import random
 
 import logging
 _logger = logging.getLogger(__name__)
@@ -50,9 +42,13 @@ class ResUsers(models.Model):
         response = requests.get(oauth_provider.code_endpoint, params=params, timeout=30)
         if response.ok:
             ret = response.json()
-            # todo: 客户机首次连接时，取到的 server 端 key 写入 provider 的 client_secret
-            if ret.get('push_client_secret') and hasattr(oauth_provider, 'client_secret'):
-                oauth_provider.write({'client_secret': ret.get('push_client_secret')})
+            # 客户机首次连接时，取到的 server 端 key 写入 provider 的 client_secret
+            push_client_secret = ret.pop('push_client_secret', False)
+            if push_client_secret:
+                ICP = self.env['ir.config_parameter'].sudo()
+                ICP.set_param('app_saas_db_token', push_client_secret)
+                if hasattr(oauth_provider, 'client_secret'):
+                    oauth_provider.write({'client_secret': push_client_secret})
                 self._cr.commit()
             return ret
         return {}
