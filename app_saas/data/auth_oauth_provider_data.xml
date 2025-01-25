@@ -3,7 +3,7 @@
     <data noupdate="1">
         <record id="provider_app_saas" model="auth.oauth.provider">
             <field name="name">Ai Passport of odooapp.cn</field>
-            <field name="body">Ai通行证-Odoo中文应用商店</field>
+            <field name="body">Ai Passport of odooapp.cn</field>
             <field name="auth_endpoint">https://www.odooapp.cn/oauth/authorize</field>
             <field name="code_endpoint">https://www.odooapp.cn/oauth/token</field>
             <field name="scope">odoo,profile</field>
@@ -18,6 +18,11 @@
             <value model="ir.config_parameter" eval="{
                 'client_id': obj().env['ir.config_parameter'].get_param('database.uuid'),
             }"/>
+        </function>
+<!--        停用 odoo.com-->
+        <function model="auth.oauth.provider" name="write">
+            <value eval="[ref('auth_oauth.provider_openerp')]"/>
+            <value eval="{'enabled': False}"/>
         </function>
     </data>
 </odoo>
