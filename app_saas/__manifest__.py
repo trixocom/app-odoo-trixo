@@ -60,7 +60,7 @@
         # 'website',
     ],
     'data': [
-        'data/auth_oauth_data.xml',
+        'data/auth_oauth_provider_data.xml',
         'views/auth_oauth_provider_views.xml',
         'views/res_config_settings_views.xml',
     ],

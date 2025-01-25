@@ -11,6 +11,7 @@
             <field name="data_endpoint"></field>
             <field name="css_class">fa fa-2x fa-fw fa-sign-in text-primary</field>
             <field name="enabled" eval="True"/>
+            <field name="sequence">1</field>
         </record>
         <!-- Use database uuid as client_id for OpenERP oauth provider -->
         <function model="auth.oauth.provider" name="write">
@@ -18,6 +19,11 @@
             <value model="ir.config_parameter" eval="{
                 'client_id': obj().env['ir.config_parameter'].get_param('database.uuid'),
             }"/>
+        </function>
+<!--        停用 odoo.com-->
+        <function model="auth.oauth.provider" name="write">
+            <value eval="[ref('auth_oauth.provider_openerp')]"/>
+            <value eval="{'enabled': False}"/>
         </function>
     </data>
 </odoo>
