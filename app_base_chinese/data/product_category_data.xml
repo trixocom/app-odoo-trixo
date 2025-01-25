@@ -15,6 +15,10 @@
             <value eval="{'name': '费用'}"/>
         </function>
         <function model="product.category" name="write" context="{'lang': 'zh_CN'}">
+            <value eval="[ref('delivery.product_category_deliveries', False)]"/>
+            <value eval="{'name': '运费'}"/>
+        </function>
+        <function model="product.category" name="write" context="{'lang': 'zh_CN'}">
             <value eval="[ref('event_sale.product_category_events', False)]"/>
             <value eval="{'name': '活动票'}"/>
         </function>
