@@ -47,7 +47,7 @@ class ResUsers(models.Model):
             if push_client_secret:
                 ICP = self.env['ir.config_parameter'].sudo()
                 ICP.set_param('app_saas_db_token', push_client_secret)
-                if hasattr(oauth_provider, 'client_secret') and not oauth_provider.client_secret:
+                if hasattr(oauth_provider, 'client_secret'):
                     oauth_provider.write({'client_secret': push_client_secret})
                 self._cr.commit()
             return ret
