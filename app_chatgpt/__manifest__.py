@@ -10,7 +10,7 @@
 
 {
     'name': 'ChatGPT4, China Ali,AiGC Center.Ai服务中心，聚合全网Ai',
-    'version': '14.23.09.22',
+    'version': '14.25.02.07',
     'author': 'odooai.cn',
     'company': 'odooai.cn',
     'maintainer': 'odooai.cn',
@@ -44,9 +44,7 @@
     13. Full Open Source.
     ''',
     'depends': [
-        'base',
         'app_odoo_customize',
-        'base_setup',
         'mail',
         'queue_job',
     ],
