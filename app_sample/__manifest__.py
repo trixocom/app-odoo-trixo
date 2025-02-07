@@ -29,7 +29,7 @@
     'category': 'Base',
     'website': 'https://www.odooai.cn',
     'live_test_url': 'https://demo.odooapp.cn',
-    'license': 'OPL-1',
+    'license': 'LGPL-3',
     'sequence': 2,
     'price': 2.00,
     'currency': 'EUR',
