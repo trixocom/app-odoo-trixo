@@ -43,6 +43,7 @@
     13. Full Open Source.
     ''',
     'depends': [
+        'app_odoo_customize',
         'mail',
         'queue_job',
     ],
