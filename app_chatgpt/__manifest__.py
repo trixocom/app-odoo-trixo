@@ -18,7 +18,6 @@
     'website': 'https://www.odooai.cn',
     'license': 'LGPL-3',
     'sequence': 10,
-    'license': 'AGPL-3',
     'images': ['static/description/banner.gif'],
     'summary': '''
     ChatGpt Odoo AI Center. Multi Odoo ChatGPT Robot. Support chatgpt 4 image. 3.5 turbo, text-davinci, DALL·E, Integration All ChatGpt Api and Azure OpenAI Service.
