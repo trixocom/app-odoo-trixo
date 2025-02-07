@@ -56,8 +56,6 @@
         'data/mail_channel_data.xml',
         'views/ai_robot_views.xml',
     ],
-    'assets': {
-    },
     'installable': True,
     'application': True,
     'auto_install': False,
