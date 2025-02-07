@@ -194,6 +194,7 @@ class Channel(models.Model):
         if 'o_odoobot_command' in message.body:
             return rdata
 
+        # begin: 找ai，增加 ai二人转功能。 chat类型不用管， 使用其中一个ai登录即可。 author_id 是 res.partner 模型
         if channel_type == 'chat':
             channel_partner_ids = self.channel_partner_ids
             answer_id = channel_partner_ids - message.author_id
@@ -209,12 +210,18 @@ class Channel(models.Model):
             # partner_ids = @ ids
             partner_ids = list(msg_vals.get('partner_ids'))
             if hasattr(self, 'ai_partner_id') and self.ai_partner_id:
-                # 当有主id时，使用主id
-                if self.ai_partner_id.id in partner_ids:
+                if self.is_ai_conversation and self.ext_ai_partner_id:
+                    # 二人转模式时
+                    if author_id == self.ai_partner_id.id:
+                        partner_ids = [self.ext_ai_partner_id.id]
+                    else:
+                        partner_ids = [self.ai_partner_id.id]
+                elif self.ai_partner_id.id in partner_ids:
+                    # 其它，普通Ai群。当有主id时，使用主id
                     partner_ids = [self.ai_partner_id.id]
             if partner_ids:
                 # 常规群聊 @
-                partners = self.env['res.partner'].search([('id', 'in', partner_ids)])
+                partners = self.env['res.partner'].search([('id', 'in', partner_ids)]) - message.author_id
                 # user_id = user, who has binded gpt robot
                 user_id = partners.mapped('user_ids').sudo().filtered(lambda r: r.gpt_id)[:1]
             elif message.body == _('<div class="o_mail_notification">joined the channel</div>'):
@@ -252,6 +259,8 @@ class Channel(models.Model):
             #     elif user_id.gpt_id and not is_allow:
             #         # 暂时有限用户的Ai
             #         raise UserError(_('此Ai暂时未开放，请联系管理员。'))
+        # end: 找ai，增加 ai二人转功能
+        
         if hasattr(ai, 'is_translator') and ai.is_translator and ai.ai_model == 'translator':
             return rdata
         chatgpt_channel_id = self.env.ref('app_chatgpt.channel_chatgpt')

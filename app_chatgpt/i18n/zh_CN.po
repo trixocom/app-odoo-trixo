@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0+e-20241226\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-07 12:32+0000\n"
-"PO-Revision-Date: 2025-02-07 12:32+0000\n"
+"POT-Creation-Date: 2025-02-07 15:24+0000\n"
+"PO-Revision-Date: 2025-02-07 15:24+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -75,7 +75,8 @@ msgid ""
 "                              so it counts against the overall token limit.\n"
 "                              "
 msgstr ""
-"Ai角色场景设定。为Ai设定角色和场景后，Ai即可按你设定要求进行回答。你可以让Ai专注某领域回答，描述Ai个性。并告诉Ai应该回答什么，不应该回答什么，并告诉他以何种格式响应。角色设定会计入整体的会话Token限制和数量。"
+"Ai角色场景设定。为Ai设定角色和场景后，Ai即可按你设定要求进行回答。你可以让Ai专注某领域回答，描述Ai个性。"
+"并告诉Ai应该回答什么，不应该回答什么，并告诉他以何种格式响应。角色设定会计入整体的会话Token限制和数量。"
 
 #. module: app_chatgpt
 #: model:ir.model.fields,help:app_chatgpt.field_ai_robot__top_p
@@ -707,6 +708,11 @@ msgid "Ai Conversation"
 msgstr "开启Ai二人转"
 
 #. module: app_chatgpt
+#: model_terms:ir.ui.view,arch_db:app_chatgpt.ai_mail_channel_view_kanban
+msgid "Ai Conversation:"
+msgstr "Ai二人转"
+
+#. module: app_chatgpt
 #: model:ir.model.fields,field_description:app_chatgpt.field_ai_robot__ai_model
 msgid "Ai Model"
 msgstr "Ai模型"
@@ -760,6 +766,11 @@ msgstr "Ai用户"
 #: model:ir.model.fields,help:app_chatgpt.field_mail_channel__description
 msgid "Ai would help you act as the Character set."
 msgstr "Ai将按您设定的角色与场景进行思考并会话。"
+
+#. module: app_chatgpt
+#: model:mail.channel,description:app_chatgpt.channel_ai_conversation
+msgid "Ai互怼/辩论/二人转"
+msgstr ""
 
 #. module: app_chatgpt
 #: model:ir.model.fields.selection,name:app_chatgpt.selection__res_users__gpt_policy__all
@@ -1780,6 +1791,11 @@ msgid "Main Ai is the robot help you default."
 msgstr "主Ai是主要对话对象，当没有 @ 操作时，由主Ai回答"
 
 #. module: app_chatgpt
+#: model_terms:ir.ui.view,arch_db:app_chatgpt.ai_mail_channel_view_kanban
+msgid "Main Ai:"
+msgstr "专属主Ai:"
+
+#. module: app_chatgpt
 #: model:ir.model.fields,field_description:app_chatgpt.field_mail_channel__ai_sys_content
 msgid "Main Robot Role"
 msgstr "主Ai角色"
@@ -2176,7 +2192,7 @@ msgid ""
 "Role-playing and scene setting.Give the model instructions about how it "
 "should behave and any context it should reference when generating a "
 "response."
-msgstr ""
+msgstr "默认Ai的角色设定及场景设定。设定后，如未在频道中设置额外角色，则Ai将以此角色来进行对话。"
 
 #. module: app_chatgpt
 #. odoo-javascript
