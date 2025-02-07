@@ -19,7 +19,7 @@ class AiRobot(models.Model):
     provider = fields.Selection(selection_add=[('deepseek', 'Deepseek')], ondelete={'deepseek': 'set default'})
     set_ai_model = fields.Selection(
         selection_add=[
-            ('deepseek-chat', 'Deepseek对话'),
+            ('deepseek-chat', 'Deepseek Chat'),
         ],
         ondelete={'deepseek-chat': 'set default'})
 
