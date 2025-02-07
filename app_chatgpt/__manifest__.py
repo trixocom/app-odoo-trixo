@@ -10,7 +10,7 @@
 
 {
     'name': 'Latest ChatGPT4 AI Center. GPT 4 for image, Dall-E Image.Multi Robot Support. Chat and Training',
-    'version': '13.23.03.31',
+    'version': '13.25.02.07',
     'author': 'odooai.cn',
     'company': 'odooai.cn',
     'maintainer': 'odooai.cn',
@@ -43,8 +43,6 @@
     13. Full Open Source.
     ''',
     'depends': [
-        'base',
-        'base_setup',
         'mail',
         'queue_job',
     ],
