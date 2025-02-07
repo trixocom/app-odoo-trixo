@@ -1803,7 +1803,7 @@ msgstr "最大对话输入"
 #. module: app_chatgpt
 #: model:ir.model.fields,help:app_chatgpt.field_ai_robot__max_send_char
 msgid "Max Send Prompt Length"
-msgstr ""
+msgstr "作为输入端，可输入的最长Prompt，以字符长度为基本单位"
 
 #. module: app_chatgpt
 #: model:ir.model.fields.selection,name:app_chatgpt.selection__mail_channel__set_max_tokens__1000
