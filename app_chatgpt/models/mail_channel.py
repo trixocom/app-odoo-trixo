@@ -373,9 +373,11 @@ class Channel(models.Model):
         if self.ai_partner_id and self.ai_partner_id.image_1920:
             self.image_128 = self.ai_partner_id.avatar_128
         if self.ai_partner_id and not self.ai_sys_content:
-            self.ai_sys_content = self.ai_partner_id.sys_content
+            if self.ai_partner_id.gpt_id:
+                self.ai_sys_content = self.ai_partner_id.gpt_id.sys_content
 
     @api.onchange('ext_ai_partner_id')
     def _onchange_ext_ai_partner_id(self):
         if self.ext_ai_partner_id and not self.ext_ai_sys_content:
-            self.ext_ai_sys_content = self.ext_ai_partner_id.sys_content
+            if self.ext_ai_partner_id.gpt_id:
+                self.ai_sys_content = self.ext_ai_partner_id.gpt_id.sys_content

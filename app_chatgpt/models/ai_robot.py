@@ -110,7 +110,7 @@ GPT-3	A set of models that can understand and generate natural language
     # end gpt 参数
     endpoint = fields.Char('End Point', default='https://api.openai.com/v1/chat/completions')
     engine = fields.Char('Engine', help='If use Azure, Please input the Model deployment name.')
-    api_version = fields.Char('API Version', default='2022-12-01')
+    api_version = fields.Char('API Version', default='gpt-4o')
     ai_timeout = fields.Integer('Timeout(seconds)', help="Connect timeout for Ai response", default=120)
     sequence = fields.Integer('Sequence', help="Determine the display order", default=10)
     sensitive_words = fields.Text('Sensitive Words Plus', help='Sensitive word filtering. Separate keywords with a carriage return.')

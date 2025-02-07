@@ -3,6 +3,7 @@
     <data noupdate="1">
         <record id="partner_chatgpt" model="res.partner">
             <field name="name">ChatGPT odoo</field>
+            <field name="is_chat_private" eval="True"/>
             <field name="image_1920" type="base64" file="app_chatgpt/static/description/chatgpt.png"/>
         </record>
         <record id="user_chatgpt" model="res.users">

@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 16.0+e-20230721\n"
+"Project-Id-Version: Odoo Server 16.0+e-20241226\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-11 08:30+0000\n"
-"PO-Revision-Date: 2023-10-11 08:30+0000\n"
+"POT-Creation-Date: 2025-02-07 12:32+0000\n"
+"PO-Revision-Date: 2025-02-07 12:32+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -105,6 +105,7 @@ msgstr "停止标识。表示聊天机器人停止生成回复的条件，可以
 #: model:ir.model.fields,help:app_chatgpt.field_ai_robot__set_ai_model
 msgid ""
 "\n"
+"GPT-4o: It is multimodal (accepting text or image inputs and outputting text), and it has the same high intelligence as GPT-4 Turbo but is much more efficient—it generates text 2x faster and is 50% cheaper.\n"
 "GPT-4: Can understand Image, generate natural language or code.\n"
 "GPT-3.5: A set of models that improve on GPT-3 and can understand as well as generate natural language or code\n"
 "DALL·E: A model that can generate and edit images given a natural language prompt\n"
@@ -116,6 +117,7 @@ msgid ""
 "                             "
 msgstr ""
 "\n"
+"GPT-4o: 多模态引擎 (接受文本或图像输入并输出文本，但暂未开放)，并且它具有与GPT-4 Turbo 相同的高智能，但效率更高——生成文本的速度快2倍，且成本降低50%。\n"
 "GPT-4: 最新引擎，更好的智能回复。支持多模态输入如图片，但暂时没开放。\n"
 "GPT-3.5: 问答引擎，可以根据提问回复答案或者代码。\n"
 "DALL·E: 根据要求生成图片。\n"
@@ -583,8 +585,8 @@ msgstr ""
 
 #. module: app_chatgpt
 #: model_terms:ir.ui.view,arch_db:app_chatgpt.ai_mail_channel_view_kanban
-msgid "<em>角色:</em>"
-msgstr ""
+msgid "<em>Role:</em>"
+msgstr "<em>角色:</em>"
 
 #. module: app_chatgpt
 #. odoo-javascript
@@ -622,11 +624,6 @@ msgstr ""
 #: model:ir.model.fields,field_description:app_chatgpt.field_res_partner_ai_use__ai_completion_tokens
 msgid "AI Completion Tokens"
 msgstr "Ai回答Token"
-
-#. module: app_chatgpt
-#: model:ir.model.fields,field_description:app_chatgpt.field_ai_robot__ai_model
-msgid "Ai Model"
-msgstr "Ai模型"
 
 #. module: app_chatgpt
 #: model:ir.model.fields,field_description:app_chatgpt.field_ai_robot__provider
@@ -690,14 +687,56 @@ msgid "Ai Auto"
 msgstr "Ai自动判断"
 
 #. module: app_chatgpt
+#: model:ir.model.fields,field_description:app_chatgpt.field_mail_channel__description
+msgid "Ai Character"
+msgstr "AI角色设定"
+
+#. module: app_chatgpt
 #: model_terms:ir.ui.view,arch_db:app_chatgpt.ai_mail_channel_view_form
 msgid "Ai Character Set"
 msgstr "Ai角色风格设定"
 
 #. module: app_chatgpt
+#: model_terms:ir.ui.view,arch_db:app_chatgpt.ai_mail_channel_view_form
+msgid "Ai Config(Default value is prefer)"
+msgstr "用户设定的角色相关，一般不要调整"
+
+#. module: app_chatgpt
+#: model:ir.model.fields,field_description:app_chatgpt.field_mail_channel__is_ai_conversation
+msgid "Ai Conversation"
+msgstr "开启Ai二人转"
+
+#. module: app_chatgpt
+#: model:ir.model.fields,field_description:app_chatgpt.field_ai_robot__ai_model
+msgid "Ai Model"
+msgstr "Ai模型"
+
+#. module: app_chatgpt
+#: model_terms:ir.ui.view,arch_db:app_chatgpt.ai_mail_channel_view_form
+msgid "Ai Parameter"
+msgstr "Ai常规设定"
+
+#. module: app_chatgpt
 #: model_terms:ir.ui.view,arch_db:app_chatgpt.ai_robot_search_view
 msgid "Ai Provider"
-msgstr ""
+msgstr "Ai服务商"
+
+#. module: app_chatgpt
+#: model_terms:ir.ui.view,arch_db:app_chatgpt.ai_mail_channel_view_form
+msgid "Ai Response Config"
+msgstr "Ai智能优化设定，具体参数"
+
+#. module: app_chatgpt
+#: model:ir.model.fields,field_description:app_chatgpt.field_mail_mail__ai2id
+#: model:ir.model.fields,field_description:app_chatgpt.field_mail_message__ai2id
+msgid "Ai Response id"
+msgstr "Ai响应id"
+
+#. module: app_chatgpt
+#: model:ir.model.fields,field_description:app_chatgpt.field_mail_mail__ai2model
+#: model:ir.model.fields,field_description:app_chatgpt.field_mail_message__ai2model
+msgid "Ai Response model"
+msgstr "Ai响应对象"
 
 #. module: app_chatgpt
 #: model:ir.actions.act_window,name:app_chatgpt.action_ai_robot
@@ -707,20 +746,20 @@ msgid "Ai Robot"
 msgstr "Ai机器人"
 
 #. module: app_chatgpt
+#: model_terms:ir.ui.view,arch_db:app_chatgpt.app_chatgpt_res_users_form
+msgid "Ai Robot Setting"
+msgstr "Ai员工设定"
+
+#. module: app_chatgpt
 #: model:ir.model.fields,field_description:app_chatgpt.field_res_partner_ai_use__ai_user_id
 #: model_terms:ir.ui.view,arch_db:app_chatgpt.app_view_users_search
 msgid "Ai User"
 msgstr "Ai用户"
 
 #. module: app_chatgpt
-#: model_terms:ir.ui.view,arch_db:app_chatgpt.ai_mail_channel_view_form
-msgid "Ai Parameter"
-msgstr "Ai常规设定"
-
-#. module: app_chatgpt
-#: model_terms:ir.ui.view,arch_db:app_chatgpt.ai_mail_channel_view_form
-msgid "Ai Response Config"
-msgstr "Ai智能优化设定，具体参数"
+#: model:ir.model.fields,help:app_chatgpt.field_mail_channel__description
+msgid "Ai would help you act as the Character set."
+msgstr "Ai将按您设定的角色与场景进行思考并会话。"
 
 #. module: app_chatgpt
 #: model:ir.model.fields.selection,name:app_chatgpt.selection__res_users__gpt_policy__all
@@ -809,6 +848,11 @@ msgstr "头像"
 #: model:ir.model.fields.selection,name:app_chatgpt.selection__ai_robot__provider__azure
 msgid "Azure"
 msgstr ""
+
+#. module: app_chatgpt
+#: model_terms:ir.ui.view,arch_db:app_chatgpt.ai_robot_form_view
+msgid "Azure AI Document"
+msgstr "Azure Ai文档"
 
 #. module: app_chatgpt
 #. odoo-javascript
@@ -925,14 +969,9 @@ msgid "Channel Type"
 msgstr "频道类型"
 
 #. module: app_chatgpt
-#: model_terms:ir.ui.view,arch_db:app_chatgpt.app_chatgpt_res_users_form
-msgid "ChatGPT"
-msgstr ""
-
-#. module: app_chatgpt
 #: model:ai.robot,name:app_chatgpt.chatgpt3_azure
 msgid "ChatGPT Azure"
-msgstr ""
+msgstr "ChatGPT Azure云"
 
 #. module: app_chatgpt
 #: model:ai.robot,name:app_chatgpt.chatgpt_robot1
@@ -954,16 +993,16 @@ msgstr "ChatGPT机器人【%s】没有设置 api key."
 #. module: app_chatgpt
 #: model:ai.robot,name:app_chatgpt.chatgpt_robot
 msgid "ChatGPT odoo"
-msgstr "ChatGPT openAi"
+msgstr "ChatGPT Odoo"
 
 #. module: app_chatgpt
 #: model:ai.robot,name:app_chatgpt.chatgpt4_azure
 msgid "ChatGPT4 Azure"
-msgstr ""
+msgstr "ChatGPT4 Azure云"
 
 #. module: app_chatgpt
-#: model:mail.channel,description:app_chatgpt.channel_chatgpt
-msgid "ChatGPT话题"
+#: model:ai.robot,name:app_chatgpt.chatgpt4_32k_azure
+msgid "ChatGPT4-32k Azure"
 msgstr ""
 
 #. module: app_chatgpt
@@ -976,17 +1015,17 @@ msgstr "ChatGpt训练"
 #. module: app_chatgpt
 #: model:ir.model.fields.selection,name:app_chatgpt.selection__ai_robot__set_ai_model__code-davinci-002
 msgid "Chatgpt 2 Code Optimized"
-msgstr ""
+msgstr "Chatgpt2代码优化"
 
 #. module: app_chatgpt
 #: model:ir.model.fields.selection,name:app_chatgpt.selection__ai_robot__set_ai_model__text-davinci-002
 msgid "Chatgpt 2 Davinci"
-msgstr ""
+msgstr "Chatgpt2 达芬奇"
 
 #. module: app_chatgpt
 #: model:ir.model.fields.selection,name:app_chatgpt.selection__ai_robot__set_ai_model__text-davinci-003
 msgid "Chatgpt 3 Davinci"
-msgstr ""
+msgstr "Chatgpt3 达芬奇"
 
 #. module: app_chatgpt
 #: model:ir.model.fields.selection,name:app_chatgpt.selection__ai_robot__set_ai_model__gpt-3_5-turbo
@@ -1166,7 +1205,7 @@ msgstr ""
 #. module: app_chatgpt
 #: model:ir.model,name:app_chatgpt.model_mail_thread
 msgid "Email Thread"
-msgstr "邮件会话"
+msgstr "EMail线程"
 
 #. module: app_chatgpt
 #: model:ir.model.fields,field_description:app_chatgpt.field_ai_robot__endpoint
@@ -1192,6 +1231,11 @@ msgstr ""
 #, python-format
 msgid "European"
 msgstr ""
+
+#. module: app_chatgpt
+#: model:ir.model.fields,field_description:app_chatgpt.field_mail_channel__ext_ai_sys_content
+msgid "Extend Robot Role"
+msgstr "副Ai角色"
 
 #. module: app_chatgpt
 #. odoo-javascript
@@ -1287,6 +1331,16 @@ msgstr ""
 #: code:addons/app_chatgpt/static/src/models_data/emoji_data.js:0
 #, python-format
 msgid "Fuji"
+msgstr ""
+
+#. module: app_chatgpt
+#: model:ir.model.fields.selection,name:app_chatgpt.selection__ai_robot__set_ai_model__gpt-4-turbo
+msgid "GPT-4 Turbo"
+msgstr ""
+
+#. module: app_chatgpt
+#: model:ir.model.fields.selection,name:app_chatgpt.selection__ai_robot__set_ai_model__gpt-4o
+msgid "GPT-4o"
 msgstr ""
 
 #. module: app_chatgpt
@@ -1726,6 +1780,11 @@ msgid "Main Ai is the robot help you default."
 msgstr "主Ai是主要对话对象，当没有 @ 操作时，由主Ai回答"
 
 #. module: app_chatgpt
+#: model:ir.model.fields,field_description:app_chatgpt.field_mail_channel__ai_sys_content
+msgid "Main Robot Role"
+msgstr "主Ai角色"
+
+#. module: app_chatgpt
 #: model:ir.model.fields,field_description:app_chatgpt.field_res_partner_ai_use__max_number
 msgid "Max Number of Call"
 msgstr "提问次数限制"
@@ -1739,7 +1798,7 @@ msgstr "响应长度限制"
 #. module: app_chatgpt
 #: model:ir.model.fields,field_description:app_chatgpt.field_ai_robot__max_send_char
 msgid "Max Send Char"
-msgstr ""
+msgstr "最大对话输入"
 
 #. module: app_chatgpt
 #: model:ir.model.fields,help:app_chatgpt.field_ai_robot__max_send_char
@@ -1973,7 +2032,7 @@ msgstr ""
 #. module: app_chatgpt
 #: model_terms:ir.ui.view,arch_db:app_chatgpt.ai_robot_form_view
 msgid "OpenAI Document"
-msgstr ""
+msgstr "OpenAi文档"
 
 #. module: app_chatgpt
 #. odoo-javascript
@@ -2046,21 +2105,21 @@ msgstr ""
 #: code:addons/app_chatgpt/models/ai_robot.py:0
 #, python-format
 msgid "Please Set your AI robot's API Version first."
-msgstr ""
+msgstr "请先设置Ai机器人的Api版本。"
 
 #. module: app_chatgpt
 #. odoo-python
 #: code:addons/app_chatgpt/models/ai_robot.py:0
 #, python-format
 msgid "Please Set your AI robot's endpoint first."
-msgstr ""
+msgstr "请先设置Ai机器人的Api入口 Endpoint。"
 
 #. module: app_chatgpt
 #. odoo-python
 #: code:addons/app_chatgpt/models/mail_channel.py:0
 #, python-format
 msgid "Please warmly welcome our new partner %s and send him the best wishes."
-msgstr ""
+msgstr "请热烈欢迎我们的新伙伴 %s 并给予一个大大的拥抱。"
 
 #. module: app_chatgpt
 #: model:ir.model.fields,field_description:app_chatgpt.field_ai_robot__presence_penalty
@@ -2076,7 +2135,7 @@ msgstr "私有频道"
 #. module: app_chatgpt
 #: model:ir.model.fields,help:app_chatgpt.field_ai_robot__openapi_api_key
 msgid "Provide the API key here"
-msgstr ""
+msgstr "在此填入Api Key"
 
 #. module: app_chatgpt
 #. odoo-javascript
@@ -2236,6 +2295,15 @@ msgid "Set Temperature"
 msgstr "设置创造性"
 
 #. module: app_chatgpt
+#: model:ir.model.fields,help:app_chatgpt.field_mail_channel__is_ai_conversation
+msgid ""
+"Set active to make conversation between 2+ Ai Employee. You Just say first "
+"word, then Ai robots Auto Chat."
+msgstr ""
+"激活后可让2个或2个以上的Ai进行对话。您可以以Ai身份或者第三人的身份说出论题，然后两个Ai将按照您"
+"定义的角色进行对话或辩论。"
+
+#. module: app_chatgpt
 #. odoo-javascript
 #: code:addons/app_chatgpt/static/src/models_data/emoji_data.js:0
 #, python-format
@@ -2321,7 +2389,7 @@ msgstr "同步响应"
 #. module: app_chatgpt
 #: model:ir.model.fields,field_description:app_chatgpt.field_ai_robot__sys_content
 msgid "System message"
-msgstr ""
+msgstr "默认角色提示词"
 
 #. module: app_chatgpt
 #. odoo-javascript
@@ -2400,6 +2468,16 @@ msgstr ""
 #: model:ir.model.fields,field_description:app_chatgpt.field_ai_robot__temperature
 msgid "Temperature"
 msgstr ""
+
+#. module: app_chatgpt
+#: model:ir.model.fields,help:app_chatgpt.field_mail_channel__ai_sys_content
+msgid "The Role the First Ai robot play for. This is for Ai Conversation."
+msgstr "主Ai身份设定。主Ai将会按此进行角色扮演或设定场景。此设定用于多个Ai间对话或辩论。"
+
+#. module: app_chatgpt
+#: model:ir.model.fields,help:app_chatgpt.field_mail_channel__ext_ai_sys_content
+msgid "The Role the Second Ai robot play for. This is for Ai Conversation."
+msgstr "副Ai身份设定。副Ai将会按此进行角色扮演或设定场景。此设定用于多个Ai间对话或辩论。"
 
 #. module: app_chatgpt
 #: model:ir.model.fields,field_description:app_chatgpt.field_ai_robot__ai_timeout
@@ -2576,6 +2654,11 @@ msgstr ""
 #, python-format
 msgid "Way"
 msgstr ""
+
+#. module: app_chatgpt
+#: model:mail.channel,description:app_chatgpt.channel_chatgpt
+msgid "You are a coding expert. Please help us to do odoo coding."
+msgstr "您是一个编码专家，是Odoo前端及后端开发高手，现在您要对同伴进行技术支持。"
 
 #. module: app_chatgpt
 #. odoo-javascript
@@ -11555,8 +11638,13 @@ msgid "gorilla"
 msgstr ""
 
 #. module: app_chatgpt
+#: model:ir.model.fields.selection,name:app_chatgpt.selection__ai_robot__set_ai_model__gpt-3_5-turbo-0125
+msgid "gpt-3.5-turbo-0125"
+msgstr ""
+
+#. module: app_chatgpt
 #: model:ir.model.fields.selection,name:app_chatgpt.selection__ai_robot__set_ai_model__gpt-3_5-turbo-0613
-msgid "gpt-3.5-turbo-0613(Default and Latest)"
+msgid "gpt-3.5-turbo-0613"
 msgstr ""
 
 #. module: app_chatgpt
@@ -27797,7 +27885,6 @@ msgstr ""
 
 #. module: app_chatgpt
 #. odoo-python
-#: code:addons/app_chatgpt/models/ai_robot.py:0
 #: code:addons/app_chatgpt/models/mail_channel.py:0
 #, python-format
 msgid "此Ai暂时未开放，请联系管理员。"
@@ -27810,7 +27897,6 @@ msgstr ""
 
 #. module: app_chatgpt
 #. odoo-python
-#: code:addons/app_chatgpt/models/ai_robot.py:0
 #: code:addons/app_chatgpt/models/mail_channel.py:0
 #: code:addons/app_chatgpt/models/mail_channel.py:0
 #, python-format
@@ -27821,11 +27907,6 @@ msgstr ""
 #: model:ir.model.fields.selection,name:app_chatgpt.selection__mail_channel__set_temperature__0_6
 msgid "理性"
 msgstr ""
-
-#. module: app_chatgpt
-#: model_terms:ir.ui.view,arch_db:app_chatgpt.ai_mail_channel_view_form
-msgid "Ai Config(Default value is prefer)"
-msgstr "用户设定的角色相关，一般不要调整"
 
 #. module: app_chatgpt
 #: model:ir.model.fields,help:app_chatgpt.field_res_config_settings__openapi_context_timeout
