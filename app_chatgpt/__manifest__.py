@@ -45,7 +45,6 @@
     'depends': [
         'app_odoo_customize',
         'mail',
-        'queue_job',
     ],
     'data': [
         'security/ir.model.access.csv',
