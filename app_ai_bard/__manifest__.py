@@ -18,10 +18,7 @@
     'license': 'LGPL-3',
     'sequence': 10,
     'images': ['static/description/banner.gif'],
-    'summary': '''
-    Google Genimi Ai for Odoo AI Center. Ai Aigc Center including Google Genimi Ai(Bard before), Azure Ai, Baidu Ai.
-    Support chatgpt 4 image. DALLE, Integration All ChatGpt Api and Azure OpenAI Service.
-    Easy Chat channel with several ChatGPT Robots and train.
+    'summary': '''7
     ''',
     'description': '''
     Chat with google bard ai with odoo.
