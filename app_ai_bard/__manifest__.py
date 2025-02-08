@@ -24,7 +24,7 @@
     Easy Chat channel with several ChatGPT Robots and train.
     ''',
     'description': '''
-    Chat with google bard ai with odoo.
+    Chat with google Gemini ai with odoo.
     Allows the application to leverage the capabilities of the GPT language model to generate human-like responses,
     providing a more natural and intuitive user experience.
     odoo bard connector.
