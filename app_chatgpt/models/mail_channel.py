@@ -33,7 +33,7 @@ class Channel(models.Model):
         ('2000', 'Long'),
         ('3000', 'Overlength'),
         ('32000', '32K'),
-    ], string='Max Response', default='600', help="越大返回内容越多，计费也越多")
+    ], string='Max Response', default='1000', help="越大返回内容越多，计费也越多")
     set_chat_count = fields.Selection([
         ('none', 'Ai Auto'),
         ('1', '1标准'),
@@ -187,6 +187,7 @@ class Channel(models.Model):
         channel = self.env['mail.channel']
         channel_type = self.channel_type
         messages = []
+        add_sys_content = ''
 
         # 不处理 一般notify，但处理欢迎
         if '<div class="o_mail_notification' in message.body and message.body != _('<div class="o_mail_notification">joined the channel</div>'):
@@ -211,11 +212,13 @@ class Channel(models.Model):
             partner_ids = list(msg_vals.get('partner_ids'))
             if hasattr(self, 'ai_partner_id') and self.ai_partner_id:
                 if self.is_ai_conversation and self.ext_ai_partner_id:
-                    # 二人转模式时
+                    # 二人转模式时，处理回答ai，以及叠加角色的设定
                     if author_id == self.ai_partner_id.id:
                         partner_ids = [self.ext_ai_partner_id.id]
+                        add_sys_content = self.ext_ai_sys_content
                     else:
                         partner_ids = [self.ai_partner_id.id]
+                        add_sys_content = self.ai_sys_content
                 elif self.ai_partner_id.id in partner_ids:
                     # 其它，普通Ai群。当有主id时，使用主id
                     partner_ids = [self.ai_partner_id.id]
@@ -279,6 +282,12 @@ class Channel(models.Model):
             sync_config = self._context.get('app_ai_sync_config')
         else:
             sync_config = self.env['ir.config_parameter'].sudo().get_param('app_chatgpt.openai_sync_config')
+            
+        if self._context.get('app_ai_chat_padding_time'):
+            padding_time = int(self._context.get('app_ai_chat_padding_time'))
+        else:
+            padding_time = int(self.env['ir.config_parameter'].sudo().get_param('app_chatgpt.ai_chat_padding_time'))
+            
         # api_key = self.env['ir.config_parameter'].sudo().get_param('app_chatgpt.openapi_api_key')
         # ai处理，不要自问自答
         if ai and answer_id != message.author_id:
@@ -292,14 +301,10 @@ class Channel(models.Model):
                 openapi_context_timeout = 60
             openai.api_key = api_key
             # 非4版本，取0次。其它取3 次历史
-            chat_count = 3
             if '4' in ai.ai_model or '4' in ai.name:
                 chat_count = 1
-                if hasattr(self, 'chat_count'):
-                    if self.chat_count > 0:
-                        chat_count = 1
             else:
-                chat_count = chat_count
+                chat_count = self.chat_count or 3
                 
             if author_id != answer_id.id and self.channel_type == 'chat':
                 # 私聊
@@ -312,10 +317,11 @@ class Channel(models.Model):
             elif author_id != answer_id.id and msg_vals.get('model', '') == 'mail.channel' and self.channel_type in ['group', 'channel']:
                 # 高级用户自建的话题
                 channel = self.env[msg_vals.get('model')].browse(msg_vals.get('res_id'))
-                if hasattr(channel, 'is_private') and channel.description:
-                    messages.append({"role": "system", "content": channel.description})
         
             try:
+                # 处理提示词
+                sys_content = channel.description + add_sys_content
+                messages.append({"role": "system", "content": sys_content})
                 c_history = self.get_openai_context(channel.id, author_id, answer_id, openapi_context_timeout, chat_count)
                 if c_history:
                     messages += c_history
@@ -324,8 +330,6 @@ class Channel(models.Model):
                 # 接口最大接收 8430 Token
                 if msg_len * 2 > ai.max_send_char:
                     messages = []
-                    if hasattr(channel, 'is_private') and channel.description:
-                        messages.append({"role": "system", "content": channel.description})
                     messages.append({"role": "user", "content": msg})
                     msg_len = sum(len(str(m)) for m in messages)
                     if msg_len * 2 > ai.max_send_char:
@@ -339,7 +343,7 @@ class Channel(models.Model):
                     self.get_ai_response(ai, messages, channel, user_id, message)
                 else:
                     if hasattr(self, 'with_delay'):
-                        self.with_delay().get_ai_response(ai, messages, channel, user_id, message)
+                        self.with_delay(priority=30, eta=padding_time).get_ai_response(ai, messages, channel, user_id, message)
                     else:
                         self.get_ai_response(ai, messages, channel, user_id, message)
             except Exception as e:
@@ -390,3 +394,8 @@ class Channel(models.Model):
         if self.ext_ai_partner_id and not self.ext_ai_sys_content:
             if self.ext_ai_partner_id.gpt_id:
                 self.ai_sys_content = self.ext_ai_partner_id.gpt_id.sys_content
+
+    @api.onchange('set_chat_count')
+    def _onchange_set_chat_count(self):
+        if self.set_chat_count:
+            self.chat_count = int(self.set_chat_count) if self.set_chat_count != 'none' else 0

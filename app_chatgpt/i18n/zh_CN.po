@@ -632,6 +632,16 @@ msgid "AI Provider"
 msgstr "Ai服务商"
 
 #. module: app_chatgpt
+#: model:ir.model.fields,field_description:app_chatgpt.field_res_config_settings__ai_chat_padding_time
+msgid "Ai Padding Time"
+msgstr "Ai对话间隔(秒)"
+
+#. module: app_chatgpt
+#: model:ir.model.fields,help:app_chatgpt.field_res_config_settings__ai_chat_padding_time
+msgid "Amount of time (in seconds) between a conversation"
+msgstr "每次与Ai对话的间隔时间，以秒为单位。一般的Ai接口不允许适时间太多请求。"
+
+#. module: app_chatgpt
 #. odoo-javascript
 #: code:addons/app_chatgpt/static/src/models_data/emoji_data.js:0
 #, python-format
@@ -2278,7 +2288,7 @@ msgstr "辅助Ai"
 #. module: app_chatgpt
 #: model:ir.model.fields.selection,name:app_chatgpt.selection__res_users__gpt_policy__limit
 msgid "Selected Users"
-msgstr ""
+msgstr "指定的用户"
 
 #. module: app_chatgpt
 #: model:ir.model.fields,field_description:app_chatgpt.field_ai_robot__sensitive_words
