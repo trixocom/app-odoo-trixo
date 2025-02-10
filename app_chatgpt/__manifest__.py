@@ -42,7 +42,7 @@
     11. Multi-language Support. Multi-Company Support.
     12. Support Odoo 18,17,16,15,14,13,12, Enterprise and Community and odoo.sh Edition.
     13. Full Open Source.
-    
+
     To install or upgrade:
     pip install openai==1.59.5
     pip3 install typing-extensions==4.12.2

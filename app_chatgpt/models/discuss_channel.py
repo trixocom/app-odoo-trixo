@@ -34,7 +34,7 @@ class Channel(models.Model):
         ('2000', 'Long'),
         ('3000', 'Overlength'),
         ('32000', '32K'),
-    ], string='Max Response', default='600', help="越大返回内容越多，计费也越多")
+    ], string='Max Response', default='1000', help="越大返回内容越多，计费也越多")
     set_chat_count = fields.Selection([
         ('none', 'Ai Auto'),
         ('1', '1标准'),
@@ -71,7 +71,7 @@ class Channel(models.Model):
         ('-1', '允许较多重复'),
         ('-2', '更多强调重复'),
     ], string='Presence penalty', default='1', help="-2~2，值越大越少重复词")
-
+    
     # todo: 这里用 compute?
     max_tokens = fields.Integer('最长响应Token', default=600, help="越大返回内容越多，计费也越多")
     chat_count = fields.Integer(string="上下文数量", default=0, help="0~3，设定后，会将最近n次对话发给Ai，有助于他更好的回答")
@@ -79,16 +79,31 @@ class Channel(models.Model):
     top_p = fields.Float(string="连贯性值", default=0.6, help="0~1，值越大越富有想像力，越小则越保守")
     frequency_penalty = fields.Float('避免常用词值', default=1, help="-2~2，值越大越少使用常用词")
     presence_penalty = fields.Float('避免重复词值', default=1, help="-2~2，值越大越少重复词")
-
+    
     is_current_channel = fields.Boolean('是否当前用户默认频道', compute='_compute_is_current_channel', help='是否当前用户默认微信对话频道')
-
+    
+    # begin 处理Ai对话
+    is_ai_conversation = fields.Boolean('Ai Conversation', default=False,
+                                        help='Set active to make conversation between 2+ Ai Employee. You Just say first word, then Ai robots Auto Chat.')
+    # 主Ai角色设定
+    ai_sys_content = fields.Char('Main Robot Role', change_default=True,
+                                 help='The Role the First Ai robot play for. This is for Ai Conversation.')
+    # 辅助Ai角色设定
+    ext_ai_sys_content = fields.Char('Extend Robot Role', change_default=True,
+                                     help='The Role the Second Ai robot play for. This is for Ai Conversation.')
+    
+    # end 处理Ai对话
+    
     def name_get(self):
         result = []
         for c in self:
-            pre = '[私]' if c.channel_type == 'channel' and c.is_private else ''
-            result.append((c.id, f"{pre}{c.name or ''}"))
+            if c.channel_type == 'channel' and c.is_private:
+                pre = '[私]'
+            else:
+                pre = ''
+            result.append((c.id, "%s%s" % (pre, c.name or '')))
         return result
-
+    
     def get_openai_context(self, channel_id, author_id, answer_id, minutes=60, chat_count=0):
         # 上下文处理，要处理群的方式，以及独聊的方式
         # azure新api 处理
@@ -98,7 +113,7 @@ class Channel(models.Model):
         # 处理消息： 取最新问题 + 上 chat_count=1次的交互，将之前的交互按时间顺序拼接。
         # 注意： ai 每一次回复都有 parent_id 来处理连续性
         # 私聊处理
-
+        
         # todo: 更好的处理方式
         domain = [('res_id', '=', channel_id),
                   ('model', '=', 'discuss.channel'),
@@ -107,7 +122,7 @@ class Channel(models.Model):
                   ('is_ai', '=', True),
                   ('body', '!=', '<p>%s</p>' % _('Response Timeout, please speak again.')),
                   ('body', '!=', _('温馨提示：您发送的内容含有敏感词，请修改内容后再向我发送。'))]
-
+        
         if self.channel_type in ['group', 'channel']:
             # 群聊增加时间限制，当前找所有人，不限制 author_id
             domain = expression.AND([domain, [('date', '>=', afterTime)]])
@@ -133,11 +148,11 @@ class Channel(models.Model):
                     'content': user_content,
                 })
         return context_history
-
+    
     def get_ai_config(self, ai):
         # 勾子，用于取ai 配置
         return {}
-
+    
     def get_ai_response(self, ai, messages, channel, user_id, message):
         author_id = message.create_uid.partner_id
         answer_id = user_id.partner_id
@@ -164,7 +179,7 @@ class Channel(models.Model):
                     'ai_completion_tokens': completion_tokens,
                     'cost_tokens': total_tokens,
                 })
-
+    
     def _notify_thread(self, message, msg_vals=False, **kwargs):
         rdata = super(Channel, self)._notify_thread(message, msg_vals=msg_vals, **kwargs)
         # print(f'rdata:{rdata}')
@@ -175,13 +190,15 @@ class Channel(models.Model):
         channel = self.env['discuss.channel']
         channel_type = self.channel_type
         messages = []
-
+        add_sys_content = ''
+        
         # 不处理 一般notify，但处理欢迎
         if '<div class="o_mail_notification' in message.body and message.body != _('<div class="o_mail_notification">joined the channel</div>'):
             return rdata
         if 'o_odoobot_command' in message.body:
             return rdata
-
+        
+        # begin: 找ai，增加 ai二人转功能。 chat类型不用管， 使用其中一个ai登录即可。 author_id 是 res.partner 模型
         if channel_type == 'chat':
             channel_partner_ids = self.channel_partner_ids
             answer_id = channel_partner_ids - message.author_id
@@ -192,17 +209,25 @@ class Channel(models.Model):
                 is_allow = message.author_id.id in gpt_wl_partners.ids
                 if gpt_policy == 'all' or (gpt_policy == 'limit' and is_allow):
                     ai = answer_id.sudo().gpt_id
-
+        
         elif channel_type in ['group', 'channel']:
             # partner_ids = @ ids
             partner_ids = list(msg_vals.get('partner_ids'))
             if hasattr(self, 'ai_partner_id') and self.ai_partner_id:
-                # 当有主id时，使用主id
-                if self.ai_partner_id.id in partner_ids:
+                if self.is_ai_conversation and self.ext_ai_partner_id:
+                    # 二人转模式时，处理回答ai，以及叠加角色的设定
+                    if author_id == self.ai_partner_id.id:
+                        partner_ids = [self.ext_ai_partner_id.id]
+                        add_sys_content = self.ext_ai_sys_content
+                    else:
+                        partner_ids = [self.ai_partner_id.id]
+                        add_sys_content = self.ai_sys_content
+                elif self.ai_partner_id.id in partner_ids:
+                    # 其它，普通Ai群。当有主id时，使用主id
                     partner_ids = [self.ai_partner_id.id]
             if partner_ids:
                 # 常规群聊 @
-                partners = self.env['res.partner'].search([('id', 'in', partner_ids)])
+                partners = self.env['res.partner'].search([('id', 'in', partner_ids)]) - message.author_id
                 # user_id = user, who has binded gpt robot
                 user_id = partners.mapped('user_ids').sudo().filtered(lambda r: r.gpt_id)[:1]
             elif message.body == _('<div class="o_mail_notification">joined the channel</div>'):
@@ -240,30 +265,38 @@ class Channel(models.Model):
             #     elif user_id.gpt_id and not is_allow:
             #         # 暂时有限用户的Ai
             #         raise UserError(_('此Ai暂时未开放，请联系管理员。'))
+        # end: 找ai，增加 ai二人转功能
+        
         if hasattr(ai, 'is_translator') and ai.is_translator and ai.ai_model == 'translator':
             return rdata
         chatgpt_channel_id = self.env.ref('app_chatgpt.channel_chatgpt')
-
+        
         if message.body == _('<div class="o_mail_notification">joined the channel</div>'):
             msg = _("Please warmly welcome our new partner %s and send him the best wishes.") % message.author_id.name
         else:
             # 不能用 preview， 如果用 : 提示词则 preview信息丢失
-            plaintext_ct = tools.mail.html_to_inner_content(message.body)
+            plaintext_ct = tools.html_to_inner_content(message.body)
             msg = plaintext_ct.replace('@%s' % answer_id.name, '').lstrip()
-
+        
         if not msg:
             return rdata
-
+        
         if self._context.get('app_ai_sync_config') and self._context.get('app_ai_sync_config') in ['sync', 'async']:
             sync_config = self._context.get('app_ai_sync_config')
         else:
             sync_config = self.env['ir.config_parameter'].sudo().get_param('app_chatgpt.openai_sync_config')
+        
+        if self._context.get('app_ai_chat_padding_time'):
+            padding_time = int(self._context.get('app_ai_chat_padding_time'))
+        else:
+            padding_time = int(self.env['ir.config_parameter'].sudo().get_param('app_chatgpt.ai_chat_padding_time'))
+        
         # api_key = self.env['ir.config_parameter'].sudo().get_param('app_chatgpt.openapi_api_key')
         # ai处理，不要自问自答
         if ai and answer_id != message.author_id:
             api_key = ai.openapi_api_key
             if not api_key:
-                _logger.warning(_("ChatGPT Robot【%s】have not set open api key."))
+                _logger.warning(_("ChatGPT Robot【%s】have not set open api key.") % ai.name)
                 return rdata
             try:
                 openapi_context_timeout = int(self.env['ir.config_parameter'].sudo().get_param('app_chatgpt.openapi_context_timeout')) or 60
@@ -271,15 +304,11 @@ class Channel(models.Model):
                 openapi_context_timeout = 60
             openai.api_key = api_key
             # 非4版本，取0次。其它取3 次历史
-            chat_count = 3
             if '4' in ai.ai_model or '4' in ai.name:
                 chat_count = 1
-                if hasattr(self, 'chat_count'):
-                    if self.chat_count > 0:
-                        chat_count = 1
             else:
-                chat_count = chat_count
-
+                chat_count = self.chat_count or 3
+            
             if author_id != answer_id.id and self.channel_type == 'chat':
                 # 私聊
                 _logger.info(f'私聊:author_id:{author_id},partner_chatgpt.id:{answer_id.id}')
@@ -291,10 +320,11 @@ class Channel(models.Model):
             elif author_id != answer_id.id and msg_vals.get('model', '') == 'discuss.channel' and self.channel_type in ['group', 'channel']:
                 # 高级用户自建的话题
                 channel = self.env[msg_vals.get('model')].browse(msg_vals.get('res_id'))
-                if hasattr(channel, 'is_private') and channel.description:
-                    messages.append({"role": "system", "content": channel.description})
-
+            
             try:
+                # 处理提示词
+                sys_content = channel.description + add_sys_content
+                messages.append({"role": "system", "content": sys_content})
                 c_history = self.get_openai_context(channel.id, author_id, answer_id, openapi_context_timeout, chat_count)
                 if c_history:
                     messages += c_history
@@ -303,36 +333,34 @@ class Channel(models.Model):
                 # 接口最大接收 8430 Token
                 if msg_len * 2 > ai.max_send_char:
                     messages = []
-                    if hasattr(channel, 'is_private') and channel.description:
-                        messages.append({"role": "system", "content": channel.description})
                     messages.append({"role": "user", "content": msg})
                     msg_len = sum(len(str(m)) for m in messages)
                     if msg_len * 2 > ai.max_send_char:
                         new_msg = channel.with_user(user_id).message_post(body=_('您所发送的提示词已超长。'), message_type='comment',
                                                                           subtype_xmlid='mail.mt_comment',
                                                                           parent_id=message.id)
-
+                    
                     # if msg_len * 2 >= 8000:
                     # messages = [{"role": "user", "content": msg}]
                 if sync_config == 'sync':
                     self.get_ai_response(ai, messages, channel, user_id, message)
                 else:
                     if hasattr(self, 'with_delay'):
-                        self.with_delay().get_ai_response(ai, messages, channel, user_id, message)
+                        self.with_delay(priority=30, eta=padding_time).get_ai_response(ai, messages, channel, user_id, message)
                     else:
                         self.get_ai_response(ai, messages, channel, user_id, message)
             except Exception as e:
-                raise UserError(e)
-
+                raise UserError(_(e))
+        
         return rdata
-
+    
     def _message_post_after_hook(self, message, msg_vals):
         if message.author_id.gpt_id:
             if msg_vals['body'] not in [_('Response Timeout, please speak again.'), _('温馨提示：您发送的内容含有敏感词，请修改内容后再向我发送。'),
                                         _('此Ai暂时未开放，请联系管理员。'), _('您所发送的提示词已超长。')]:
                 message.is_ai = True
         return super(Channel, self)._message_post_after_hook(message, msg_vals)
-
+    
     @api.model
     def _get_my_last_cid(self):
         # 获取当前用户最后一次进入的channel，返回该channel的id
@@ -355,8 +383,22 @@ class Channel(models.Model):
         if c and not c.is_member:
             c.sudo().add_members([user.partner_id.id])
         return c_id
-
+    
     @api.onchange('ai_partner_id')
     def _onchange_ai_partner_id(self):
         if self.ai_partner_id and self.ai_partner_id.image_1920:
             self.image_128 = self.ai_partner_id.avatar_128
+        if self.ai_partner_id and not self.ai_sys_content:
+            if self.ai_partner_id.gpt_id:
+                self.ai_sys_content = self.ai_partner_id.gpt_id.sys_content
+    
+    @api.onchange('ext_ai_partner_id')
+    def _onchange_ext_ai_partner_id(self):
+        if self.ext_ai_partner_id and not self.ext_ai_sys_content:
+            if self.ext_ai_partner_id.gpt_id:
+                self.ai_sys_content = self.ext_ai_partner_id.gpt_id.sys_content
+    
+    @api.onchange('set_chat_count')
+    def _onchange_set_chat_count(self):
+        if self.set_chat_count:
+            self.chat_count = int(self.set_chat_count) if self.set_chat_count != 'none' else 0
