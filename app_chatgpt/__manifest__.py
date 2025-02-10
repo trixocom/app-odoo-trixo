@@ -48,11 +48,8 @@
     pip3 install typing-extensions==4.12.2
     ''',
     'depends': [
-        'base',
         'app_odoo_customize',
-        'base_setup',
         'mail',
-        # 'queue_job',
     ],
     'data': [
         'security/ir.model.access.csv',
