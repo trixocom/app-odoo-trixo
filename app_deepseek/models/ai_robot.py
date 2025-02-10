@@ -70,3 +70,27 @@ class AiRobot(models.Model):
             return content, usage, True
         else:
             return super().get_ai_post(res, author_id, answer_id, param)
+
+    def get_ai_list_model(self):
+        self.ensure_one()
+        if self.provider == 'deepseek':
+            api_key = self.openapi_api_key
+            if not api_key:
+                raise UserError(_("Please provide Ai Robot [%s] API Key." % self.name))
+            payload = {}
+            headers = {
+                'Accept': 'application/json',
+                'Authorization': f'Bearer {self.openapi_api_key}'
+            }
+            R_TIMEOUT = self.ai_timeout or 120
+            o_url = "https://api.deepseek.com/models"
+            response = requests.get(o_url, headers=headers, data=payload, timeout=R_TIMEOUT)
+            response.close()
+            if response:
+                res = response.json()
+                r_text = json.dumps(res, indent=2)
+            else:
+                r_text = 'No response.'
+            raise UserError(r_text)
+        else:
+            return super().get_ai_list_model()

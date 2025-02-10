@@ -250,16 +250,19 @@ GPT-3	A set of models that can understand and generate natural language
 
     def get_ai_list_model(self):
         self.ensure_one()
-        headers = {"Content-Type": "application/json", "Authorization": f"Bearer {self.openapi_api_key}"}
-        R_TIMEOUT = self.ai_timeout or 120
-        o_url = "https://api.openai.com/v1/models"
-        if self.endpoint:
-            o_url = self.endpoint.replace("/chat/completions", "") + "/models"
-        response = requests.get(o_url, headers=headers, timeout=R_TIMEOUT)
-        response.close()
-        if response:
-            res = response.json()
-            r_text = json.dumps(res, indent=2)
+        if self.provider == 'openai':
+            headers = {"Content-Type": "application/json", "Authorization": f"Bearer {self.openapi_api_key}"}
+            R_TIMEOUT = self.ai_timeout or 120
+            o_url = "https://api.openai.com/v1/models"
+            if self.endpoint:
+                o_url = self.endpoint.replace("/chat/completions", "") + "/models"
+            response = requests.get(o_url, headers=headers, timeout=R_TIMEOUT)
+            response.close()
+            if response:
+                res = response.json()
+                r_text = json.dumps(res, indent=2)
+            else:
+                r_text = 'No response.'
         else:
             r_text = 'No response.'
         raise UserError(r_text)
