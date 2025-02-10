@@ -3,13 +3,13 @@
     <data noupdate="1">
         <record id="partner_chatgpt" model="res.partner">
             <field name="name">ChatGPT odoo</field>
-            <field name="is_chat_private" eval="True"/>
             <field name="image_1920" type="base64" file="app_chatgpt/static/description/chatgpt.png"/>
         </record>
         <record id="user_chatgpt" model="res.users">
             <field name="login">chatgpt@example.com</field>
             <field name="partner_id" ref="app_chatgpt.partner_chatgpt"/>
             <field name="gpt_id" ref="app_chatgpt.chatgpt_robot"/>
+            <field name="is_chat_private" eval="True"/>
             <field name="company_id" ref="base.main_company"/>
             <field name="company_ids" eval="[Command.link(ref('base.main_company'))]"/>
             <field name="groups_id" eval="[Command.link(ref('base.group_user'))]"/>
@@ -47,7 +47,7 @@
 
         <record id="partner_chatgpt3_azure" model="res.partner">
             <field name="name">ChatGPT3 Azure</field>
-            <field name="image_1920" type="base64" file="app_chatgpt/static/description/chatgpt_blue.png"/>
+            <field name="image_1920" type="base64" file="app_chatgpt/static/description/src/chatgpt_blue.png"/>
         </record>
 
         <record id="user_chatgpt3_azure" model="res.users">
@@ -55,6 +55,7 @@
             <field name="email">chatgpt3_azure@example.com</field>
             <field name="partner_id" ref="app_chatgpt.partner_chatgpt3_azure"/>
             <field name="gpt_id" ref="app_chatgpt.chatgpt3_azure"/>
+            <field name="is_chat_private" eval="True"/>
             <field name="company_id" ref="base.main_company"/>
             <field name="company_ids" eval="[Command.link(ref('base.main_company'))]"/>
             <field name="groups_id" eval="[Command.link(ref('base.group_user'))]"/>
@@ -69,6 +70,7 @@
             <field name="email">chatgpt4_azure@example.com</field>
             <field name="partner_id" ref="app_chatgpt.partner_chatgpt4_azure"/>
             <field name="gpt_id" ref="app_chatgpt.chatgpt4_azure"/>
+            <field name="is_chat_private" eval="True"/>
             <field name="company_id" ref="base.main_company"/>
             <field name="company_ids" eval="[Command.link(ref('base.main_company'))]"/>
             <field name="groups_id" eval="[Command.link(ref('base.group_user'))]"/>
@@ -83,6 +85,7 @@
             <field name="email">chatgpt4_32k_azure@example.com</field>
             <field name="partner_id" ref="app_chatgpt.partner_chatgpt4_32k_azure"/>
             <field name="gpt_id" ref="app_chatgpt.chatgpt4_32k_azure"/>
+            <field name="is_chat_private" eval="True"/>
             <field name="company_id" ref="base.main_company"/>
             <field name="company_ids" eval="[Command.link(ref('base.main_company'))]"/>
             <field name="groups_id" eval="[Command.link(ref('base.group_user'))]"/>
