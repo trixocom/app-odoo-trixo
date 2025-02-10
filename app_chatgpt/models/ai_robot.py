@@ -39,8 +39,9 @@ class AiRobot(models.Model):
         ('code-davinci-002', 'Chatgpt 2 Code Optimized'),
         ('text-davinci-002', 'Chatgpt 2 Davinci'),
         ('dall-e2', 'Dall-E Image'),
-    ], default='gpt-3.5-turbo-0125',
-                                help="""
+    ], default='gpt-4o',
+                                    help="""
+GPT-4o: It is multimodal (accepting text or image inputs and outputting text), and it has the same high intelligence as GPT-4 Turbo but is much more efficient—it generates text 2x faster and is 50% cheaper.
 GPT-4: Can understand Image, generate natural language or code.
 GPT-3.5: A set of models that improve on GPT-3 and can understand as well as generate natural language or code
 DALL·E: A model that can generate and edit images given a natural language prompt
@@ -110,7 +111,7 @@ GPT-3	A set of models that can understand and generate natural language
     # end gpt 参数
     endpoint = fields.Char('End Point', default='https://api.openai.com/v1/chat/completions')
     engine = fields.Char('Engine', help='If use Azure, Please input the Model deployment name.')
-    api_version = fields.Char('API Version', default='2022-12-01')
+    api_version = fields.Char('API Version', default='gpt-4o')
     ai_timeout = fields.Integer('Timeout(seconds)', help="Connect timeout for Ai response", default=120)
     sequence = fields.Integer('Sequence', help="Determine the display order", default=10)
     sensitive_words = fields.Text('Sensitive Words Plus', help='Sensitive word filtering. Separate keywords with a carriage return.')
@@ -156,7 +157,7 @@ GPT-3	A set of models that can understand and generate natural language
 
         res = getattr(self, 'get_%s' % self.provider)(data, author_id, answer_id, param)
         # 后置勾子，返回处理后的内容
-        res_post, usage, is_ai = self.get_ai_post(res, author_id, answer_id,  param)
+        res_post, usage, is_ai = self.get_ai_post(res, author_id, answer_id, param)
         return res_post, usage, is_ai
 
     def get_ai_origin(self, data, author_id=False, answer_id=False, param={}):
@@ -187,7 +188,6 @@ GPT-3	A set of models that can understand and generate natural language
             param = {}
         if not res or not author_id or (not isinstance(res, list) and not isinstance(res, dict)):
             return res, False, False
-        # 返回是个对象，那么就是ai
         usage = content = data = None
         try:
             if self.provider == 'openai':
@@ -298,7 +298,7 @@ GPT-3	A set of models that can understand and generate natural language
             client = OpenAI(
                 api_key=self.openapi_api_key,
                 timeout=R_TIMEOUT
-                )
+            )
             response = client.chat.completions.create(
                 messages=data,
                 model=self.ai_model,
@@ -335,7 +335,7 @@ GPT-3	A set of models that can understand and generate natural language
         top_p = param.get('top_p') if param.get('top_p') else self.top_p
         frequency_penalty = param.get('frequency_penalty') if param.get('frequency_penalty') else self.frequency_penalty
         presence_penalty = param.get('presence_penalty') if param.get('presence_penalty') else self.presence_penalty
-        request_timeout= param.get('request_timeout') if param.get('request_timeout') else self.ai_timeout
+        request_timeout = param.get('request_timeout') if param.get('request_timeout') else self.ai_timeout
 
         # Ai角色设定，如果没设定则再处理
         if messages[0].get('role') != 'system':

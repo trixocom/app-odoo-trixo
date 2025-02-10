@@ -26,7 +26,8 @@ class AiRobot(models.Model):
     @api.onchange('provider')
     def _onchange_provider(self):
         if self.provider == 'deepseek':
-            self.endpoint = 'https://api.deepseek.com'
+            if self.ai_model == 'deepseek-chat':
+                self.endpoint = 'https://api.deepseek.com'
             # 取头像
             module_path = modules.get_module_path('app_ai', display_warning=False)
             if module_path:

@@ -56,7 +56,7 @@ msgid "BLOOMZ-7B"
 msgstr ""
 
 #. module: app_ai_baidu
-#: model:ir.model,name:app_ai_baidu.model_mail_channel
+#: model:ir.model,name:app_ai_baidu.model_discuss_channel
 msgid "Discussion Channel"
 msgstr ""
 
@@ -90,7 +90,7 @@ msgstr "模型快选"
 
 #. module: app_ai_baidu
 #. odoo-python
-#: code:addons/app_ai_baidu/models/mail_channel.py:0
+#: code:addons/app_ai_baidu/models/discuss_channel.py:0
 #, python-format
 msgid "Response Timeout, please speak again."
 msgstr ""
@@ -102,7 +102,7 @@ msgstr ""
 
 #. module: app_ai_baidu
 #. odoo-python
-#: code:addons/app_ai_baidu/models/mail_channel.py:0
+#: code:addons/app_ai_baidu/models/discuss_channel.py:0
 #, python-format
 msgid "温馨提示：您发送的内容含有敏感词，请修改内容后再向我发送。"
 msgstr ""

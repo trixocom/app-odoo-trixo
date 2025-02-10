@@ -10,4 +10,5 @@
         <field name="sequence">11</field>
         <field name="image_avatar" type="base64" file="app_deepseek/static/src/img/deepseek.png"/>
     </record>
+
 </odoo>
