@@ -53,7 +53,7 @@
     'data': [
         'data/ai_robot_data.xml',
         'data/user_partner_data.xml',
-        'data/mail_channel_data.xml',
+        'data/discuss_channel_data.xml',
         'views/ai_robot_views.xml',
     ],
     'assets': {
