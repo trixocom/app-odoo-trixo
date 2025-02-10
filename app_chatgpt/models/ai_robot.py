@@ -133,6 +133,10 @@ GPT-3	A set of models that can understand and generate natural language
         # hook，都正常
         return False
 
+    def get_msg_files_content(self, message):
+        # hook
+        return False
+
     def get_ai(self, data, author_id=False, answer_id=False, param={}):
         #     通用方法
         # author_id: 请求的 partner_id 对象
