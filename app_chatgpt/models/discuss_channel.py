@@ -364,11 +364,11 @@ class Channel(models.Model):
                 #     if hasattr(channel, 'is_private') and channel.description:
                 #         messages.append({"role": "system", "content": channel.description})
                 #     messages.append({"role": "user", "content": msg})
-                msg_len = sum(len(str(m)) for m in messages)
-                if msg_len * 2 > ai.max_send_char:
-                    new_msg = channel.with_user(user_id).message_post(body=_('您所发送的提示词已超长。'), message_type='comment',
-                                                                        subtype_xmlid='mail.mt_comment',
-                                                                        parent_id=message.id)
+                # msg_len = sum(len(str(m)) for m in messages)
+                # if msg_len * 2 > ai.max_send_char:
+                #     new_msg = channel.with_user(user_id).message_post(body=_('您所发送的提示词已超长。'), message_type='comment',
+                #                                                         subtype_xmlid='mail.mt_comment',
+                #                                                         parent_id=message.id)
 
                     # if msg_len * 2 >= 8000:
                     # messages = [{"role": "user", "content": msg}]
