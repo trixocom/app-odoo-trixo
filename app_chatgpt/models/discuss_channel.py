@@ -274,7 +274,7 @@ class Channel(models.Model):
             msg = _("Please warmly welcome our new partner %s and send him the best wishes.") % message.author_id.name
         else:
             # 不能用 preview， 如果用 : 提示词则 preview信息丢失
-            plaintext_ct = tools.html_to_inner_content(message.body)
+            plaintext_ct = tools.mail.html_to_inner_content(message.body)
             msg = plaintext_ct.replace('@%s' % answer_id.name, '').lstrip()
 
         if not msg:
@@ -323,19 +323,40 @@ class Channel(models.Model):
                 if hasattr(channel, 'is_private') and channel.description:
                     messages.append({"role": "system", "content": channel.description})
 
-            if message.attachment_ids:
-                file_content = ai.get_msg_files_content(message)
-                if file_content:
-                    messages.append({"role": "system", "content": file_content})
-
             try:
                 # 处理提示词
-                sys_content = channel.description + add_sys_content
-                messages.append({"role": "system", "content": sys_content})
+                sys_content = '%s%s' % (channel.description if channel.description else "", add_sys_content if add_sys_content else "")
+                if len(sys_content):
+                    messages.append({"role": "system", "content": sys_content})
                 c_history = self.get_openai_context(channel.id, author_id, answer_id, openapi_context_timeout, chat_count)
                 if c_history:
                     messages += c_history
-                messages.append({"role": "user", "content": msg})
+                if message.attachment_ids:
+                    attachment = message.attachment_ids[:1]
+                    file_content = ai.get_msg_file_content(message)
+                    if not file_content:
+                        messages.append({"role": "user", "content": msg})
+                    if attachment.mimetype in ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/webp']:
+                        messages.append({
+                            "role": "user",
+                            "content": [
+                                {
+                                    "type": "image_url",
+                                    "image_url": {
+                                        "url": file_content,
+                                    },
+                                },
+                                {
+                                    "type": "text",
+                                    "text": msg
+                                }
+                            ]
+                        })
+                    else:
+                        messages.append({"role": "system", "content": file_content})
+                        messages.append({"role": "user", "content": msg})
+                else:
+                    messages.append({"role": "user", "content": msg})
                 msg_len = sum(len(str(m)) for m in messages)
                 # 接口最大接收 8430 Token
                 # if msg_len * 2 > ai.max_send_char:
@@ -359,7 +380,7 @@ class Channel(models.Model):
                     else:
                         self.get_ai_response(ai, messages, channel, user_id, message)
             except Exception as e:
-                raise UserError(_(e))
+                raise UserError(e)
 
         return rdata
 

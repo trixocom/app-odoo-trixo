@@ -134,7 +134,7 @@ GPT-3	A set of models that can understand and generate natural language
         # hook，都正常
         return False
 
-    def get_msg_files_content(self, message):
+    def get_msg_file_content(self, message):
         # hook
         return False
 
