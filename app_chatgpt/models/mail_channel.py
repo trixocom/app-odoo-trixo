@@ -80,7 +80,7 @@ class Channel(models.Model):
     presence_penalty = fields.Float('避免重复词值', default=1, help="-2~2，值越大越少重复词")
 
     is_current_channel = fields.Boolean('是否当前用户默认频道', compute='_compute_is_current_channel', help='是否当前用户默认微信对话频道')
-    
+
     # begin 处理Ai对话
     is_ai_conversation = fields.Boolean('Ai Conversation', default=False,
                                         help='Set active to make conversation between 2+ Ai Employee. You Just say first word, then Ai robots Auto Chat.')
@@ -263,11 +263,11 @@ class Channel(models.Model):
             #         # 暂时有限用户的Ai
             #         raise UserError(_('此Ai暂时未开放，请联系管理员。'))
         # end: 找ai，增加 ai二人转功能
-        
+
         if hasattr(ai, 'is_translator') and ai.is_translator and ai.ai_model == 'translator':
             return rdata
         chatgpt_channel_id = self.env.ref('app_chatgpt.channel_chatgpt')
-        
+
         if message.body == _('<div class="o_mail_notification">joined the channel</div>'):
             msg = _("Please warmly welcome our new partner %s and send him the best wishes.") % message.author_id.name
         else:
@@ -282,12 +282,12 @@ class Channel(models.Model):
             sync_config = self._context.get('app_ai_sync_config')
         else:
             sync_config = self.env['ir.config_parameter'].sudo().get_param('app_chatgpt.openai_sync_config')
-            
+
         if self._context.get('app_ai_chat_padding_time'):
             padding_time = int(self._context.get('app_ai_chat_padding_time'))
         else:
             padding_time = int(self.env['ir.config_parameter'].sudo().get_param('app_chatgpt.ai_chat_padding_time'))
-            
+
         # api_key = self.env['ir.config_parameter'].sudo().get_param('app_chatgpt.openapi_api_key')
         # ai处理，不要自问自答
         if ai and answer_id != message.author_id:
@@ -305,7 +305,7 @@ class Channel(models.Model):
                 chat_count = 1
             else:
                 chat_count = self.chat_count or 3
-                
+
             if author_id != answer_id.id and self.channel_type == 'chat':
                 # 私聊
                 _logger.info(f'私聊:author_id:{author_id},partner_chatgpt.id:{answer_id.id}')
@@ -317,25 +317,51 @@ class Channel(models.Model):
             elif author_id != answer_id.id and msg_vals.get('model', '') == 'mail.channel' and self.channel_type in ['group', 'channel']:
                 # 高级用户自建的话题
                 channel = self.env[msg_vals.get('model')].browse(msg_vals.get('res_id'))
-        
+
             try:
                 # 处理提示词
-                sys_content = channel.description + add_sys_content
-                messages.append({"role": "system", "content": sys_content})
+                sys_content = '%s%s' % (channel.description if channel.description else "", add_sys_content if add_sys_content else "")
+                if len(sys_content):
+                    messages.append({"role": "system", "content": sys_content})
                 c_history = self.get_openai_context(channel.id, author_id, answer_id, openapi_context_timeout, chat_count)
                 if c_history:
                     messages += c_history
-                messages.append({"role": "user", "content": msg})
+                if message.attachment_ids:
+                    attachment = message.attachment_ids[:1]
+                    file_content = ai.get_msg_file_content(message)
+                    if not file_content:
+                        messages.append({"role": "user", "content": msg})
+                    if attachment.mimetype in ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/webp']:
+                        messages.append({
+                            "role": "user",
+                            "content": [
+                                {
+                                    "type": "image_url",
+                                    "image_url": {
+                                        "url": file_content,
+                                    },
+                                },
+                                {
+                                    "type": "text",
+                                    "text": msg
+                                }
+                            ]
+                        })
+                    else:
+                        messages.append({"role": "system", "content": file_content})
+                        messages.append({"role": "user", "content": msg})
+                else:
+                    messages.append({"role": "user", "content": msg})
                 msg_len = sum(len(str(m)) for m in messages)
                 # 接口最大接收 8430 Token
-                if msg_len * 2 > ai.max_send_char:
-                    messages = []
-                    messages.append({"role": "user", "content": msg})
-                    msg_len = sum(len(str(m)) for m in messages)
-                    if msg_len * 2 > ai.max_send_char:
-                        new_msg = channel.with_user(user_id).message_post(body=_('您所发送的提示词已超长。'), message_type='comment',
-                                                                          subtype_xmlid='mail.mt_comment',
-                                                                          parent_id=message.id)
+                # if msg_len * 2 > ai.max_send_char:
+                #     messages = []
+                #     messages.append({"role": "user", "content": msg})
+                # msg_len = sum(len(str(m)) for m in messages)
+                # if msg_len * 2 > ai.max_send_char:
+                #     new_msg = channel.with_user(user_id).message_post(body=_('您所发送的提示词已超长。'), message_type='comment',
+                #                                                         subtype_xmlid='mail.mt_comment',
+                #                                                         parent_id=message.id)
 
                     # if msg_len * 2 >= 8000:
                     # messages = [{"role": "user", "content": msg}]
