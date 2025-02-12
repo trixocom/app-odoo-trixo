@@ -33,7 +33,8 @@ class DbBackup(models.Model):
         return dbName
 
     # Columns for local server configuration
-    host = fields.Char('Host', required=True, default='localhost')
+    host = fields.Char('Host', required=True, default='localhost',
+                       help='please input the full url. like https://www.odooai.cn')
     port = fields.Char('Port', required=True, default=8069)
     name = fields.Char('Database', required=True, help='Database you want to schedule backups for',
                        default=_get_db_name)
@@ -135,7 +136,12 @@ class DbBackup(models.Model):
             # Create name for dumpfile.
             bkp_file = '%s_%s.%s' % (time.strftime('%Y_%m_%d_%H_%M_%S'), rec.name, rec.backup_type)
             file_path = os.path.join(rec.folder, bkp_file)
-            uri = 'http://' + rec.host + ':' + rec.port
+            uri = rec.host
+            
+            if uri.startswith('http') or uri.startswith('https'):
+                uri = rec.host
+            else:
+                uri = 'http://' + rec.host + ':' + rec.port
             bkp = ''
             fp = open(file_path, 'wb')
             try:
@@ -152,7 +158,7 @@ class DbBackup(models.Model):
             except Exception as error:
                 _logger.warning(
                     "Couldn't backup database %s. Bad database administrator password for server running at "
-                    "http://%s:%s" % (rec.name, rec.host, rec.port))
+                    "http://%s:%s" % (rec.name, uri, rec.port))
                 _logger.warning("Exact error from the exception: %s", str(error))
                 continue
 
