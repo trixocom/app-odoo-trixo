@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #    'author': "Yenthe Van Ginneken",
 #    'website': "http://www.odoo.yenthevg.com",
-#    'author': "guohuadeng@hotmail.com",
+#    'author': "sales@odooai.cn",
 #    'website': "https://www.odooai.cn",
 
 {
