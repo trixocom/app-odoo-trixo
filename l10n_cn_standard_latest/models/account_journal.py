@@ -15,6 +15,6 @@ class AccountJournal(models.Model):
         if hasattr(company, 'coa_delimiter'):
             delimiter = company.coa_delimiter
         code = code + delimiter + '01'
-        new_code = self.env['account.account']._search_new_account_code(code),
+        new_code = self.env['account.account']._search_new_account_code(code)
         res.update({'code': new_code})
         return res
