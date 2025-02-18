@@ -11,7 +11,7 @@
                 <!--<xpath expr="//field[@name='type']" position="after">-->
                 <!--<xpath expr="//field[@name='ref']" position="move"/>-->
                 <!--</xpath>-->
-                <xpath expr="//field[@name='function']" position="before">
+                <xpath expr="//field[@name='vat']" position="before">
                     <field name="short_name"/>
                 </xpath>
                 <!--res.partner客户，细节调整至 app_base_chinese_city 中处理 -->
