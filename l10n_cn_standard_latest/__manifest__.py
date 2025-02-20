@@ -9,7 +9,7 @@
 
 {
     'name': '2025最新中国会计科目表.企业标准会计.Latest Chinese Accounting for odoo18',
-    'version': '18.0.25.01.15',
+    'version': '18.0.25.02.17',
     'author': 'odooai.cn',
     'category': 'Accounting/Localizations/Account Charts',
     'website': 'https://www.odooai.cn',
@@ -22,22 +22,21 @@
     Set chinese account report.
     """,
     'description': """
-    最新中国化财务，主要针对标准会计科目表作了优化。
-    1. 2025最新会计科目表，处理营改增后会计科目调整。更新至最新税率。odoo 18专用。
+    最新中国化财务会计制度，主要针对标准会计科目表作了优化。
+    1. 2025最新会计科目表，处理营改增后会计科目调整。更新至最新税率。odoo 16专用。
     2. 将菜单中设置为"财务"。
     3. 补充分类及标签信息。
-    4. 更新税信息。
-    5. 增加树状结构，支持二级科目，可设置上级科目，配合 "app_web_superbar" 使用可轻易实现树状导航。
-    6. 使用金蝶的会计科目命名法对多级科目进行初始化。可自行调整为用友科目命名法
-    7. 增加中文数字和阿拉伯数字的转换(需安装cn2an库，pip3 install cn2an)
-    8. 注意，必须在没有业务数据，没有会计科目的初始环境。可以使用 "app_odoo_customize" 模块清除财务数据，重置会计科目。
+    4. 更新税项信息，增加中国常用增值税率设定。
+    5. 可设置上级科目，支持二级科目。配合收费模块"app_web_widget_ztree" 可增加树状结构，可轻易实现树状导航。
+    6. 使用金蝶的会计科目命名法对多级科目进行初始化，以.号分隔。也可自行设定会计科目代码。
+    7. 注意，必须在没有业务数据，没有会计科目的初始环境。可以使用 "app_odoo_customize" 模块清除财务数据，重置会计科目。
     11. 多语言支持，多公司支持
     12. Odoo 18,17,16,15,14,13,12, 企业版，社区版，在线SaaS.sh版，等全版本支持
     13. 代码完全开源
-
     如果是多语种环境需要自行更改翻译，主要体现在1%,3%,6%,13%增值税处理。
     中国财务，中国会计，中国城市
     欧度智能，odooai.cn
+    
     The Latest Chinese Account
     Including the following data in the Accounting Standards for Business Enterprises
     包含企业会计准则以下数据
