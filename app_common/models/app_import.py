@@ -1,18 +1,21 @@
 # -*- coding: utf-8 -*-
 
 import os.path
-
+import json
+from os.path import basename, splitext
 from odoo import api, fields, models, modules, tools, SUPERUSER_ID, _
+import logging
+_logger = logging.getLogger(__name__)
 
 def app_quick_import(env, content_path, sep=None, context={}):
     if not sep:
         sep = '/'
     dir_split = content_path.split(sep)
     module_name = dir_split[0]
-    file_name = dir_split[2]
+    file_name = dir_split[-1]
     file_path, file_type = os.path.splitext(content_path)
     model_name = file_name.replace(file_type, '')
-    file_path = modules.get_module_resource(module_name, dir_split[1], file_name)
+    file_path = modules.get_module_resource(*dir_split)
     content = open(file_path, 'rb').read()
     uid = SUPERUSER_ID
     if model_name == 'mail.channel':
@@ -41,7 +44,7 @@ def app_quick_import(env, content_path, sep=None, context={}):
         })
     else:
         preview = False
-    
+
     if preview:
         import_wizard.execute_import(
             preview["headers"],
@@ -50,3 +53,48 @@ def app_quick_import(env, content_path, sep=None, context={}):
         )
 
 
+def app_quick_import_json(env, content_path, sep=None, context={}):
+    try:
+        if not sep:
+            sep = '/'
+        dir_split = content_path.split(sep)
+        module_name = dir_split[0]
+        filename = dir_split[-1]
+        model_name, file_extension = splitext(filename)
+        file_path = modules.get_module_resource(*dir_split)
+        if not file_path:
+            _logger.error(_('File %s not found' % content_path))
+            return
+        if file_extension.lower() != '.json':
+            _logger.error(_(f"File {filename} is not a JSON file"))
+            return
+
+        with open(file_path, 'r') as file:
+            content = file.read()
+            if not content.strip():
+                _logger.error(_(f"File {filename} is empty"))
+                return
+            try:
+                data = json.loads(content)
+            except json.JSONDecodeError as e:
+                _logger.error(_(f"Invalid JSON format in file {filename}: {e}"))
+                return
+
+        model = env[model_name]
+        if not model._fields:
+            _logger.error(_(f"Model {model_name} not found"))
+            return
+        if not data:
+            _logger.error(_(f"No records found in file {filename}"))
+            return
+
+        import_fields = list(data[0].keys())
+        merged_data = []
+        for record in data:
+            record_data = [record[field] for field in import_fields]
+            merged_data.append(record_data)
+        import_result = model.load(import_fields, merged_data)
+    except FileNotFoundError:
+        _logger.error(_(f"File not found: {content_path}"))
+    except Exception as e:
+        _logger.error(_(f"Unexpected error during import: {e}"))
