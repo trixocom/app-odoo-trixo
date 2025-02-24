@@ -10,6 +10,7 @@
                 <xpath expr="//field[@name='is_seo_optimized']" position="before">
 					<button name="action_product_debug_view" type="object" title="Content Set" icon="fa-bug fa-lg"/>
 					<button name="action_product_code_view" type="object" title="Source Code" icon="fa-code fa-lg"/>
+					<button name="action_product_edit_view" type="object" title="Quick Edit" icon="fa-edit fa-lg"/>
                 </xpath>
                 <xpath expr="//field[@name='website_url']" position="attributes">
 	                <attribute name="optional">hide</attribute>

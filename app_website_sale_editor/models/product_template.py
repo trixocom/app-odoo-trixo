@@ -24,3 +24,11 @@ class ProductTemplate(models.Model):
         action['res_id'] = self.id
         return action
 
+    def action_product_edit_view(self):
+        self.ensure_one()
+        
+        action = self.env.ref('website_sale.product_template_action_website').sudo().read()[0]
+
+        action['views'] = [(self.env.ref('product.product_template_only_form_view').id, 'form')]
+        action['res_id'] = self.id
+        return action
