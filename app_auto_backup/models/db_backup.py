@@ -4,11 +4,14 @@ import os
 import datetime
 import time
 import shutil
+import subprocess
 import json
 import tempfile
+import zipfile
 
 from odoo import models, fields, api, tools, _
 from odoo.exceptions import Warning, AccessDenied
+from odoo.tools import find_pg_tool, exec_pg_environ
 import odoo
 
 import logging
@@ -31,13 +34,15 @@ class DbBackup(models.Model):
         return dbName
 
     # Columns for local server configuration
-    host = fields.Char('Host', required=True, default='localhost')
+    host = fields.Char('Host', required=True, default='localhost',
+                       help='please input the full url. like https://www.odooai.cn')
     port = fields.Char('Port', required=True, default=8069)
     name = fields.Char('Database', required=True, help='Database you want to schedule backups for',
                        default=_get_db_name)
-    folder = fields.Char('Backup Directory', help='Absolute path for storing the backups', required='True',
-                         default='/usr/lib/python3/dist-packages/odoo/backups')
-    backup_type = fields.Selection([('zip', 'Zip'), ('dump', 'Dump')], 'Backup Type', required=True, default='zip')
+    folder = fields.Char('Backup Directory', help='Absolute path for storing the backups', required=True,
+                         default=lambda self: self._get_default_folder())
+    backup_type = fields.Selection([('zip', 'Zip Data and Filestore)'), ('dump', 'Data pg_dump (without filestore)')],
+                                   string='Backup Type', required=True, default='zip')
     autoremove = fields.Boolean('Auto. Remove Backups',
                                 help='If you check this option you can choose to automaticly remove the backup '
                                      'after xx days')
@@ -73,6 +78,12 @@ class DbBackup(models.Model):
     email_to_notify = fields.Char('E-mail to notify',
                                   help='Fill in the e-mail where you want to be notified that the backup failed on '
                                        'the FTP.')
+    backup_details_ids = fields.One2many('db.backup.details', 'db_backup_id', 'Backup Details')
+
+    def _get_default_folder(self, folder=None):
+        if not folder:
+            folder = os.path.join(tools.config['data_dir'], 'backups')
+        return folder
 
     def test_sftp_connection(self, context=None):
         self.ensure_one()
@@ -96,9 +107,10 @@ class DbBackup(models.Model):
                 s.set_missing_host_key_policy(paramiko.AutoAddPolicy())
                 s.connect(ip_host, port_host, username_login, password_login, timeout=10)
                 sftp = s.open_sftp()
+                sftp.close()
                 message_title = _("Connection Test Succeeded!\nEverything seems properly set up for FTP back-ups!")
             except Exception as e:
-                _logger.critical('There was a problem connecting to the remote ftp: ' + str(e))
+                _logger.critical('There was a problem connecting to the remote ftp: %s', str(e))
                 error += str(e)
                 has_failed = True
                 message_title = _("Connection Test Failed!")
@@ -127,19 +139,29 @@ class DbBackup(models.Model):
             # Create name for dumpfile.
             bkp_file = '%s_%s.%s' % (time.strftime('%Y_%m_%d_%H_%M_%S'), rec.name, rec.backup_type)
             file_path = os.path.join(rec.folder, bkp_file)
-            uri = 'http://' + rec.host + ':' + rec.port
+            uri = rec.host
+            if uri.startswith('http') or uri.startswith('https'):
+                pass
+            else:
+                uri = 'http://' + rec.host + ':' + rec.port
             bkp = ''
             fp = open(file_path, 'wb')
             try:
                 # try to backup database and write it away
                 fp = open(file_path, 'wb')
-                self._take_dump(rec.name, fp, 'db.backup', rec.backup_type)
+                rec._take_dump(rec.name, fp, 'db.backup', rec.backup_type)
                 fp.close()
+                rec.backup_details_ids.create({
+                    'name': bkp_file,
+                    'file_path': file_path,
+                    'url': '/dbbackup/download/%s' % file_path,
+                    'db_backup_id': rec.id,
+                })
             except Exception as error:
-                _logger.debug(
+                _logger.warning(
                     "Couldn't backup database %s. Bad database administrator password for server running at "
-                    "http://%s:%s" % (rec.name, rec.host, rec.port))
-                _logger.debug("Exact error from the exception: " + str(error))
+                    "http://%s:%s  error: %s" % (rec.name, rec.host, rec.port, error))
+                _logger.warning("Exact error from the exception: %s", str(error))
                 continue
 
             # Check if user wants to write to SFTP or not.
@@ -160,7 +182,7 @@ class DbBackup(models.Model):
                         s.connect(ip_host, port_host, username_login, password_login, timeout=20)
                         sftp = s.open_sftp()
                     except Exception as error:
-                        _logger.critical('Error connecting to remote server! Error: ' + str(error))
+                        _logger.critical('Error connecting to remote server! Error: %s', str(error))
 
                     try:
                         sftp.chdir(path_to_write_to)
@@ -172,7 +194,7 @@ class DbBackup(models.Model):
                             try:
                                 sftp.chdir(current_directory)
                             except:
-                                _logger.info('(Part of the) path didn\'t exist. Creating it now at ' + current_directory)
+                                _logger.info('(Part of the) path didn\'t exist. Creating it now at %s', current_directory)
                                 # Make directory and then navigate into it
                                 sftp.mkdir(current_directory, 777)
                                 sftp.chdir(current_directory)
@@ -207,7 +229,7 @@ class DbBackup(models.Model):
                             # Get the full path
                             fullpath = os.path.join(path_to_write_to, file)
                             # Get the timestamp from the file on the external server
-                            timestamp = sftp.stat(fullpath).st_atime
+                            timestamp = sftp.stat(fullpath).st_mtime
                             createtime = datetime.datetime.fromtimestamp(timestamp)
                             now = datetime.datetime.now()
                             delta = now - createtime
@@ -215,8 +237,8 @@ class DbBackup(models.Model):
                             # on the Odoo form it will be removed.
                             if delta.days >= rec.days_to_keep_sftp:
                                 # Only delete files, no directories!
-                                if (".dump" in file or '.zip' in file):
-                                    _logger.info("Delete too old file from SFTP servers: " + file)
+                                if ".dump" in file or '.zip' in file:
+                                    _logger.info("Delete too old file from SFTP servers: %s", file)
                                     sftp.unlink(file)
                     # Close the SFTP session.
                     sftp.close()
@@ -260,8 +282,12 @@ class DbBackup(models.Model):
                         if delta.days >= rec.days_to_keep:
                             # Only delete files (which are .dump and .zip), no directories.
                             if os.path.isfile(fullpath) and (".dump" in f or '.zip' in f):
-                                _logger.info("Delete local out-of-date file: " + fullpath)
-                                os.remove(fullpath)
+                                _logger.info("Delete local out-of-date file: %s", fullpath)
+                                backup_details_id = self.env['db.backup.details'].search([('file_path', '=', fullpath)])
+                                if backup_details_id:
+                                    backup_details_id.unlink()
+                                else:
+                                    os.remove(fullpath)
 
     # This is more or less the same as the default Odoo function at
     # https://github.com/odoo/odoo/blob/e649200ab44718b8faefc11c2f8a9d11f2db7753/odoo/service/db.py#L209
@@ -281,11 +307,14 @@ class DbBackup(models.Model):
 
         _logger.info('DUMP DB: %s format %s', db_name, backup_format)
 
-        cmd = ['pg_dump', '--no-owner']
-        cmd.append(db_name)
+        # cmd = ['pg_dump', '--no-owner']
+        # cmd.append(db_name)
+        cmd = [find_pg_tool('pg_dump'), '--no-owner', db_name]
+        env = exec_pg_environ()
 
         if backup_format == 'zip':
-            with odoo.tools.osutil.tempdir() as dump_dir:
+            # todo: 排除掉backup目录
+            with tempfile.TemporaryDirectory() as dump_dir:
                 filestore = odoo.tools.config.filestore(db_name)
                 if os.path.exists(filestore):
                     shutil.copytree(filestore, os.path.join(dump_dir, 'filestore'))
@@ -294,12 +323,12 @@ class DbBackup(models.Model):
                     with db.cursor() as cr:
                         json.dump(self._dump_db_manifest(cr), fh, indent=4)
                 cmd.insert(-1, '--file=' + os.path.join(dump_dir, 'dump.sql'))
-                odoo.tools.exec_pg_command(*cmd)
+                subprocess.run(cmd, env=env, stdout=subprocess.DEVNULL, stderr=subprocess.STDOUT, check=True)
                 if stream:
-                    odoo.tools.osutil.zip_dir(dump_dir, stream, include_dir=False, fnct_sort=lambda file_name: file_name != 'dump.sql')
+                    self.zip_dir_pro(dump_dir, stream, include_dir=False, fnct_sort=lambda file_name: file_name != 'dump.sql')
                 else:
                     t=tempfile.TemporaryFile()
-                    odoo.tools.osutil.zip_dir(dump_dir, t, include_dir=False, fnct_sort=lambda file_name: file_name != 'dump.sql')
+                    self.zip_dir_pro(dump_dir, t, include_dir=False, fnct_sort=lambda file_name: file_name != 'dump.sql')
                     t.seek(0)
                     return t
         else:
@@ -328,7 +357,7 @@ class DbBackup(models.Model):
     def action_view_cron(self):
         self.ensure_one()
 
-        action = self.env.ref('base.ir_cron_act', False).read()[0]
+        action = self.env.ref('base.ir_cron_act', False).sudo().read()[0]
         cron = self.env.ref('app_auto_backup.backup_scheduler', False)
         if action and cron:
             action['views'] = [(self.env.ref('base.ir_cron_view_form').id, 'form')]
@@ -343,3 +372,27 @@ class DbBackup(models.Model):
         if cron:
             cron.method_direct_trigger()
             return True
+
+    def zip_dir_pro(self, path, stream, include_dir=True, fnct_sort=None):
+        """
+         增加的要排除的文件，主要是 xxxdump.zip，及整个目录
+        """
+        path = os.path.normpath(path)
+        len_prefix = len(os.path.dirname(path)) if include_dir else len(path)
+        if len_prefix:
+            len_prefix += 1
+
+        with zipfile.ZipFile(stream, 'w', compression=zipfile.ZIP_DEFLATED, allowZip64=True) as zipf:
+            for dirpath, dirnames, filenames in os.walk(path):
+                filenames = sorted(filenames, key=fnct_sort)
+                for fname in filenames:
+                    if fname.find('dump.zip') != -1:
+                        continue
+                    if fname.find(self.folder) != -1:
+                        continue
+                    bname, ext = os.path.splitext(fname)
+                    ext = ext or bname
+                    if ext not in ['.pyc', '.pyo', '.swp', '.DS_Store']:
+                        path = os.path.normpath(os.path.join(dirpath, fname))
+                        if os.path.isfile(path):
+                            zipf.write(path, path[len_prefix:])
