@@ -137,12 +137,12 @@ class DbBackup(models.Model):
             try:
                 # try to backup database and write it away
                 fp = open(file_path, 'wb')
-                self._take_dump(rec.name, fp, 'db.backup', rec.backup_type)
+                rec._take_dump(rec.name, fp, 'db.backup', rec.backup_type)
                 fp.close()
                 rec.backup_details_ids.create({
                     'name': bkp_file,
                     'file_path': file_path,
-                    'url': '/dbbackup/download%s' % file_path,
+                    'url': '/dbbackup/download/%s' % file_path,
                     'db_backup_id': rec.id,
                 })
             except Exception as error:
