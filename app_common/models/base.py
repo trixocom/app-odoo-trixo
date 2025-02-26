@@ -13,6 +13,7 @@ import logging
 from odoo import models, fields, api, _
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
 from odoo.http import request
+from ..models.app_import import app_quick_import
 
 _logger = logging.getLogger(__name__)
 
@@ -163,7 +164,7 @@ class Base(models.AbstractModel):
                 return False
         else:
             return False
-        
+
     @api.model
     def _get_video_url2attachment(self, url):
         if not self._app_check_sys_op():
@@ -186,6 +187,10 @@ class Base(models.AbstractModel):
                 return False
         else:
             return False
+
+    @api.model
+    def quick_import(self, content_path):
+        return app_quick_import(self, content_path, model_name=self._name)
 
     def get_ua_type(self):
         return get_ua_type()
@@ -231,7 +236,7 @@ def get_image_base642attachment(data):
         return jpeg_base64, file_name
     except Exception as e:
         return None, None
-    
+
 def get_video_url2attachment(url):
     if not url:
         return None
@@ -277,7 +282,7 @@ def get_ua_type():
     utype = 'web'
     if not ua:
         return utype
-    
+
     # todo: 引入现成 py lib，处理企业微信
     if 'MicroMessenger' in ua and 'webdebugger' not in ua \
         and ('miniProgram' in ua or 'MiniProgram' in ua or 'MiniProgramEnv' in ua or 'wechatdevtools' in ua):
