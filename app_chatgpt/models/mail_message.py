@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from odoo import fields, models
+from odoo.addons.mail.tools.discuss import Store
 
 
 class Message(models.Model):
@@ -21,12 +22,34 @@ class Message(models.Model):
             # 处理反馈
             pass
 
-    def message_format(self, format_reply=True, msg_vals=None):
-        message_values = super(Message, self).message_format(format_reply=format_reply, msg_vals=msg_vals)
-        for message in message_values:
-            message_sudo = self.browse(message['id']).sudo().with_prefetch(self.ids)
-            message['human_prompt_tokens'] = message_sudo.human_prompt_tokens
-            message['ai_completion_tokens'] = message_sudo.ai_completion_tokens
-            message['cost_tokens'] = message_sudo.cost_tokens
-            message['is_ai'] = message_sudo.is_ai
-        return message_values
+    def _to_store(
+        self,
+        store: Store,
+        /,
+        *,
+        fields=None,
+        format_reply=True,
+        msg_vals=None,
+        for_current_user=False,
+        add_followers=False,
+        followers=None,
+    ):
+        default_fields = [
+            "body",
+            "create_date",
+            "date",
+            "message_type",
+            "model",  # keep for iOS app
+            "pinned_at",
+            "res_id",  # keep for iOS app
+            "subject",
+            "write_date",
+        ]
+        custom_fields = [
+            'human_prompt_tokens',
+            'ai_completion_tokens',
+            'cost_tokens',
+            'is_ai'
+        ]
+        merged_fields = list(set((fields or default_fields) + custom_fields))
+        return super()._to_store(store, fields=merged_fields, format_reply=format_reply, msg_vals=msg_vals, for_current_user=for_current_user, add_followers=add_followers, followers=followers)
