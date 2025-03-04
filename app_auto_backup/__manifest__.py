@@ -5,7 +5,7 @@
 #    'website': "https://www.odooai.cn",
 
 {
-    'name': "Database auto backup and Download,数据库自动备份",
+    'name': "!Database auto backup and Download,数据库自动备份",
     'version': '18.0.25.02.26',
 
     'summary': 'Automated and odoo database backups. easy download and manage database file. optimized from auto_backup of oca Yenthe Van Ginneken',

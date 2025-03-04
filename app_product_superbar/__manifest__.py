@@ -16,7 +16,7 @@
 # description:
 
 {
-    'name': "App product browse by category navigator",
+    'name': "!Product browse by category navigator",
     'version': '18.0.24.11.11',
     'author': 'odooai.cn',
     'category': 'Extra tools',

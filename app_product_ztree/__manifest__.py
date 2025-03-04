@@ -16,7 +16,7 @@
 # description:
 
 {
-    'name': "App Product category ztree, parent children tree",
+    'name': "!Product category ztree, parent children tree",
     'version': '18.0.24.12.09',
     'author': 'odooai.cn',
     'category': 'Extra tools',
