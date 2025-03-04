@@ -22,7 +22,7 @@
 # description:
 
 {
-    'name': 'odoo18 Tweak OEM Rebrand,Ai Employee,Boost,Customize All in One. UI,Boost,Security,Data,Development Enhance',
+    'name': '_odoo18 Tweak OEM Development Enhance.Boost,Customize,Ai Employee,UI,Security,Remove Data All in One-优化提速50+项大全',
     'version': '18.0.25.01.05',
     'author': 'odooai.cn',
     'category': 'Extra Tools',
