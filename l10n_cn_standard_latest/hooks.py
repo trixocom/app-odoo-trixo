@@ -30,7 +30,9 @@ def post_init_hook(env):
     中国公司，会计科目表非本模块中国企业会计科目表时，重载
 
     """
-    env['res.company'].search(['|', ('country_id', '=', env.ref('base.cn')), ('country_id.code', '=', 'CN')]).app_set_to_odooai_cn()
+    ids = env['res.company'].search([('currency_id', '=', env.ref('base.CNY').id)])
+    if ids:
+        ids.app_set_to_odooai_cn()
     # cr.execute("UPDATE account_account_template set group_id = "
     #            "(select id from account_group where account_group.code_prefix_start=trim(substring(account_account_template.code from 1 for 1)) limit 1);")
 

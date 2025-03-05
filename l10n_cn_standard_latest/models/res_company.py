@@ -14,6 +14,7 @@ class ResCompany(models.Model):
             if rec.country_id.code == 'CN' and rec.chart_template != 'cn_standard':
                 has_accounting_entries = rec.root_id._existing_accounting()
                 if not has_accounting_entries:
+                    # 处理额外的本年收益
                     unaffected_earnings_type = "equity_unaffected"
                     account = self.env['account.account'].with_company(rec).search([
                         *self.env['account.account']._check_company_domain(rec),

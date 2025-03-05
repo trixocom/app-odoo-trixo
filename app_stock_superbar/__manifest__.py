@@ -17,7 +17,7 @@
 
 {
     'name': "Stock Superbar ztree, parent children tree",
-    'version': '18.0.24.11.12',
+    'version': '18.0.25.03.05',
     'author': 'odooai.cn',
     'category': 'Inventory/Inventory',
     'website': 'https://www.odooai.cn',
