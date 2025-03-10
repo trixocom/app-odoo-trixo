@@ -13,6 +13,7 @@ import logging
 from odoo import models, fields, api, _
 from odoo.tools import DEFAULT_SERVER_DATE_FORMAT, DEFAULT_SERVER_DATETIME_FORMAT
 from odoo.http import request
+from ..lib.user_agents import parse
 
 _logger = logging.getLogger(__name__)
 
@@ -249,6 +250,7 @@ def get_video_url2attachment(url):
 
 def get_ua_type():
     ua = request.httprequest.headers.get('User-Agent')
+    ua_parse = str(parse(ua))
     # 临时用 agent 处理，后续要前端中正确处理或者都从后台来
     # 微信浏览器
     #  MicroMessenger: Mozilla/5.0 (Linux; Android 10; ELE-AL00 Build/HUAWEIELE-AL00; wv)
@@ -290,5 +292,8 @@ def get_ua_type():
         utype = 'native_android'
     elif 'BytedanceWebview' in ua:
         utype = 'dyweb'
+    elif 'Chrome Mobile' in ua_parse or 'Mobile Safari' in ua_parse:
+    #     增加移动端 web
+        utype = 'mweb'
     # _logger.warning('=========get ua %s,%s' % (utype, ua))
     return utype
