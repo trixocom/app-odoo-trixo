@@ -20,7 +20,7 @@ class AiRobot(models.Model):
     _order = 'sequence, name'
 
     name = fields.Char(string='Name', translate=True, required=True)
-    provider = fields.Selection(string="AI Provider", selection=[('openai', 'OpenAI'), ('azure', 'Azure')],
+    provider = fields.Selection(string="AI Provider Name", selection=[('openai', 'OpenAI'), ('azure', 'Azure')],
                                 required=True, default='openai', change_default=True)
     # update ai_robot set ai_model=set_ai_model
     ai_model = fields.Char(string="Ai Model", required=True, default='auto', help='Customize input')
