@@ -49,7 +49,7 @@
     * 税金模板
     """,
     'depends': [
-        'app_account_ztree',
+        # 'app_account_ztree',
         'app_odoo_customize',
     ],
     'images': ['static/description/banner.png'],

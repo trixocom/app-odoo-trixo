@@ -66,7 +66,7 @@ class AccountAccount(models.Model):
                 p_code = rec.code[:len(rec.code) - 2]
                 if delimiter and delimiter != '':
                     p_code = rec.code[:len(rec.code) - 2 - len(delimiter)]
-                p_acc = self.search([('company_id', '=', company.id), ('code', '=', p_code)])
+                p_acc = self.search([('company_ids', '=', company.id), ('code', '=', p_code)])
                 if p_acc and rec.parent_id != p_acc:
                     rec.write({'parent_id': p_acc.id})
                     done += 1
