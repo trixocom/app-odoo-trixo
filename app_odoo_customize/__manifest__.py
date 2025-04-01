@@ -23,14 +23,14 @@
 
 {
     'name': '!18odoo Tweak OEM Development Enhance.Boost,Customize,Ai Employee,UI,Security,Remove Data All in One-优化提速50+项大全',
-    'version': '18.0.25.03.26',
+    'version': '18.0.25.04.01',
     'author': 'odooai.cn',
     'category': 'Extra Tools',
     'website': 'https://www.odooai.cn',
     'live_test_url': 'https://demo.odooapp.cn',
     'license': 'LGPL-3',
     'sequence': 2,
-    'images': ['static/description/banner.gif'],
+    'images': ['static/description/banner.gif', 'static/description/banner.png'],
     'summary': """
     50+ Odoo Enhance in 1 click Tweak odoo. Change Odoo to your OEM brand.all in one odoo enhancement. for Customize,UI,Boost Security,Development.
     Easy reset data, clear data, reset account chart, reset Demo data.
