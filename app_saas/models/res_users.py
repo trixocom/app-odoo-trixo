@@ -91,38 +91,7 @@ class ResUsers(models.Model):
                     return odoo_user.user_id.login
         res = super(ResUsers, self)._auth_oauth_signin(provider, validation, params)
         return res
-    
-    def _create_user_from_template(self, values):
-        # todo: 注意，选模板用户的功能暂时不可开放，因为会与 social_login 不兼容
-        # 注意，没有装 app_partner_user时删除 user 时不会删除 partner，故容易出错，测试时要手工再把partner删除
-        # self = self.sudo()
-        # oauth_provider_id = values.get('oauth_provider_id')
-        # if oauth_provider_id:
-        #     provider = request.env['auth.oauth.provider'].sudo().browse(int(oauth_provider_id))
-        #     if provider:
-        #         template_user = provider.user_template_id
-        #         if not template_user and provider.scope.find('odoo') >= 0:
-        #             template_user = self.env.ref('base.default_user', False)
-        #         if not template_user:
-        #             template_user_id = literal_eval(self.env['ir.config_parameter'].sudo().get_param('base.template_portal_user_id', 'False'))
-        #             template_user = self.browse(template_user_id)
-        #
-        #         if not values.get('login'):
-        #             raise ValueError(_('Signup: no login given for new user'))
-        #         if not values.get('partner_id') and not values.get('name'):
-        #             raise ValueError(_('Signup: no name or partner given for new user'))
-        #
-        #         # create a copy of the template user (attached to a specific partner_id if given)
-        #         values['active'] = True
-        #         try:
-        #             with self.env.cr.savepoint():
-        #                 return template_user.sudo().with_context(no_reset_password=True).copy(values)
-        #         except Exception as e:
-        #             # copy may failed if asked login is not available.
-        #             raise SignupError(str(e))
-        res = super(ResUsers, self)._create_user_from_template(values)
-        return res
-    
+        
     @api.model
     def _generate_signup_values(self, provider, validation, params):
         # 此处生成 创建 odoo user 的初始值，增加字段如头像
@@ -135,6 +104,6 @@ class ResUsers(models.Model):
         return res
     
     def _rpc_api_keys_only(self):
-        # 可直接使用 oauth_access_token 作为 password 登录
+        # 当 not 时可直接使用 oauth_access_token 作为 password 登录
         self.ensure_one()
-        return self.oauth_access_token or super()._rpc_api_keys_only()
+        return not self.oauth_access_token or super()._rpc_api_keys_only()
