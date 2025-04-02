@@ -41,7 +41,7 @@
         'website_sale',
         'app_product_superbar',
     ],
-    'images': ['static/description/banner.gif'],
+    'images': ['static/description/banner.png', 'static/description/product1.jpg'],
     'data': [
         'views/product_template_views.xml',
     ],

@@ -48,7 +48,7 @@
     'sequence': 2,
     'price': 0.00,
     'currency': 'EUR',
-    'images': ['static/description/banner.gif'],
+    'images': ['static/description/banner.gif', 'static/description/banner.png'],
     'depends': [
         'website_blog',
     ],

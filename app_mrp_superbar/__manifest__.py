@@ -40,7 +40,7 @@
     'depends': [
         'mrp',
     ],
-    'images': ['static/description/banner.gif'],
+    'images': ['static/description/banner.png'],
     'data': [
         # 'data/ir_data.xml',
         'views/mrp_production_views.xml',

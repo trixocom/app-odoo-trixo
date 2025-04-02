@@ -19,7 +19,7 @@
     'live_test_url': 'https://demo.odooapp.cn',
     'license': 'LGPL-3',
     'sequence': 10,
-    'images': ['static/description/banner.gif'],
+    'images': ['static/description/banner.gif', 'static/description/banner.png'],
     'summary': '''
     ChatGpt Odoo AI Center. Multi Ai aigc support with Ali Qwen Ai, Azure Ai, Baidu Ai,etc..
     Support chatgpt 4 32k, Integration All ChatGpt Api and Azure OpenAI.

@@ -40,7 +40,7 @@
     'depends': [
         'hr',
     ],
-    'images': ['static/description/hr2.gif'],
+    'images': ['static/description/hr2.gif', 'static/description/banner.png'],
     'data': [
         'views/hr_views.xml',
         'views/hr_department_views.xml',
