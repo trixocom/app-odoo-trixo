@@ -50,7 +50,7 @@
     'depends': [
         'stock',
     ],
-    'images': ['static/description/banner.gif'],
+    'images': ['static/description/banner.gif', 'static/description/banner.png'],
     'data': [
         'views/stock_views.xml',
     ],

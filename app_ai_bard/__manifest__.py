@@ -17,7 +17,7 @@
     'live_test_url': 'https://demo.odooapp.cn',
     'license': 'LGPL-3',
     'sequence': 10,
-    'images': ['static/description/banner.gif'],
+    'images': ['static/description/banner.gif', 'static/description/banner.png'],
     'summary': '''
     Google Gemini Ai for Odoo AI Center. Ai Aigc Center including Google Gemini Ai(Bard before), Azure Ai, Baidu Ai.
     Support chatgpt 4 image. DALLE, Integration All ChatGpt Api and Azure OpenAI Service.

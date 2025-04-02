@@ -40,7 +40,7 @@
         'stock',
         'stock_picking_batch',
     ],
-    'images': ['static/description/banner.gif'],
+    'images': ['static/description/banner.gif', 'static/description/banner.png'],
     'data': [
         'views/stock_location_views.xml',
         'views/stock_picking_views.xml',

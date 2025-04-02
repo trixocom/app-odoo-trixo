@@ -33,7 +33,7 @@
     'sequence': 2,
     'price': 2.00,
     'currency': 'EUR',
-    'images': ['static/description/banner.gif'],
+    'images': ['static/description/banner.gif', 'static/description/banner.png'],
     'summary': '''
     Odoo module template. module sample with 170+ widget list. Clone this sample to your name to quick create your odoo addons.
     Developer reference guides, Developer Tutorials.

@@ -43,7 +43,7 @@
         # 'app_web_one2many_multi_add',
         'purchase',
     ],
-    'images': ['static/description/banner.gif'],
+    'images': ['static/description/banner.gif', 'static/description/banner.png'],
     'data': [
         'views/purchase_order_views.xml',
     ],

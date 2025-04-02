@@ -43,7 +43,7 @@ This module extend to show a Hierarchy chart.
     'depends': [
         'product',
     ],
-    'images': ['static/description/banner.gif'],
+    'images': ['static/description/banner.gif', 'static/description/banner.png'],
     'data': [
         'views/product_category_views.xml',
     ],

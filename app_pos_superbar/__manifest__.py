@@ -41,7 +41,7 @@
         'point_of_sale',
         'app_product_superbar',
     ],
-    'images': ['static/description/banner.gif'],
+    'images': ['static/description/banner.gif', 'static/description/banner.png'],
     'data': [
         'views/product_views.xml',
         'views/pos_order_views.xml',
