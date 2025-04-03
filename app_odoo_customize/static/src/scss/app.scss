@@ -31,11 +31,25 @@
       @media (max-width: 768px) {
         --o-navbar-height: 46px;
         padding: 0 var(--o-navbar-height);
+        .o_navbar_apps_menu .dropdown-toggle, .o_nav_entry, .dropdown-toggle:not(.o-dropdown-toggle-custo), .o_menu_toggle {
+          align-items: baseline;
+          font-size: 1.5rem;
+        }
+        .o_menu_toggle  {
+          margin-top: 10px;
+        }
+        .o_burger_menu_avatar.o_image_24_cover  {
+          width: 36px;
+          height: 36px;
+        }
+        .o-mail-DiscussSystray-class  {
+          margin-bottom: 10px;
+        }
       }
-
-      button.o_mobile_menu_toggle, .o_menu_systray .o_debug_manager .dropdown-toggle {
-        font-size: 2em;
-      }
+      //
+      //button.o_mobile_menu_toggle, .o_menu_systray .o_debug_manager .dropdown-toggle {
+      //  font-size: 1.5rem;
+      //}
 
       //  toggle处理
       .dropdown .dropdown-toggle::after {
