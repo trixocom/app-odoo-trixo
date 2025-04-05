@@ -1,123 +1,67 @@
 /** @odoo-module **/
+import { FormCompiler } from "@web/views/form/form_compiler";
+import { patch } from "@web/core/utils/patch";
 
-import {patch} from "@web/core/utils/patch";
-import {append} from "@web/core/utils/xml";
-import {MailFormCompiler} from "@mail/views/form/form_compiler";
-import {FormCompiler} from "@web/views/form/form_compiler";
-import {FormController} from "@web/views/form/form_controller";
-
-patch(MailFormCompiler.prototype, "web_chatter_position", {
-    /**
-     * Patch the visibility of the Sided chatter (`C` above).
-     *
-     * @override
-     */
-    compile() {
-        const res = this._super.apply(this, arguments);
-        const chatterContainerHookXml = res.querySelector(
-            ".o_FormRenderer_chatterContainer"
-        );
-        if (!chatterContainerHookXml) {
-            return res;
-        }
-        // Don't patch anything if the setting is "auto": this is the core behaviour
-        if (odoo.web_chatter_position === "auto") {
-            return res;
-        } else if (odoo.web_chatter_position === "sided") {
-            chatterContainerHookXml.setAttribute("t-if", "!hasAttachmentViewer()");
-        } else if (odoo.web_chatter_position === "bottom") {
-            chatterContainerHookXml.setAttribute("t-if", false);
-        }
-        return res;
-    },
-});
-
-patch(FormCompiler.prototype, "web_chatter_position", {
-    /**
-     * Patch the css classes of the `Form`, to include an extra `h-100` class.
-     * Without it, the form sheet will not be full height in some situations,
-     * looking a bit weird.
-     *
-     * @override
-     */
-    compileForm() {
-        const res = this._super.apply(this, arguments);
+patch(FormCompiler.prototype, {
+    compileForm(el, params) {
+        const res = super.compileForm(el, params);
         if (odoo.web_chatter_position === "sided") {
             const classes = res.getAttribute("t-attf-class");
-            res.setAttribute("t-attf-class", `${classes} h-100`);
+            const newClasses = classes.replace('{{ __comp__.uiService.size < 6 ? "flex-column" : "flex-nowrap h-100" }}', 'flex-nowrap h-100')
+            res.setAttribute("t-attf-class", `${newClasses}`);
+            return res;
         }
+
+        else if (odoo.web_chatter_position === "bottom") {
+            const classes = res.getAttribute("t-attf-class");
+            const formView = res.getElementsByClassName('o_form_sheet_bg')[0];
+
+            if (formView) {
+                formView.classList.add('customBottom');
+                const formParent = formView.parentElement;
+
+                if (formParent) {
+                    const chatter = formParent.querySelector('.o-mail-Form-chatter');
+                    if (chatter) {
+                        chatter.classList.add('customBottom');
+                    }
+                }
+
+                const newClasses = classes.replace('{{ __comp__.uiService.size < 6 ? "flex-column" : "flex-nowrap h-100" }}', 'flex-column');
+                res.setAttribute("t-attf-class", `${newClasses}`);
+            }
+
+            return res;
+        }
+
         return res;
     },
-    /**
-     * Patch the visibility of bottom chatters (`A` and `B` above).
-     * `B` may not exist in some situations, so we ensure it does by creating it.
-     *
-     * @override
-     */
+
     compile(node, params) {
-        const res = this._super.apply(this, arguments);
-        const chatterContainerHookXml = res.querySelector(
-            ".o_FormRenderer_chatterContainer:not(.o-isInFormSheetBg)"
-        );
+        const res = super.compile(node, params);
+
+        const chatterContainerHookXml = res.querySelector(".o-mail-Form-chatter");
         if (!chatterContainerHookXml) {
-            return res;
+            return res; // no chatter, keep the result as it is
         }
-        if (chatterContainerHookXml.parentNode.classList.contains("o_form_sheet")) {
-            return res;
+
+        if (odoo.web_chatter_position === "sided") {
+            const classes = chatterContainerHookXml.getAttribute("t-attf-class")
+            if(classes){
+                const newClasses = classes.replace('{{ __comp__.uiService.size >= 6 ? "o-aside" : "mt-4 mt-md-0" }}', 'o-aside')
+                res.setAttribute("t-attf-class", `${newClasses}`);
+            }
+            return res
         }
-        // Don't patch anything if the setting is "auto": this is the core behaviour
-        if (odoo.web_chatter_position === "auto") {
-            return res;
-            // For "sided", we have to remote the bottom chatter
-            // (except if there is an attachment viewer, as we have to force bottom)
-        } else if (odoo.web_chatter_position === "sided") {
-            const formSheetBgXml = res.querySelector(".o_form_sheet_bg");
-            if (!formSheetBgXml) {
-                return res;
+        else if (odoo.web_chatter_position === "bottom") {
+            const classes = chatterContainerHookXml.getAttribute("t-attf-class")
+            if(classes){
+                const newClasses = classes.replace('{{ __comp__.uiService.size >= 6 ? "o-aside" : "mt-4 mt-md-0" }}', 'mt-4 mt-md-0')
+                res.setAttribute("t-attf-class", `${newClasses}`);
             }
-            chatterContainerHookXml.setAttribute("t-if", false);
-            // For "bottom", we keep the chatter in the form sheet
-            // (the one used for the attachment viewer case)
-            // If it's not there, we create it.
-        } else if (odoo.web_chatter_position === "bottom") {
-            if (params.hasAttachmentViewerInArch) {
-                const sheetBgChatterContainerHookXml = res.querySelector(
-                    ".o_FormRenderer_chatterContainer.o-isInFormSheetBg"
-                );
-                sheetBgChatterContainerHookXml.setAttribute("t-if", true);
-                chatterContainerHookXml.setAttribute("t-if", false);
-            } else {
-                const formSheetBgXml = res.querySelector(".o_form_sheet_bg");
-                if (!formSheetBgXml) {
-                    return res;
-                }
-                const sheetBgChatterContainerHookXml =
-                    chatterContainerHookXml.cloneNode(true);
-                sheetBgChatterContainerHookXml.classList.add("o-isInFormSheetBg");
-                sheetBgChatterContainerHookXml.setAttribute("t-if", true);
-                append(formSheetBgXml, sheetBgChatterContainerHookXml);
-                const sheetBgChatterContainerXml =
-                    sheetBgChatterContainerHookXml.querySelector("ChatterContainer");
-                sheetBgChatterContainerXml.setAttribute("isInFormSheetBg", "true");
-                chatterContainerHookXml.setAttribute("t-if", false);
-            }
+            return res
         }
         return res;
     },
 });
 
-patch(FormController.prototype, "web_chatter_position", {
-    /**
-     * Patch the css classes of the form container, to include an extra `flex-row` class.
-     * Without it, it'd go for flex columns direction and it won't look good.
-     *
-     * @override
-     */
-    get className() {
-        const result = this._super();
-        if (odoo.web_chatter_position === "sided") {
-            result["flex-row"] = true;
-        }
-        return result;
-    },
-});

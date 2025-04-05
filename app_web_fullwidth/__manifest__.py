@@ -21,8 +21,8 @@
 # https://www.odooai.cn/odoo10_developer_document_offline/
 
 {
-    'name': 'Web Form Fullwidth, Full screen full width. Chatter Position ',
-    'version': '18.0.25.03.14',
+    'name': 'Web Form Fullwidth.Chatter Position-表单表格全宽度满屏,自定义备注消息位置',
+    'version': '18.0.25.04.05',
     'category': 'Extra tools',
     'author': 'odooai.cn',
     'website': 'https://www.odooai.cn',
@@ -33,7 +33,7 @@
     "currency": "EUR",
     'images': ['static/description/banner.png'],
     'summary': """
-    Chatter Position set and Form Responsive full screen, full width (fullwidth).
+    Chatter Position set and Form Responsive full screen, full width (fullwidth). Form Full screen full width.
     Ready for small, medium, large, extra large screen.Ready for enterprise and communicate version.
     Easy config the chatter position to bottom or side or Responsive.
     """,
@@ -52,8 +52,8 @@
     ],
     'assets': {
         'web.assets_backend': [
-            # ('after', 'web/static/src/views/**/*', 'app_web_fullwidth/static/src/scss/app_style_after.scss'),
-            # '/app_web_fullwidth/static/src/js/*.js'
+            ('after', 'web/static/src/views/**/*', 'app_web_fullwidth/static/src/scss/app_style_after.scss'),
+            '/app_web_fullwidth/static/src/js/form_compiler.js'
         ],
     },
 
