@@ -829,7 +829,7 @@ msgstr ""
 #. module: app_chatgpt
 #: model_terms:ir.ui.view,arch_db:app_chatgpt.ai_robot_search_view
 msgid "Archived"
-msgstr ""
+msgstr "已归档"
 
 #. module: app_chatgpt
 #. odoo-javascript

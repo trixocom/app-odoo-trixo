@@ -18,7 +18,7 @@ msgstr ""
 #. module: app_base_chinese
 #: model:ir.model.fields,field_description:app_base_chinese.field_account_tax_group__active
 msgid "Active"
-msgstr "激活"
+msgstr "启用"
 
 #. module: app_base_chinese
 #: model:ir.model,name:app_base_chinese.model_res_company
