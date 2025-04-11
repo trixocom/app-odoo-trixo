@@ -159,7 +159,7 @@
         <field name="name">app.model.new.kanban</field>
         <field name="model">model.new</field>
         <field name="arch" type="xml">
-            <kanban>
+            <kanban highlight_color="color">
                 <field name="id"/>
                 <field name="name"/>
                 <field name="amount"/>
@@ -173,14 +173,18 @@
                 <field name="w_color_s"/>
 
 				<templates>
+                    <t t-name="menu">
+                        <a role="menuitem" type="open" class="dropdown-item">
+                            <span class="fa fa-pencil"/> Edit
+                        </a>
+                        <div role="separator" class="dropdown-divider"></div>
+                        <field name="color" widget="kanban_color_picker"/>
+                    </t>
                     <t t-name="card">
                         <div t-attf-class="#{!selection_mode ? kanban_color(record.color.raw_value) : ''} oe_kanban_global_click o_has_icon oe_kanban_content oe_kanban_card">
                             <div t-attf-class="o_kanban_card_header">
                                 <div class="o_kanban_card_header_title">
                                     <h3 class="o_primary"><field name="name"/></h3>
-                                </div>
-                                <div class="o_kanban_manage_button_section">
-                                    <a class="o_kanban_manage_toggle_button" href="#"><i class="fa fa-ellipsis-v" role="img" aria-label="Manage" title="Manage"/></a>
                                 </div>
                             </div>
                             <div class="o_kanban_card_content mt4">
@@ -216,18 +220,6 @@
                                     <div class="oe_kanban_bottom_right">
                                         <field name="user_id" widget="many2one_avatar_user" t-if="record.user_id.raw_value"/>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="o_kanban_card_manage_pane dropdown-menu text-right" role="menu">
-                                <div class="o_kanban_card_manage_section">
-                                    <div class="dropdown-divider mt-0"/>
-                                    <!--  下拉操作-->
-                                    <div role="menuitem" class="text-end mr32">
-                                        <a type="edit">Edit</a>
-                                    </div>
-                                </div>
-                                <div t-if="widget.editable" role="menuitem" aria-haspopup="true" class="o_no_padding_kanban_colorpicker">
-                                    <ul class="oe_kanban_colorpicker" data-field="color" role="popup"/>
                                 </div>
                             </div>
                         </div>
