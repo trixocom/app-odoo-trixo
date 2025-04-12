@@ -318,6 +318,8 @@ class ResConfigSettings(models.TransientModel):
             # 'account.tax.account.tag',
             'account.tax',
             # 'wizard_multi_charts_accounts',
+            'account.fiscal.position.account',
+            'account.tax.repartition.line',
             'account.account',
         ]
         # todo: 要做 remove_hr，因为工资表会用到 account
