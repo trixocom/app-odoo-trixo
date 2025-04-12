@@ -17,7 +17,7 @@
 
 {
     'name': "Easy Admin navigator, quick search filter",
-    'version': '18.0.24.11.11',
+    'version': '18.0.25.04.13',
     'author': 'odooai.cn',
     'category': 'Extra tools',
     'website': 'https://www.odooai.cn',
@@ -53,6 +53,7 @@
         'views/ir_model_fields_views.xml',
         'views/ir_ui_menu_views.xml',
         'views/ir_ui_view_views.xml',
+        'views/res_users_views.xml',
     ],
     'demo': [
     ],
