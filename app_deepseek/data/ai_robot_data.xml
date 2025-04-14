@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <odoo noupdate="1">
     <record id="robot_deepseek_chat" model="ai.robot">
-        <field name="name">DeepSeek Ai</field>
+        <field name="name">DeepSeek Chat</field>
         <field name="provider">deepseek</field>
         <field name="ai_model">deepseek-chat</field>
         <field name="set_ai_model">deepseek-chat</field>
