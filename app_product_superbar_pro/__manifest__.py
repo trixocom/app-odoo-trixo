@@ -17,7 +17,7 @@
 
 {
     'name': "Product browse by category navigator Pro",
-    'version': '18.0.24.12.04',
+    'version': '18.0.25.04.19',
     'author': 'odooai.cn',
     'category': 'Extra tools',
     'website': 'https://www.odooai.cn',
@@ -40,7 +40,7 @@
     'depends': [
         'app_product_superbar',
     ],
-    'images': ['static/description/superbar_pro.gif'],
+    'images': ['static/description/superbar_pro.gif', 'static/description/banner.png'],
     'data': [
         'views/product_views.xml',
     ],
