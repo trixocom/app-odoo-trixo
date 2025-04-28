@@ -39,7 +39,7 @@
 
 {
     'name': "odooAi Common Util and Tools",
-    'version': '17.0.24.12.11',
+    'version': '17.0.25.04.28',
     'author': 'odooai.cn',
     'category': 'Base',
     'website': 'https://www.odooai.cn',
@@ -82,6 +82,7 @@
     ],
     'data': [
         'views/ir_cron_views.xml',
+        'views/res_config_settings_views.xml',
         # 'report/.xml',
     ],
     'qweb': [
