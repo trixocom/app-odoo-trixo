@@ -10,7 +10,7 @@ class IrConfigParameter(models.Model):
     def init(self, force=False):
         super(IrConfigParameter, self).init(force=force)
         if force:
-            oauth_app_saas = self.env.ref('app_saas.ir_config_parameter.py')
+            oauth_app_saas = self.env.ref('app_saas.provider_app_saas')
             if not oauth_app_saas:
                 return
             dbuuid = self.sudo().get_param('database.uuid')
