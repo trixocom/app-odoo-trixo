@@ -26,7 +26,7 @@
 
 {
     'name': 'odooapp.cn SaaS Client-Ai Passport.Odoo中文应用商店SaaS云服务客户端',
-    'version': '17.0.25.01.26',
+    'version': '17.0.25.04.28',
     'author': 'odooai.cn',
     'category': 'Base',
     'website': 'https://www.odooai.cn',
@@ -50,6 +50,7 @@
     4. 一键获取Odoo中文翻译更新（会员专属）
     5. 快速获取Odoo服务，Odoo升级评估
     6. 系统出错时一键提交，获取技术支持（会员专属）
+    7. 注意，odoo默认新用户都是门户用户，不给访问内部管理内容
     11.多语言支持，多公司支持
     12.仅从Odoo18-16企业版，社区版版本开始支持
     13.代码完全开源
