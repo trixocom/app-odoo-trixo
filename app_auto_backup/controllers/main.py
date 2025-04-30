@@ -11,11 +11,11 @@ _logger = logging.getLogger(__name__)
 
 
 class AppAutoBackup(http.Controller):
-    
+
     @http.route("/dbbackup/download/<path:file_path>", type="http", auth="user")
     def download_backupfile(self, file_path, **kw):
         _logger.warning('download_backupfile: %s', file_path)
-        if not self.env.user.has_group('base.group_system'):
+        if not request.env.user.has_group('base.group_system'):
             raise UserError(_('File not found for user.'))
         if os.path.exists(file_path):
             try:
