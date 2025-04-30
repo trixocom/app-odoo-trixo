@@ -153,9 +153,7 @@
   .nav-link.active, .nav-link.active:hover, .nav-link.active:focus, .nav-link.active:active {
     border-left-color: var(--notebook-link-border-color-active-accent, var(--notebook-link-border-color-active));
     border-right-color: var(--notebook-link-border-color-active-accent, var(--notebook-link-border-color-active));
-    @media (max-width: 768px) {
-      border-bottom: 1.5px solid #{$o-brand-lightsecondary};
-    }
+    border-bottom: 1.5px solid #{$o-brand-lightsecondary};
   }
 }
 //end form
