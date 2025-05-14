@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 class IrMailServer(models.Model):
     _inherit = "ir.mail_server"
     _order = "sequence"
-    
+
     # 改默认发邮件逻辑
     @api.model
     def send_email(self, message, mail_server_id=None, smtp_server=None, smtp_port=None,
@@ -16,7 +16,7 @@ class IrMailServer(models.Model):
                    smtp_ssl_certificate=None, smtp_ssl_private_key=None,
                    smtp_debug=False, smtp_session=None):
         email_to = message['To']
-        
+
         # 忽略掉无效email，避免被ban
         if email_to:
             if email_to.find('no-reply@odooai.cn') != -1 or email_to.find('postmaster-odoo@odooai.cn') != -1:
