@@ -18,7 +18,7 @@
 
 {
     'name': '!odoo中国版，中文本土化套件,中国会计基础,Odoo Chinese localization Enhance All in One',
-    'version': '18.0.25.02.20',
+    'version': '18.0.25.05.27',
     'author': 'odooai.cn',
     'category': 'Base',
     'website': 'https://www.odooai.cn',
@@ -95,6 +95,7 @@
         # 'views/templates.xml',
         'wizard/sale_make_invoice_advance_views.xml',
         'data/base_data.xml',
+        'data/uom_uom_data.xml',
         'data/decimal_precision_data.xml',
         'data/res_country_data.xml',
         'data/res_currency_data.xml',

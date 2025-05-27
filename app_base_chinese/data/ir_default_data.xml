@@ -8,6 +8,9 @@
         <!--设置默认时区为中国，注意select 类型要加 ""-->
          <function model="ir.default" name="set"
             eval="('res.partner', 'tz', 'Etc/GMT-8')"/>
+        <!--设置配送默认包含为中国-->
+         <function model="ir.default" name="set"
+            eval="('delivery.carrier', 'country_id', ref('base.cn'))"/>
         <!--设置产品默认是可库存产品-->
          <function model="ir.default" name="set"
             eval="('product.template', 'type', 'consu')"/>
