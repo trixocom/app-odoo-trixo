@@ -9,40 +9,40 @@
         </record>
     </data>
     <data noupdate="0">
-        <function model="stock.location" name="write" context="{'lang': 'zh_CN'}">
+        <function model="stock.location" name="write">
             <value eval="[ref('stock.stock_location_locations', False)]"/>
             <value model="stock.location" eval="{
                 'name': '物理区位',
             }"/>
         </function>
-        <function model="stock.location" name="write" context="{'lang': 'zh_CN'}">
+        <function model="stock.location" name="write">
             <value eval="[ref('stock.stock_location_locations_partner', False)]"/>
             <value model="stock.location" eval="{
                 'name': '往来单位',
             }"/>
         </function>
-        <function model="stock.location" name="write" context="{'lang': 'zh_CN'}">
+        <function model="stock.location" name="write">
             <value eval="[ref('stock.stock_location_locations_virtual', False)]"/>
             <value model="stock.location" eval="{
                 'name': '虚拟区位',
             }"/>
         </function>
-        <function model="stock.location" name="write" context="{'lang': 'zh_CN'}">
+        <function model="stock.location" name="write">
             <value eval="[ref('stock.stock_location_suppliers', False)]"/>
             <value model="stock.location" eval="{
                 'name': '供应商区位',
             }"/>
         </function>
-        <function model="stock.location" name="write" context="{'lang': 'zh_CN'}">
+        <function model="stock.location" name="write">
             <value eval="[ref('stock.stock_location_customers', False)]"/>
             <value model="stock.location" eval="{
                 'name': '客户区位',
             }"/>
         </function>
-        <function model="stock.location" name="write" context="{'lang': 'zh_CN'}">
-            <value eval="[ref('stock.stock_location_inter_wh', False)]"/>
+        <function model="stock.location" name="write">
+            <value eval="[ref('stock.stock_location_inter_company', False)]"/>
             <value model="stock.location" eval="{
-                'name': '中转区位',
+                'name': '多公司中转区',
             }"/>
         </function>
 <!--        几个特殊区位处理-->
