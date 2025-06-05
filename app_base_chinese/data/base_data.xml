@@ -13,7 +13,7 @@
         </record>
 
         <record model="res.partner" id="base.partner_root">
-            <field name="name">超管</field>
+            <field name="name">系统Ai</field>
         </record>
     </data>
 </odoo>
