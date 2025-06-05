@@ -124,6 +124,11 @@ class ResConfigSettings(models.TransientModel):
     def remove_sales(self):
         to_removes = [
             # 清除销售单据
+            'sale.order.return.line',
+            'sale.order.return',
+            'helpdesk.ticket',
+            'sale.order.fix.line',
+            'sale.order.fix',
             'sale.order.line',
             'sale.order',
             # 销售提成，自用
@@ -132,6 +137,8 @@ class ResConfigSettings(models.TransientModel):
             'sale.order.template.option',
             'sale.order.template.line',
             'sale.order.template',
+            'sale.requisition.line',
+            'sale.requisition',
         ]
         seqs = [
             'sale',
@@ -184,6 +191,11 @@ class ResConfigSettings(models.TransientModel):
     def remove_purchase(self):
         to_removes = [
             # 清除采购单据
+            'purchase.order.return.line',
+            'purchase.order.return',
+            'helpdesk.ticket',
+            'purchase.order.fix.line',
+            'purchase.order.fix',
             'purchase.order.line',
             'purchase.order',
             'purchase.requisition.line',
