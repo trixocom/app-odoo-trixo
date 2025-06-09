@@ -18,7 +18,7 @@
 
 {
     'name': '!odoo中国版，中文本土化套件,中国会计基础,Odoo Chinese localization Enhance All in One',
-    'version': '18.0.25.06.05',
+    'version': '18.0.25.06.09',
     'author': 'odooai.cn',
     'category': 'Base',
     'website': 'https://www.odooai.cn',
@@ -86,6 +86,14 @@
     ],
     'images': ['static/description/banner.jpg'],
     'data': [
+        'views/res_partner_views.xml',
+        'views/res_currency_views.xml',
+        'views/sale_order_views.xml',
+        'views/account_move_views.xml',
+        'views/ir_default_views.xml',
+        'views/ir_module_module_views.xml',
+        # 'views/templates.xml',
+        'wizard/sale_make_invoice_advance_views.xml',
         'data/base_data.xml',
         'data/uom_uom_data.xml',
         'data/decimal_precision_data.xml',
@@ -101,15 +109,6 @@
         'data/sales_team_data.xml',
         'data/ir_default_data.xml',
         'data/ir_config_parameter_data.xml',
-        'views/res_partner_views.xml',
-        'views/res_company_views.xml',
-        'views/res_currency_views.xml',
-        'views/sale_order_views.xml',
-        'views/account_move_views.xml',
-        'views/ir_default_views.xml',
-        'views/ir_module_module_views.xml',
-        # 'views/templates.xml',
-        'wizard/sale_make_invoice_advance_views.xml',
     ],
     'assets': {
         'web.assets_backend': [
