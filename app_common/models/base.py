@@ -187,9 +187,16 @@ class Base(models.AbstractModel):
                 return False
         else:
             return False
-
+    
+    @api.model
     def get_ua_type(self):
         return get_ua_type()
+    
+    @api.model
+    def deep_merge(self, a, b):
+        # todo: 此处只处理2级，后续如需更深级别可以使用第三方库
+        # from deepmerge import always_merger
+        return deep_merge(a, b)
 
 def get_image_from_url(url):
     if not url:
@@ -297,3 +304,19 @@ def get_ua_type():
         utype = 'mweb'
     # _logger.warning('=========get ua %s,%s' % (utype, ua))
     return utype
+def deep_merge(a, b):
+    """
+    深度合并两个二级 dict，对数值进行叠加。
+    如果 a 和 b 有相同的键，则对它们的值进行合并；
+    如果值是 dict，则递归处理；
+    否则将 b 的值加到 a 上。
+    """
+    for key in b:
+        if key in a:
+            if isinstance(a[key], dict) and isinstance(b[key], dict):
+                deep_merge(a[key], b[key])
+            else:
+                a[key] += b[key]
+        else:
+            a[key] = b[key]
+    return a
