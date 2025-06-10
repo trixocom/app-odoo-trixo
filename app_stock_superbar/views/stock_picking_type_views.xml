@@ -8,6 +8,7 @@
         <field name="arch" type="xml">
             <xpath expr="//search">
                 <searchpanel>
+                    <field name="company_id" groups="base.group_multi_company" icon="fa-building"/>
                     <field name="code"/>
                     <field name="warehouse_id" groups="stock.group_stock_multi_warehouses"/>
                 </searchpanel>

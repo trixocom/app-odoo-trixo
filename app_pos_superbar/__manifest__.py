@@ -17,7 +17,7 @@
 
 {
     'name': "App Pos order browse by store salesperson status",
-    'version': '18.0.24.11.12',
+    'version': '18.0.25.06.10',
     'author': 'odooai.cn',
     'category': 'Point of Sale',
     'website': 'https://www.odooai.cn',

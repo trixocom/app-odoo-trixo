@@ -17,7 +17,7 @@
 
 {
     'name': "Event advance search browse by stage",
-    'version': '18.0.24.11.12',
+    'version': '18.0.25.06.10',
     'author': 'odooai.cn',
     'category': 'Extra tools',
     'website': 'https://www.odooai.cn',

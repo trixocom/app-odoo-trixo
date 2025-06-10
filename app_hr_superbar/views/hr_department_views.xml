@@ -7,8 +7,8 @@
         <field name="arch" type="xml">
             <xpath expr="//search" position="inside">
                 <searchpanel>
+                    <field name="company_id" groups="base.group_multi_company" icon="fa-building"/>
                     <field name="parent_id" widget="ztree_select" text="name"/>
-                    <field name="company_id" groups="base.group_multi_company"/>
                 </searchpanel>
             </xpath>
         </field>

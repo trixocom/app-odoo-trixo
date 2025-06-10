@@ -6,6 +6,9 @@
           <field name="model">account.account</field>
           <field name="inherit_id" ref="account.view_account_search"/>
           <field name="arch" type="xml">
+                <xpath expr="//searchpanel//field[@name='root_id']" position="before">
+                    <field name="company_id" groups="base.group_multi_company" icon="fa-building"/>
+                </xpath>
               <xpath expr="//search/searchpanel" position="inside">
 	              <field name="account_type"/>
               </xpath>
