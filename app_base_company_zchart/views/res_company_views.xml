@@ -40,6 +40,13 @@
                 <xpath expr="//span[@id='add_notebook']" position="after">
                     <xpath expr="//notebook" position="move"/>
                 </xpath>
+                <xpath expr="//field[@name='parent_id']" position="replace">
+                    <label for="parent_id" groups="base.group_no_one"/>
+                    <div class="o_row" groups="base.group_no_one">
+                        <field name="parent_id"/>
+                        <button name="force_write_parent_id" type="object" class="btn-danger" string="Force Set" title="Force Set Parent Company"/>
+                    </div>
+                </xpath>
             </field>
         </record>
     </data>

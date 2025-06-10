@@ -26,7 +26,7 @@
 
 {
     'name': 'Group Company Multi Level Chart Hierarchy, 集团公司多层级结构图zChart',
-    'version': '18.0.24.12.09',
+    'version': '18.0.25.06.10',
     'author': 'odooai.cn',
     'category': 'Extra tools',
     'website': 'https://www.odooai.cn',
@@ -61,7 +61,9 @@ This module extend to show a Hierarchy chart
     ],
     'data': [
         'security/res_group.xml',
+        'security/ir.model.access.csv',
         'views/res_company_views.xml',
+        'wizard/force_set_parent_company_views.xml',
     ],
     'assets': {
         'web.assets_frontend': [
