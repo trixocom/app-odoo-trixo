@@ -17,7 +17,11 @@
                     <attribute name="optional">hide</attribute>
                 </field>
                 <field name="state" position="before">
+                    <field name="module_type" optional="hide"/>
                     <field name="license" optional="hide"/>
+                    <field name="create_uid" optional="hide"/>
+                    <field name="create_date" optional="hide"/>
+                    <field name="write_date" optional="hide"/>
                 </field>
             </field>
         </record>
