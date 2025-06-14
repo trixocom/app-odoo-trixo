@@ -1,0 +1,14 @@
+<odoo>
+  <data>
+    <record id="app_hr_appraisal_search" model="ir.ui.view">
+        <field name="name">app.hr.appraisal.search</field>
+        <field name="model">hr.appraisal</field>
+        <field name="inherit_id" ref="hr_appraisal.hr_appraisal_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//searchpanel//field[@name='department_id']" position="attributes">
+                <attribute name="select">multi</attribute>
+            </xpath>
+        </field>
+    </record>
+  </data>
+</odoo>
