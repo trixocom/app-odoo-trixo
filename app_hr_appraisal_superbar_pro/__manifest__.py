@@ -49,7 +49,7 @@
     'price': 0.00,
     'currency': 'EUR',
     'depends': [
-        'app_hr_appraisal_superbar',
+        'app_hr_superbar',
     ],
     'images': ['static/description/hr2.gif'],
     'data': [
