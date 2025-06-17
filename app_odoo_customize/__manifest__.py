@@ -23,7 +23,7 @@
 
 {
     'name': '18odoo Tweak OEM Development Enhance.Boost,Customize,Ai Employee,UI,Security,Remove Data All in One-优化提速51+项大全',
-    'version': '18.0.25.06.06',
+    'version': '18.0.25.06.17',
     'author': 'odooai.cn',
     'category': 'Extra Tools',
     'website': 'https://www.odooai.cn',
@@ -65,7 +65,7 @@
         'data/ir_config_parameter_data.xml',
         'data/ir_module_module_data.xml',
         # 'data/digest_template_data.xml',
-        'data/res_company_data.xml',
+        # 'data/res_company_data.xml',
         'data/res_config_settings_data.xml',
     ],
     'assets': {
