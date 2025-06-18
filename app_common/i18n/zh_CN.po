@@ -4,10 +4,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 18.0+e-20241031\n"
+"Project-Id-Version: Odoo Server 18.0-20250320\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-08 10:17+0000\n"
-"PO-Revision-Date: 2024-11-08 10:17+0000\n"
+"POT-Creation-Date: 2025-06-18 14:27+0000\n"
+"PO-Revision-Date: 2025-06-18 14:27+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -53,8 +53,12 @@ msgid ""
 "Easy Get Odoo Chinese App, Theme, and industry solution. You can get the "
 "SaaS client from<br/>"
 msgstr ""
-"您可快速获取Odoo中文应用模块，主题，行业应用方案等。我们不会搜索您系统的敏感信息，信息上传前都会征得您的同意。"
-"SaaS云客户端在此免费下载<br/>"
+"您可快速获取Odoo中文应用模块，主题，行业应用方案等。我们不会搜索您系统的敏感信息，信息上传前都会征得您的同意。SaaS云客户端在此免费下载<br/>"
+
+#. module: app_common
+#: model:ir.model,name:app_common.model_mail_compose_message
+msgid "Email composition wizard"
+msgstr "EMail撰写向导"
 
 #. module: app_common
 #. odoo-python
@@ -93,6 +97,11 @@ msgid "Mail Server"
 msgstr "邮件服务器"
 
 #. module: app_common
+#: model_terms:ir.ui.view,arch_db:app_common.app_mail_compose_message_form
+msgid "No mail sent, Only set the status to Sent."
+msgstr "不发送Email，仅将状态设置为已发送。"
+
+#. module: app_common
 #: model:ir.model,name:app_common.model_mail_mail
 msgid "Outgoing Mails"
 msgstr "发出邮件"
@@ -103,14 +112,23 @@ msgid "Scheduled Actions"
 msgstr "安排的动作"
 
 #. module: app_common
+#: model_terms:ir.ui.view,arch_db:app_common.app_mail_compose_message_form
+msgid "Set Send Only"
+msgstr "仅设置为发送"
+
+#. module: app_common
 #: model_terms:ir.ui.view,arch_db:app_common.app_res_config_settings_view_form
 msgid "Setup the communication to odooAi Cloud"
 msgstr "设置云面板"
 
 #. module: app_common
+#: model:ir.model.fields,field_description:app_common.field_mail_compose_message__show_send_without_mail
+msgid "Show Send Only"
+msgstr "显示仅设置发送"
+
+#. module: app_common
 #. odoo-python
 #: code:addons/app_common/wizard/mail_compose_message.py:0
-#, python-format
 msgid "This only available in Sale Order or Purchase Order"
 msgstr "本操作只对销售订单和采购订单生效"
 
@@ -127,15 +145,6 @@ msgstr ""
 #: model_terms:ir.ui.view,arch_db:app_common.app_res_config_settings_view_form
 msgid "https://www.odooapp.cn/apps/modules/app_saas"
 msgstr "https://www.odooapp.cn/apps/modules/app_saas"
-
-#. module: app_common
-#. odoo-python
-#: code:addons/app_common/models/ir_ui_view.py:0
-#, python-format
-msgid ""
-"You can Ignore this. Failed to load RelaxNG XML schema for views validation,"
-" file: %s"
-msgstr "此警告可忽略：载入文件失败 RelaxNG XML schema for views validation, 文件名: %s"
 
 #. module: app_common
 #: model:ir.actions.act_window,name:app_common.action_odooai_cloud_config
