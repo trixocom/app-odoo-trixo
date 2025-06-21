@@ -17,7 +17,7 @@
 
 
 {
-    'name': '!odoo中国版，中文本土化套件,中国会计基础,Odoo Chinese localization Enhance All in One',
+    'name': 'odoo中国版，中文本土化套件,中国会计基础,Odoo Chinese localization Enhance All in One',
     'version': '18.0.25.06.19',
     'author': 'odooai.cn',
     'category': 'Base',
