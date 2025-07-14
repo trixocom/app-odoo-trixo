@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 class MailMail(models.Model):
     _inherit = "mail.mail"
 
-    # 猴子补丁模式，改默认发邮件逻辑
+    # 改默认发邮件逻辑，忽略测试的
     def _send(self, auto_commit=False, raise_exception=False, smtp_session=None, alias_domain_id=False,
               mail_server=False, post_send_callback=None):
         for m in self:
@@ -16,8 +16,9 @@ class MailMail(models.Model):
             # 忽略掉无效email，避免被ban
             if email_to:
                 if email_to.find('no-reply@odooai.cn') != -1 or email_to.find('postmaster-odoo@odooai.cn') != -1:
+                    # 有效的
                     pass
-                elif email_to.find('example.com') != -1 or email_to.find('@sunpop.cn') != -1 or email_to.find('@odooapp.cn') != -1:
+                elif email_to.find('example.') != -1 or email_to.find('@sunpop.cn') != -1 or email_to.find('@odooapp.cn') != -1:
                     _logger.warning(_("=================Email to ignore: %s") % email_to)
                     self = self - m
         if not self:

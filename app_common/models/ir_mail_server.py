@@ -21,7 +21,7 @@ class IrMailServer(models.Model):
         if email_to:
             if email_to.find('no-reply@odooai.cn') != -1 or email_to.find('postmaster-odoo@odooai.cn') != -1:
                 pass
-            elif email_to.find('example.com') != -1 or email_to.find('@sunpop.cn') != -1 or email_to.find('@odooapp.cn') != -1:
+            elif email_to.find('example.') != -1 or email_to.find('@sunpop.cn') != -1 or email_to.find('@odooapp.cn') != -1:
                 _logger.warning(_("=================Email to ignore: %s") % email_to)
                 raise AssertionError(_("Email to ignore: %s") % email_to)
 
