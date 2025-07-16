@@ -23,7 +23,7 @@ msgstr "启用"
 #. module: app_base_chinese
 #: model_terms:ir.ui.view,arch_db:app_base_chinese.app_view_partner_form_chinese
 msgid "Input City"
-msgstr "输入中国城市"
+msgstr "输入城市"
 
 #. module: app_base_chinese
 #: model:ir.model,name:app_base_chinese.model_res_company
