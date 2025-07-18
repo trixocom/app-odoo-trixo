@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ##############################################################################
-#    Copyright (C) 2009-TODAY odooai.cn Ltd. https://www.odooai.cn
+#    Copyright (C) 2009-TODAY Odoo-Trixocom Ltd. https://www.trixocom.com
 #    Author: Ivan Deng，300883@qq.com
 #    You can modify it under the terms of the GNU LESSER
 #    GENERAL PUBLIC LICENSE (LGPL v3), Version 3.
@@ -73,11 +73,11 @@ class ModelNew(models.Model):
     # char, text, html
     w_phone = fields.Char(string='phone', default='13925100000')
     w_email = fields.Char(string='email', default='info@example.com')
-    w_image_url = fields.Char(string='image_url', default='https://www.odooai.cn/web/image/website/1/logo')
-    w_url = fields.Char(string='url', default='https://www.odooai.cn')
-    w_CopyClipboardURL = fields.Char(string='CopyClipboardURL', default='https://www.odooai.cn')
-    w_CopyClipboardChar = fields.Char(string='CopyClipboardChar', default='https://www.odooai.cn')
-    w_CopyClipboardText = fields.Char(string='CopyClipboardText', default='https://www.odooai.cn')
+    w_image_url = fields.Char(string='image_url', default='https://www.trixocom.com/web/image/website/1/logo')
+    w_url = fields.Char(string='url', default='https://www.trixocom.com')
+    w_CopyClipboardURL = fields.Char(string='CopyClipboardURL', default='https://www.trixocom.com')
+    w_CopyClipboardChar = fields.Char(string='CopyClipboardChar', default='https://www.trixocom.com')
+    w_CopyClipboardText = fields.Char(string='CopyClipboardText', default='https://www.trixocom.com')
     
     # int
     date_end = fields.Datetime(string="Date End", default=lambda self: fields.Datetime.now() + timedelta(days=30))

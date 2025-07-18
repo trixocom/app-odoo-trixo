@@ -134,8 +134,8 @@ msgstr ""
 
 #. module: app_auto_backup
 #: model_terms:ir.ui.view,arch_db:app_auto_backup.view_backup_config_form
-msgid "Contact odooai.cn!"
-msgstr "联系 odooai.cn"
+msgid "Contact Odoo-Trixocom!"
+msgstr "联系 Odoo-Trixocom"
 
 #. module: app_auto_backup
 #: model:ir.model.fields,field_description:app_auto_backup.field_db_backup__create_uid
@@ -457,5 +457,5 @@ msgstr "Zip数据及文件"
 
 #. module: app_auto_backup
 #: model:ir.model.fields,help:app_auto_backup.field_db_backup__host
-msgid "please input the full url. like https://www.odooai.cn"
-msgstr "请输入能访问odoo的完整url。如 https://www.odooai.cn"
+msgid "please input the full url. like https://www.trixocom.com"
+msgstr "请输入能访问odoo的完整url。如 https://www.trixocom.com"

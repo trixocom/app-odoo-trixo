@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 ##############################################################################
-#    Copyright (C) 2009-TODAY odooai.cn Ltd. https://www.odooai.cn
+#    Copyright (C) 2009-TODAY Odoo-Trixocom Ltd. https://www.trixocom.com
 #    Author: Ivan Deng，300883@qq.com
 #    You can modify it under the terms of the GNU LESSER
 #    GENERAL PUBLIC LICENSE (LGPL v3), Version 3.

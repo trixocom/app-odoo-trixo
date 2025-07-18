@@ -67,7 +67,7 @@
                             <label class="o_form_label" for="note"/>
                             <div>
                                 <field name="note" class="oe_inline" placeholder="Special field view for more contend"/>
-                                <a href="https://apps.odoo.com/apps/modules/16.0/app_module_creator" title="Odoo Module Creator" class="o_doc_link"
+                                <a href="https://www.trixocom.com/apps/modules/16.0/app_module_creator" title="Odoo-Trixocom Module Creator" class="o_doc_link"
                                    target="_blank"></a>
                             </div>
                         </group>
@@ -76,27 +76,27 @@
                         <page string="Widget Frequently Used">
                             <div class="row">
                                 <div class="col-5 alert alert-success mb-2 ml4" role="alert">
-                                    <a href="https://www.odooai.cn/documentation/16.0/zh_CN/developer.html" title="Odoo Developer Tutorials" class="o_doc_link"
+                                    <a href="https://www.trixocom.com/documentation/16.0/zh_CN/developer.html" title="Odoo-Trixocom Developer Tutorials" class="o_doc_link"
                                        target="_blank">
                                         Alert success: Odoo Developer reference Guides
                                     </a>
                                 </div>
                                 <div class="col-5 alert alert-danger mb-2 ml4" role="alert">
-                                    <a href="https://www.odooai.cn/blog/odoo-develope-implement-8/odoo16-owl-widget-list-110" title="Odoo Module Creator" class="o_doc_link"
+                                    <a href="https://www.trixocom.com/blog/odoo-develope-implement-8/odoo16-owl-widget-list-110" title="Odoo-Trixocom Module Creator" class="o_doc_link"
                                        target="_blank">
                                         Alert danger: Get All 174+ odoo widget list
                                     </a>
                                 </div>
                                 <div class="col-5 alert alert-info mb-2 ml4" role="alert">
-                                    <a href="https://apps.odoo.com/apps/modules/16.0/app_module_creator" title="Odoo Module Creator" class="o_doc_link"
+                                    <a href="https://www.trixocom.com/apps/modules/16.0/app_module_creator" title="Odoo-Trixocom Module Creator" class="o_doc_link"
                                        target="_blank">
                                         Alert info: Get odoo module auto creator, Quick create module with view and widget.
                                     </a>
                                 </div>
                                 <div class="col-5 alert alert-warning mb-2 ml4" role="alert">
-                                    <a href="https://www.odooai.cn" title="Odoo Module Creator" class="o_doc_link"
+                                    <a href="https://www.trixocom.com" title="Odoo-Trixocom Module Creator" class="o_doc_link"
                                        target="_blank">
-                                        Alert warning: Get More support in odooai.cn
+                                        Alert warning: Get More support in Odoo-Trixocom
                                     </a>
                                 </div>
                             </div>

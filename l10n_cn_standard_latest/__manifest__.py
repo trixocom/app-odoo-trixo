@@ -5,14 +5,14 @@
 # Copyright (C) 2012-2012 南京盈通 ccdos@intoerp.com <small business chart>
 # Copyright (C) 2008-now  开阖软件 jeff@osbzr.com    < PM and LTS >
 # Copyright (C) 2017-now  jeffery9@gmail.com
-# Copyright (C) 2018-11  欧度智能 https://www.odooai.cn
+# Copyright (C) 2018-11  Odoo-Trixocom https://www.trixocom.com
 
 {
     'name': '2023最新中国会计科目表.企业标准会计.Latest Chinese Accounting for odoo16',
     'version': '16.0.25.02.17',
-    'author': 'odooai.cn',
+    'author': 'Odoo-Trixocom',
     'category': 'Accounting/Localizations/Account Charts',
-    'website': 'https://www.odooai.cn',
+    'website': 'https://www.trixocom.com',
     'live_test_url': 'https://demo.odooapp.cn',
     'license': 'LGPL-3',
     'sequence': 12,

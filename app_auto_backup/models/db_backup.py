@@ -35,7 +35,7 @@ class DbBackup(models.Model):
 
     # Columns for local server configuration
     host = fields.Char('Host', required=True, default='localhost',
-                       help='please input the full url. like https://www.odooai.cn')
+                       help='please input the full url. like https://www.trixocom.com')
     port = fields.Char('Port', required=True, default=8069)
     name = fields.Char('Database', required=True, help='Database you want to schedule backups for',
                        default=_get_db_name)

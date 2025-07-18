@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 
 # Created on 2023-10-06
-# author: 欧度智能，https://www.odooai.cn
+# author: Odoo-Trixocom, https://www.trixocom.com
 # email: 300883@qq.com
-# Copyright (C) 2009~2024 odooAi.cn
+# Copyright (C) 2009~2024 Odoo-Trixocom
 
 # Odoo16在线用户手册（长期更新）
-# https://www.odooai.cn/documentation/16.0/zh_CN/index.html
+# https://www.trixocom.com/documentation/16.0/zh_CN/index.html
 
 # Odoo16在线开发者手册（长期更新）
-# https://www.odooai.cn/documentation/16.0/zh_CN/developer.html
+# https://www.trixocom.com/documentation/16.0/zh_CN/developer.html
 
 from odoo import api, SUPERUSER_ID, _
 

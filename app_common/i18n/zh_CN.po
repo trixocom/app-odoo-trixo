@@ -112,7 +112,7 @@ msgstr "安排的动作"
 
 #. module: app_common
 #: model_terms:ir.ui.view,arch_db:app_common.app_res_config_settings_view_form
-msgid "Setup the communication to odooAi Cloud"
+msgid "Setup the communication to Odoo-Trixocom Cloud"
 msgstr "设置云面板"
 
 #. module: app_common
@@ -131,10 +131,10 @@ msgstr "视图"
 #: model_terms:ir.ui.view,arch_db:app_common.app_res_config_settings_view_form
 msgid ""
 "Visit our website for more apps and Support.\n"
-"\t\t\t\t\t\t\t\t\t\t\t\t\thttps://www.odooai.cn"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t\thttps://www.trixocom.com"
 msgstr ""
 "欢迎访问欧度智能官方网站，获取Odoo企业级运营支持。\n"
-"\t\t\t\t\t\t\t\t\t\t\t\t\t https://www.odooai.cn"
+"\t\t\t\t\t\t\t\t\t\t\t\t\t\t https://www.trixocom.com"
 
 #. module: app_common
 #. odoo-python
@@ -151,7 +151,7 @@ msgid "https://www.odooapp.cn/apps/modules/app_saas"
 msgstr ""
 
 #. module: app_common
-#: model:ir.actions.act_window,name:app_common.action_odooai_cloud_config
+#: model:ir.actions.act_window,name:app_common.action_odootrixocom_cloud_config
 #: model_terms:ir.ui.view,arch_db:app_common.app_res_config_settings_view_form
-msgid "odooAi Cloud"
+msgid "Odoo-Trixocom Cloud"
 msgstr "欧度智能云"

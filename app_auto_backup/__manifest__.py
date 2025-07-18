@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 #    'author': "Yenthe Van Ginneken",
 #    'website': "http://www.odoo.yenthevg.com",
-#    'author': "sales@odooai.cn",
-#    'website': "https://www.odooai.cn",
+#    'author': "sales@trixocom.com",
+#    'website': "https://www.trixocom.com",
 
 {
     'name': "Database auto backup,database restore Download manager,数据库自动备份",
     'version': '16.0.25.02.25',
-    'author': 'odooai.cn',
+    'author': 'Odoo-Trixocom',
     'category': 'Extra tools',
-    'website': 'https://www.odooai.cn',
+    'website': 'https://www.trixocom.com',
     'live_test_url': 'https://demo.odooapp.cn',
     'license': 'OPL-1',
     'sequence': 20,
