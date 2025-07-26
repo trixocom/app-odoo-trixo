@@ -8,7 +8,7 @@
 
 {
     'name': 'Google Gemini (Bard) Ai for odoo ai center, 谷歌Ai支持',
-    'version': '18.0.25.02.08',
+    'version': '18.0.25.07.26',
     'author': 'odooai.cn',
     'company': 'odooai.cn',
     'maintainer': 'odooai.cn',
@@ -46,6 +46,7 @@
         'app_chatgpt',
     ],
     'data': [
+        'data/ai_provider_data.xml',
         'data/ai_robot_data.xml',
         'data/user_partner_data.xml',
     ],

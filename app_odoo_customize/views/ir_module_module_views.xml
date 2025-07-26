@@ -58,6 +58,8 @@
 			        <attribute name="groups">app_odoo_customize.group_show_author_in_apps</attribute>
                 </xpath>
 		        <field name="category_id" position="after">
+			        <field name="module_type" groups="base.group_no_one"/>
+			        <field name="to_buy" groups="base.group_no_one"/>
 			        <field name="addons_path_id" invisible="1"/>
 			        <field name="addons_path" groups="base.group_no_one"/>
 		        </field>
