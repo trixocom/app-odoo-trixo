@@ -78,10 +78,10 @@
                     <attribute name="invisible">state == 'uninstalled' or module_type in ('official', 'odooapp.cn', False)</attribute>
                 </xpath>
                 <xpath expr="//button[@name='button_immediate_install']" position="attributes">
-                    <attribute name="invisible">to_buy or state != 'uninstalled' or (module_type and module_type not in ('official', 'odooapp.cn'))</attribute>
+                    <attribute name="invisible">to_buy or state != 'uninstalled' or (module_type and module_type not in ('official', 'odooapp.cn', False))</attribute>
                 </xpath>
                 <xpath expr="//button[@name='button_immediate_upgrade']" position="attributes">
-                    <attribute name="invisible">state != 'installed' or (module_type and module_type not in ('official', 'odooapp.cn'))</attribute>
+                    <attribute name="invisible">state != 'installed' or (module_type and module_type not in ('official', 'odooapp.cn', False))</attribute>
                 </xpath>
             </field>
         </record>
@@ -100,7 +100,7 @@
                     <attribute name="groups"></attribute>
                 </xpath>
                 <xpath expr="//button[@name='button_immediate_install']" position="attributes">
-                    <attribute name="invisible">state != 'uninstalled' or (module_type and module_type not in ('official', 'odooapp.cn'))</attribute>
+                    <attribute name="invisible">state != 'uninstalled' or (module_type and module_type not in ('official', 'odooapp.cn', False))</attribute>
                 </xpath>
                 <!--显示快速升级-->
                 <xpath expr="//button[@name='button_immediate_install']" position="after">
@@ -122,10 +122,10 @@
             <field name="inherit_id" ref="base_import_module.module_view_kanban_apps_inherit"/>
             <field name="arch" type="xml">
                 <xpath expr="//button[@name='button_immediate_install_app']" position="attributes">
-                    <attribute name="invisible">state != 'uninstalled' or module_type in ('official', 'odooapp.cn')</attribute>
+                    <attribute name="invisible">state != 'uninstalled' or module_type in ('official', 'odooapp.cn', False)</attribute>
                 </xpath>
                 <xpath expr="//button[@name='button_immediate_install_app'][2]" position="attributes">
-                    <attribute name="invisible">state == 'uninstalled' or module_type in ('official', 'odooapp.cn')</attribute>
+                    <attribute name="invisible">state == 'uninstalled' or module_type in ('official', 'odooapp.cn', False)</attribute>
                 </xpath>
             </field>
         </record>
