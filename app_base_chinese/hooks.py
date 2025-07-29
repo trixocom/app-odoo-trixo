@@ -20,12 +20,11 @@ from odoo import api, SUPERUSER_ID, _
 import logging
 _logger = logging.getLogger(__name__)
 
-def pre_init_hook(cr):
+def pre_init_hook(env):
     """
     数据初始化，只在安装时执行，更新时不执行
     """
-    # todo: 启用中文
-    pass
+    env['res.lang']._activate_lang('zh_CN')
 
 
 def post_init_hook(env):

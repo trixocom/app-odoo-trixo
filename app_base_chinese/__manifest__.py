@@ -18,7 +18,7 @@
 
 {
     'name': 'odoo中国版，中文本土化套件,中国会计基础,Odoo Chinese localization Enhance All in One',
-    'version': '18.0.25.07.14',
+    'version': '18.0.25.07.29',
     'author': 'odooai.cn',
     'category': 'Base',
     'website': 'https://www.odooai.cn',
@@ -122,13 +122,6 @@
         'demo/res_partner_demo.xml',
     ],
     'test': [
-    ],
-    'css': [
-    ],
-    'qweb': [
-        'static/src/xml/*.xml',
-    ],
-    'js': [
     ],
     'installable': True,
     'application': True,
