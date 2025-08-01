@@ -6,6 +6,7 @@ import {useEffect, useRef} from '@odoo/owl';
 import { patch } from "@web/core/utils/patch";
 import { renderToString } from "@web/core/utils/render";
 
+// todo: 处理为固定在某处的信息，一直显示last menu xmlid,然后有2个btn，一个copy xmlid，一个是关闭
 patch(NavBar.components.Dropdown.prototype, {
     setup() {
         super.setup();
