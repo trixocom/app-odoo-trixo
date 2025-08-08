@@ -9,7 +9,7 @@ _logger = logging.getLogger(__name__)
 
 
 class Module(models.Model):
-    _inherit = "ir.module.module"
+    _inherit = 'ir.module.module'
 
     description_html_cn = fields.Html('Description HTML CN', compute='_get_desc_cn')
 

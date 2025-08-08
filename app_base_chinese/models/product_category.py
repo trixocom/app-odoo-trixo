@@ -8,5 +8,5 @@ _logger = logging.getLogger(__name__)
 
 
 class ProductCategory(models.Model):
-    _inherit = "product.category"
+    _inherit = 'product.category'
 

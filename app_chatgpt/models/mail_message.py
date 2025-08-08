@@ -18,7 +18,7 @@ from odoo.addons.mail.tools.discuss import Store
 
 
 class Message(models.Model):
-    _inherit = "mail.message"
+    _inherit = 'mail.message'
 
     human_prompt_tokens = fields.Integer('Human Prompt Tokens')
     ai_completion_tokens = fields.Integer('AI Completion Tokens')

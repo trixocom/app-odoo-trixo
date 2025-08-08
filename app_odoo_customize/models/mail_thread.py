@@ -5,7 +5,7 @@ from odoo import api, fields, models, _
 
 
 class MailThread(models.AbstractModel):
-    _inherit = "mail.thread"
+    _inherit = 'mail.thread'
 
     def message_subscribe(self, partner_ids=None, channel_ids=None, subtype_ids=None):
         """ 停用订阅功能. """

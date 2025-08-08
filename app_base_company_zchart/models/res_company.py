@@ -4,7 +4,7 @@ from odoo import api, fields, models, tools, _
 
 
 class Company(models.Model):
-    _inherit = "res.company"
+    _inherit = 'res.company'
 
     _parent_store = True
     parent_path = fields.Char(index=True)

@@ -6,7 +6,7 @@ import logging
 _logger = logging.getLogger(__name__)
 
 class MailMail(models.Model):
-    _inherit = "mail.mail"
+    _inherit = 'mail.mail'
 
     # 改默认发邮件逻辑，忽略测试的
     def _send(self, auto_commit=False, raise_exception=False, smtp_session=None, alias_domain_id=False,

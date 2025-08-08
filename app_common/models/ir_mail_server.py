@@ -6,8 +6,8 @@ import logging
 _logger = logging.getLogger(__name__)
 
 class IrMailServer(models.Model):
-    _inherit = "ir.mail_server"
-    _order = "sequence"
+    _inherit = 'ir.mail_server'
+    _order = 'sequence'
     
     # 改默认发邮件逻辑
     @api.model

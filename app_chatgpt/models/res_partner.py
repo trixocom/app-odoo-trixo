@@ -18,7 +18,7 @@ from odoo.addons.mail.tools.discuss import Store
 
 
 class ResPartner(models.Model):
-    _inherit = "res.partner"
+    _inherit = 'res.partner'
 
     gpt_id = fields.Many2one('ai.robot', string='Bind to Ai', ondelete='set null')
 
