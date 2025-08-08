@@ -94,5 +94,12 @@
             parent="base.menu_apps"
             sequence="7"
             action="action_odooapp_store"/>
+<!--        应用权限分类-->
+        <menuitem
+            id="menu_ir_module_category_list"
+            parent="base.menu_apps"
+            sequence="30"
+            groups="base.group_system"
+            action="action_ir_module_category_list"/>
     </data>
 </odoo>
