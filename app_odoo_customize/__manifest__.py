@@ -55,7 +55,6 @@
         'views/ir_views.xml',
         'views/ir_actions_act_window_views.xml',
         'views/ir_module_module_views.xml',
-        'views/ir_module_module_views.xml',
         'views/ir_module_addons_path_views.xml',
         'views/ir_module_category_views.xml',
         'views/ir_ui_menu_views.xml',
