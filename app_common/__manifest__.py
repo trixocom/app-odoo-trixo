@@ -39,7 +39,7 @@
 
 {
     'name': "odooAi Common Util and Tools,欧度智能基础功能及面板",
-    'version': '18.0.25.07.26',
+    'version': '18.0.25.08.11',
     'author': 'odooai.cn',
     'category': 'Extra tools',
     'website': 'https://www.odooai.cn',
@@ -82,6 +82,7 @@
         'web',
     ],
     'data': [
+        'data/ir_module_category_data.xml',
         'wizard/mail_compose_message_views.xml',
         'views/res_config_settings_views.xml',
         'views/ir_cron_views.xml',
