@@ -190,7 +190,7 @@ msgstr "下载文件"
 #. module: app_auto_backup
 #: model:ir.model.fields.selection,name:app_auto_backup.selection__db_backup__backup_type__dump
 msgid "Dump"
-msgstr ""
+msgstr "Dump仅数据库"
 
 #. module: app_auto_backup
 #: model:ir.model.fields,field_description:app_auto_backup.field_db_backup__email_to_notify
