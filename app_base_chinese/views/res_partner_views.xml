@@ -14,10 +14,19 @@
                 <xpath expr="//div[hasclass('o_address_format')]" position="after">
                     <field name="short_name"/>
                 </xpath>
-                <!--res.partner客户，细节调整至 app_base_chinese_city 中处理 -->
+                <!-- begin 主地址信息更改，均使用中国常用模式-->
+                <xpath expr="//field[@name='street']" position="before">
+                    <xpath expr="//field[@name='state_id']" position="move"/>
+                    <xpath expr="//field[@name='city_id']" position="move"/>
+                    <xpath expr="//field[@name='city']" position="move"/>
+                </xpath>
                 <xpath expr="//field[@name='street']" position="before">
                     <xpath expr="//div[@name='partner_address_country']" position="move"/>
                 </xpath>
+                <field name="city" position="attributes">
+                    <attribute name="invisible">country_enforce_cities</attribute>
+                </field>
+                <!-- end 主地址信息更改，均使用中国模式-->
                 <xpath expr="//page//field[@name='child_ids']//form[1]//field[@name='name']" position="attributes">
                     <attribute name="required">1</attribute>
                     <attribute name="force_save">1</attribute>
@@ -38,6 +47,34 @@
                     <div t-if="record.category_id and record.category_id.raw_value">
                         <field name="category_id" widget="many2many_tags"/>
                     </div>
+                </xpath>
+            </field>
+        </record>
+        <record id="app_address_street_extended_form" model="ir.ui.view">
+            <field name="name">app.res.partner.form.extended</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base_address_extended.address_street_extended_form"/>
+            <field name="arch" type="xml">
+                <!-- begin 主地址信息更改，均使用中国常用模式-->
+                <xpath expr="//field[@name='street']" position="before">
+                    <xpath expr="//field[@name='country_id']" position="move"/>
+                    <xpath expr="//field[@name='state_id']" position="move"/>
+                    <xpath expr="//field[@name='city_id']" position="move"/>
+                    <xpath expr="//field[@name='city']" position="move"/>
+                </xpath>
+            </field>
+        </record>
+        <record id="app_address_street_extended_city_form" model="ir.ui.view">
+            <field name="name">app.res.partner.form.extended.city_id</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base_address_extended.address_street_extended_city_form"/>
+            <field name="arch" type="xml">
+                <!-- begin 主地址信息更改，均使用中国常用模式-->
+                <xpath expr="//field[@name='street']" position="before">
+                    <xpath expr="//field[@name='country_id']" position="move"/>
+                    <xpath expr="//field[@name='state_id']" position="move"/>
+                    <xpath expr="//field[@name='city_id']" position="move"/>
+                    <xpath expr="//field[@name='city']" position="move"/>
                 </xpath>
             </field>
         </record>
