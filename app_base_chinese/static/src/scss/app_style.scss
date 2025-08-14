@@ -1,8 +1,7 @@
-//todo: 此处会影响别的，必须增加判断必须有 form ，故要特殊处理样式，增加 ”下级有 .o_address_chinese" 来判断
-//.o_form_view.o_form_nosheet.o_form_renderer, .o_form_view .o_form_nosheet.o_form_renderer {
-//    padding: 0 0 0 0;
-//}
-//end todo
+.o_form_view.o_res_partner .o_form_nosheet.o_form_saved {
+    padding: 0 0 0 0;
+}
+
 .o_form_view .o_address_format.o_address_chinese {
   .o_address_country {
     display: -webkit-inline-flex;

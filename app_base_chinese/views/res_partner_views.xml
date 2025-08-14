@@ -7,10 +7,9 @@
             <field name="model">res.partner</field>
             <field name="inherit_id" ref="base.view_partner_form"/>
             <field name="arch" type="xml">
-                <!-- 客户编号设计在重要位置，放到 app_partner_auto_reference -->
-                <!--<xpath expr="//field[@name='type']" position="after">-->
-                <!--<xpath expr="//field[@name='ref']" position="move"/>-->
-                <!--</xpath>-->
+                <xpath expr="//form" position="attributes">
+                    <attribute name="class">o_res_partner</attribute>
+                </xpath>
                 <xpath expr="//div[hasclass('o_address_format')]" position="after">
                     <field name="short_name"/>
                 </xpath>
