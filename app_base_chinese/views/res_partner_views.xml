@@ -16,7 +16,6 @@
                 <!-- begin 主地址信息更改，均使用中国常用模式-->
                 <xpath expr="//field[@name='street']" position="before">
                     <xpath expr="//field[@name='state_id']" position="move"/>
-                    <xpath expr="//field[@name='city_id']" position="move"/>
                     <xpath expr="//field[@name='city']" position="move"/>
                 </xpath>
                 <xpath expr="//field[@name='street']" position="before">
