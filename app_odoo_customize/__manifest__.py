@@ -22,8 +22,8 @@
 # description:
 
 {
-    'name': '18odoo Tweak OEM Development Enhance.Boost,Customize,Ai Employee,UI,Security,Remove Data All in One-优化提速51+项大全',
-    'version': '18.0.25.08.11',
+    'name': '53+ Odoo18 Tweak OEM Development Enhance.Boost,Customize,Ai Employee,UI,Security,Remove Data All in One-优化提速53+项大全',
+    'version': '18.0.25.08.24',
     'author': 'odooai.cn',
     'category': 'Extra Tools',
     'website': 'https://www.odooai.cn',
@@ -32,7 +32,7 @@
     'sequence': 2,
     'images': ['static/description/banner.gif', 'static/description/banner.png'],
     'summary': """
-    50+ Odoo Enhance in 1 click Tweak odoo. Change Odoo to your OEM brand.all in one odoo enhancement. for Customize,UI,Boost Security,Development.
+    52+ Odoo Enhance in 1 click Tweak odoo. Change Odoo to your OEM brand.all in one odoo enhancement. for Customize,UI,Boost Security,Development.
     Easy reset data, clear data, reset account chart, reset Demo data.
     For quick debug. Set brand,Language Switcher all in one.
     """,
@@ -59,8 +59,9 @@
         'views/ir_module_category_views.xml',
         'views/ir_ui_menu_views.xml',
         'views/ir_ui_view_views.xml',
-        'views/ir_model_fields_views.xml',
         'views/ir_model_data_views.xml',
+        'views/ir_model_fields_views.xml',
+        'views/ir_model_views.xml',
         # data
         'data/ir_config_parameter_data.xml',
         'data/ir_module_module_data.xml',
@@ -149,6 +150,8 @@
     49. Add SaaS client switch for online Translate sync(18 only).
     50. Quick Menu manager. de-active / active menu.
     51. Show menu xml_id in debug asset mode.  easy for menu and action development.
+    52. Quick View Fields list and View List of every model.
+    53. Quick management and view of [Application Access Category].
 
     This module can help to white label the Odoo.
     Also helpful for training and support for your odoo end-user.
@@ -207,6 +210,8 @@
     48. 增加可配置的系统调试标签，用于系统测试期提示.
     49. 增加 SaaS 客户端开头，可让用户安装在线翻译同步模块及在线更新(仅odoo18).
     50. 快速菜单管理，快速禁用/启用菜单.
-    51. 在开发者Assets模式中，快速查看菜单Menu 的 xml_id .
+    51. 在开发者Assets模式中，快速查看菜单Menu 的 xml_id.
+    52. 快速管理查看模型的字段和视图列表.
+    53. 快速管理查看应用权限分类管理.
     """,
 }
