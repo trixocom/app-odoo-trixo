@@ -306,17 +306,17 @@ def get_ua_type():
     return utype
 def deep_merge(a, b):
     """
-    深度合并两个二级 dict，对数值进行叠加。
+    深度合并两个二级 dict，对数值进行叠加，以b为主。
     如果 a 和 b 有相同的键，则对它们的值进行合并；
     如果值是 dict，则递归处理；
-    否则将 b 的值加到 a 上。
+    否则将 b 的值更新至 a 上。
     """
     for key in b:
         if key in a:
             if isinstance(a[key], dict) and isinstance(b[key], dict):
                 deep_merge(a[key], b[key])
             else:
-                a[key] += b[key]
+                a[key] = b[key]
         else:
             a[key] = b[key]
     return a
