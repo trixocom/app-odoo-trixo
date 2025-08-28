@@ -26,7 +26,7 @@
     'name': "App Account Invoice Product Multi Batch Add",
     'version': '18.0.24.12.03',
     'author': 'odooai.cn',
-    'category': 'Base',
+    'category': 'Accounting/Accounting',
     'website': 'https://www.odooai.cn',
     'live_test_url': 'https://demo.odooapp.cn',
     'license': 'LGPL-3',

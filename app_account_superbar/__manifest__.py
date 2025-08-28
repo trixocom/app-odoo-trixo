@@ -19,7 +19,7 @@
     'name': "App account superbar navigator",
     'version': '18.0.25.06.10',
     'author': 'odooai.cn',
-    'category': 'Extra tools',
+    'category': 'Accounting/Accounting',
     'website': 'https://www.odooai.cn',
     'live_test_url': 'https://demo.odooapp.cn',
     'license': 'LGPL-3',
