@@ -46,7 +46,7 @@
         'app_chatgpt',
     ],
     'data': [
-        'data/ai_provider_data.xml',
+        # 'data/ai_provider_data.xml',
         'data/ai_robot_data.xml',
         'data/user_partner_data.xml',
     ],

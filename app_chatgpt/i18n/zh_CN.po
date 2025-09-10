@@ -1114,7 +1114,7 @@ msgstr "配置设置"
 #. module: app_chatgpt
 #: model:ir.model.fields,field_description:app_chatgpt.field_res_config_settings__openapi_context_timeout
 msgid "Connect Timout"
-msgstr "上下文连接超时"
+msgstr "连接超时"
 
 #. module: app_chatgpt
 #: model:ir.model.fields,help:app_chatgpt.field_ai_robot__ai_timeout
