@@ -9,6 +9,7 @@ from odoo.exceptions import AccessError, UserError
 class DbBackupDetails(models.Model):
     _name = 'db.backup.details'
     _description = 'Database Backup Details'
+    _order = 'id desc'
 
     name = fields.Char(string='Name')
     file_path = fields.Char(string="File Path")

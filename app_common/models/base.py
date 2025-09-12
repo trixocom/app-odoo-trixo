@@ -83,33 +83,74 @@ class Base(models.AbstractModel):
                     rec = self.env[self._fields[fieldname].comodel_name].search([], limit=1)
                 return rec.id if rec else False
         return False
+    
+    @api.model
+    def _app_dt2local(self, dt_value, return_format=False):
+        """
+        将带时区的日期时间转换为当前用户 env 时区并格式化为字符串
+        :param dt_value: 输入的日期时间（没时区时默认UTC，来自数据库）
+        :param format_str: 输出格式字符串，如 '%Y-%m-%d %H:%M:%S，默认用 env.lang 的设置
+        :return: 指定用户时区下的格式化时间字符串
+        """
+        if not dt_value:
+            return dt_value
+        # 处理默认格式
+        if not return_format:
+            lang_obj = self.env.ref('base.lang_zh_CN')
+            lang_ref = 'base.lang_%s' % self.env.lang
+            try:
+                lang_obj = self.env.ref(lang_ref)
+            except Exception as e:
+                pass
+            return_format = '%s %s' % (lang_obj.date_format, lang_obj.time_format)
 
-    def _app_dt2local(self, value, return_format=DEFAULT_SERVER_DATETIME_FORMAT):
+        # 用户时区，默认中国
+        local_tz = pytz.timezone(self.env.user.tz or 'Etc/GMT-8')
+        
+        # 如果输入是字符串，先解析为datetime对象, 假设输入是标准的数据库时间格式
+        if isinstance(dt_value, str):
+            dt_value = datetime.strptime(dt_value, return_format)
+            
+        # 设置原始时区为UTC（PostgreSQL数据库通常存储UTC时间）
+        if dt_value.tzinfo is None:
+            dt_value = pytz.utc.localize(dt_value)
+        
+        local_dt = dt_value.astimezone(local_tz)
+        return local_dt.strftime(return_format)
+    
+    @api.model
+    def _app_dt2utc(self, dt_value, return_format=False):
         """
-        将value中时间，按格式转为用户本地时间.注意只处理in str为字符串类型,如果是时间类型直接用 datetime.now(tz)
+        将带时区的日期时间转换为标准 utc 时间，并格式化为字符串
+        :param dt_value: 输入的日期时间（没时区时默认用户时区，来自数据库）
+        :param format_str: 输出格式字符串，如 '%Y-%m-%d %H:%M:%S，默认用 env.lang 的设置
+        :return: 指定用户时区下的格式化时间字符串
         """
-        if not value:
-            return value
-        if isinstance(value, datetime):
-            value = value.strftime(return_format)
-        dt = datetime.strptime(value, return_format)
-        user_tz = pytz.timezone(self.env.user.tz or 'Etc/GMT-8')
-        _logger.warning('============= user2 tz: %s' % user_tz)
-        dt = dt.replace(tzinfo=pytz.timezone('UTC'))
-        return dt.astimezone(user_tz).strftime(return_format)
+        if not dt_value:
+            return dt_value
+        # 处理默认格式
+        if not return_format:
+            lang_obj = self.env.ref('base.lang_zh_CN')
+            lang_ref = 'base.lang_%s' % self.env.lang
+            try:
+                lang_obj = self.env.ref(lang_ref)
+            except Exception as e:
+                pass
+            return_format = '%s %s' % (lang_obj.date_format, lang_obj.time_format)
 
-    def _app_dt2utc(self, value, return_format=DEFAULT_SERVER_DATETIME_FORMAT):
-        """
-        将value中用户本地时间，按格式转为UTC时间，输出 str
-        """
-        if not value:
-            return value
-        if isinstance(value, datetime):
-            value = value.strftime(return_format)
-        dt = datetime.strptime(value, return_format)
-        pytz_timezone = pytz.timezone('Etc/GMT+8')
-        dt = dt.replace(tzinfo=pytz.timezone('UTC'))
-        return dt.astimezone(pytz_timezone).strftime(return_format)
+        # 用户时区，默认中国
+        local_tz = pytz.timezone(self.env.user.tz or 'Etc/GMT-8')
+        
+        # 如果输入是字符串，先解析为datetime对象, 假设输入是标准的数据库时间格式, 时区为默认用户时区
+        if isinstance(dt_value, str):
+            dt_value = datetime.strptime(dt_value, return_format)
+            
+        # 设置原始时区为用户时区（PostgreSQL数据库通常存储UTC时间）
+        if dt_value.tzinfo is None:
+            dt_value = local_tz.localize(dt_value)
+        
+        utc_dt = dt_value.replace(tzinfo=pytz.timezone('UTC'))
+        return utc_dt.strftime(return_format)
 
     @api.model
     def _get_image_from_url(self, url):
