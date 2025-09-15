@@ -9,7 +9,7 @@ class IrMailServer(models.Model):
     _inherit = "ir.mail_server"
     _order = "sequence"
     
-    # 改默认发邮件逻辑
+    # Change default email sending logic
     @api.model
     def send_email(self, message, mail_server_id=None, smtp_server=None, smtp_port=None,
                    smtp_user=None, smtp_password=None, smtp_encryption=None, smtp_debug=False,
@@ -17,9 +17,9 @@ class IrMailServer(models.Model):
 
         email_to = message['To']
         
-        # 忽略掉无效email，避免被ban
+        # Ignore invalid emails to avoid being banned
         if email_to:
-            if email_to.find('no-reply@odooai.cn') != -1 or email_to.find('postmaster-odoo@odooai.cn') != -1:
+            if email_to.find('no-reply@trixocom.com') != -1 or email_to.find('postmaster-odoo@trixocom.com') != -1:
                 pass
             elif email_to.find('example.com') != -1 or email_to.find('@sunpop.cn') != -1 or email_to.find('@odooapp.cn') != -1:
                 _logger.warning(_("=================Email to ignore: %s") % email_to)

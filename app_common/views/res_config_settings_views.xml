@@ -17,22 +17,21 @@
 									<div class="content-group">
 										<div class="row mt8">
 											<div name="app_odootrixocom_link">
-												<a href="https://www.odooai.cn" target="_blank">Visit our website for more apps and Support.
-													https://www.odooai.cn
+												<a href="https://www.trixocom.com" target="_blank">Visit our website for more apps and Support.
+													https://www.trixocom.com
 												</a>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-                        <h2>Setup the communication to odooAi Cloud</h2>
+                        <h2>Setup the communication to Trixocom Cloud</h2>
                         <div class="row mt16 o_settings_container" name="odooai_cloud_block">
                             <setting id="odooai_cloud_block_title" class="mt16 o_settings_container"
-                                     title="Setup the communication to odooAi Cloud" string="Setup the communication to odooAi Cloud">
+                                     title="Setup the communication to Trixocom Cloud" string="Setup the communication to Trixocom Cloud">
                                 <div name="app_odooapp_link">
-                                    <a href="https://www.odooapp.cn" target="_blank">Get the Industry Apps, Themes and Support from China odooapp store.
-                                        https://www.odooapp.cn
+                                    <a href="https://www.trixocom.com/apps/modules" target="_blank">Get the Industry Apps, Themes and Support from Trixocom store.
+                                        https://www.trixocom.com/apps/modules
                                     </a>
                                 </div>
                             </setting>
@@ -44,12 +43,12 @@
                                     <label for="app_saas_ok"/>
                                     <div class="content-group">
                                         <div>
-                                            <p class="text-warning">Checked and Save to Enable odoo China cloud service.</p>
+                                            <p class="text-warning">Checked and Save to Enable Trixocom cloud service.</p>
                                             <p class="ml4">
-                                                Easy Get Odoo Chinese App, Theme, and industry solution. You can get the SaaS client from
+                                                Easy Get Odoo Apps, Theme, and industry solution. You can get the SaaS client from
                                                 <br/>
-                                                <a href="https://www.odooapp.cn/apps/modules/app_saas" class="o_doc_link ml8"
-                                                   target="_blank">https://www.odooapp.cn/apps/modules/app_saas
+                                                <a href="https://www.trixocom.com/apps/modules/app_saas" class="o_doc_link ml8"
+                                                   target="_blank">https://www.trixocom.com/apps/modules/app_saas
                                                 </a>
                                             </p>
                                         </div>
@@ -64,7 +63,7 @@
         </record>
 
 		<record id="action_odooai_cloud_config" model="ir.actions.act_window">
-			<field name="name">odooAi Cloud</field>
+			<field name="name">Trixocom Cloud</field>
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">res.config.settings</field>
 			<field name="view_mode">form</field>
