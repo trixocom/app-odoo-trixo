@@ -29,7 +29,7 @@
 
 {
     'name': "App MRP Bom Product Multi Batch Add",
-    'version': '18.0.24.12.03',
+    'version': '18.0.25.09.16',
     'author': 'odooai.cn',
     'category': 'Base',
     'website': 'https://www.odooai.cn',
