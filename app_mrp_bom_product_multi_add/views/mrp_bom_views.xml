@@ -6,14 +6,12 @@
             <field name="model">mrp.bom</field>
             <field name="inherit_id" ref="mrp.mrp_bom_form_view"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='bom_line_ids']/list/field[1]" position="before">
-                    <control>
-                        <create name="multi_add_line" string="Multi add line" context="{
+                <xpath expr="//field[@name='bom_line_ids']/list/control[1]" position="inside">
+                    <create name="multi_add_line" string="Multi add line" context="{
                         'pro_multi_add': True,
                         'pro_res_model': 'product.product',
                         'pro_res_field': 'product_id',
                         }"/>
-                    </control>
                 </xpath>
             </field>
         </record>
