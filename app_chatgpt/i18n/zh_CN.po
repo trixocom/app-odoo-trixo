@@ -1973,7 +1973,7 @@ msgstr "没有设置Ai接口供应方"
 #. module: app_chatgpt
 #: model_terms:ir.ui.view,arch_db:app_chatgpt.app_view_users_search
 msgid "Not Ai"
-msgstr ""
+msgstr "非Ai"
 
 #. module: app_chatgpt
 #: model:ir.model.fields,field_description:app_chatgpt.field_res_partner_ai_use__used_number
