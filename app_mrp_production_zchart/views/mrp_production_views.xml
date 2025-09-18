@@ -14,7 +14,7 @@
             </xpath>
             <xpath expr="//group[@name='group_extra_info']" position="after">
                 <group name="g_child" invisible="not child_all_count">
-                    <field name="child_all_count"/>
+                    <field name="child_all_count" invisible="1"/>
                     <field name="child_ids" widget="ztree_chart" nolabel="1"/>
                 </group>
             </xpath>

@@ -83,7 +83,7 @@ msgstr "<span class=\"col-3 col-lg-2 text-left\">销售</span>"
 
 #. module: app_odoo_customize
 #: model_terms:ir.ui.view,arch_db:app_odoo_customize.view_app_theme_config_settings
-msgid "<span class=\"col-3 col-lg-2 text-left\">Website And Blog</span>"
+msgid "<span class=\"col-3 col-lg-2 text-left\">Website Blog</span>"
 msgstr "<span class=\"col-3 col-lg-2 text-left\">网站与博客</span>"
 
 #. module: app_odoo_customize
@@ -293,8 +293,8 @@ msgstr "删除所有收据/发票/账单"
 
 #. module: app_odoo_customize
 #: model_terms:ir.ui.view,arch_db:app_odoo_customize.view_app_theme_config_settings
-msgid "Delete All Website/Blog"
-msgstr "删除所有网站/博客"
+msgid "Delete All Website Blog"
+msgstr "删除所有博客"
 
 #. module: app_odoo_customize
 #: model_terms:ir.ui.view,arch_db:app_odoo_customize.view_app_theme_config_settings

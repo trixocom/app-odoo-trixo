@@ -10,7 +10,7 @@
         <function model="stock.picking.type" name="write" context="{'lang': 'zh_CN'}">
             <value model="stock.picking.type" eval="obj().search([('name', '=', 'Manufacturing')]).ids"/>
             <value model="stock.picking.type" eval="{
-                'name': '生产派工单',
+                'name': '生产订单',
             }"/>
         </function>
     </data>
