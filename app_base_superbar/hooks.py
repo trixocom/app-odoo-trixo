@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
-
 # Created on 2018-10-12
-# author: 欧度智能，https://www.odooai.cn
+# author: 欧度智能，https://www.trixocom.com
 # email: 300883@qq.com
-# resource of odooai
+# resource of trixocom
 # License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
 
 # Odoo在线中文用户手册（长期更新）
@@ -17,4 +16,5 @@
 
 def post_init_hook(cr, pool):
     pass
+    # cr.execute("")
     # cr.execute("")

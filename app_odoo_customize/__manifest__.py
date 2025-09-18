@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 # Created on 2018-11-26
-# author: 欧度智能，https://www.odooai.cn
+# author: 欧度智能，https://www.trixocom.com
 # email: 300883@qq.com
-# resource of odooai
+# resource of trixocom
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 # Odoo12在线用户手册（长期更新）
@@ -24,9 +24,9 @@
 {
     'name': 'odoo Tweak OEM Development Enhance.Boost,Customize,Ai Employee,UI,Security,Remove Data All in One-优化提速51+项大全',
     'version': '16.0.25.06.12',
-    'author': 'odooai.cn',
+    'author': 'trixocom.com',
     'category': 'Extra Tools',
-    'website': 'https://www.odooai.cn',
+    'website': 'https://www.trixocom.com',
     'live_test_url': 'https://demo.odooapp.cn',
     'license': 'LGPL-3',
     'sequence': 2,

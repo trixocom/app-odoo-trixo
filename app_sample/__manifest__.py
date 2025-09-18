@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 
 # Created on 2023-10-06
-# author: 欧度智能，https://www.odooai.cn
+# author: 欧度智能，https://www.trixocom.com
 # email: 300883@qq.com
-# Copyright (C) 2009~2024 odooAi.cn
+# Copyright (C) 2009~2024 trixocom.com
 
 # Odoo16在线用户手册（长期更新）
-# https://www.odooai.cn/documentation/16.0/zh_CN/index.html
+# https://www.trixocom.com/documentation/16.0/zh_CN/index.html
 
 # Odoo16在线开发者手册（长期更新）
-# https://www.odooai.cn/documentation/16.0/zh_CN/developer.html
+# https://www.trixocom.com/documentation/16.0/zh_CN/developer.html
 
 ##############################################################################
 #    Copyright (C) 2009-TODAY odooAi.cn Ltd. https://www.odooai.cn
@@ -25,9 +25,11 @@
 {
     'name': 'Odoo Module Sample. App sample with widget. Odoo开发规范模板',
     'version': '16.23.10.07',
-    'author': 'odooai.cn',
+-    'author': 'odooai.cn',
++    'author': 'trixocom.com',
     'category': 'Base',
-    'website': 'https://www.odooai.cn',
+-    'website': 'https://www.odooai.cn',
++    'website': 'https://www.trixocom.com',
     'live_test_url': 'https://demo.odooapp.cn',
     'license': 'LGPL-3',
     'sequence': 2,
@@ -44,7 +46,8 @@
     All file follow odoo rule with comments.
     Support Odoo 18,17,16,15,14,13,12, Enterprise and Community and odoo.sh Edition
     Odoo Developr rule from here 
-    https://www.odooai.cn/documentation/16.0/developer.html
+-    https://www.odooai.cn/documentation/16.0/developer.html
++    https://www.trixocom.com/documentation/16.0/developer.html
     1. A full Sample module app of odoo addons. All the code, views, data ,banner, icon and description sample follow the odoo rule.
     2. Sample manifest file. Including structure and name and description etc, all field sample. Security xml and csv file for role group access rule.
     Sample icon, banner, index.html, install/uninstall hooks.

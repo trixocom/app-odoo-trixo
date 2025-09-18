@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 
 # Created on 2018-08-15
-# author: 欧度智能，https://www.odooai.cn
+# author: 欧度智能，https://www.trixocom.com
 # email: 300883@qq.com
-# resource of odooai
+# resource of trixocom
 # License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
 
 # Odoo在线中文用户手册（长期更新）
@@ -18,9 +18,9 @@
 {
     'name': "Easy Admin navigator, quick search filter",
     'version': '16.22.12.06',
-    'author': 'odooai.cn',
+    'author': 'trixocom.com',
     'category': 'Extra tools',
-    'website': 'https://www.odooai.cn',
+    'website': 'https://www.trixocom.com',
     'live_test_url': 'https://demo.odooapp.cn',
     'license': 'LGPL-3',
     'sequence': 10,
