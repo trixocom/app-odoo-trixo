@@ -229,6 +229,8 @@ class ResConfigSettings(models.TransientModel):
             'mrp.production',
             # 'mrp.production.product.line',
             'mrp.unbuild',
+            # 增加我们app模块
+            'mrp.production.plan',
             'change.production.qty',
             # 'sale.forecast.indirect',
             # 'sale.forecast',
