@@ -179,10 +179,10 @@ msgstr "配置设置"
 #: model_terms:ir.ui.view,arch_db:app_odoo_customize.replace_copyright_name
 msgid ""
 "Copyright &amp;copy;\n"
-"\t            <span class=\"copyright_name_before\" contenteditable=\"true\">2009-2025 </span>"
+"\t            <span class=\"copyright_name_before\" contenteditable=\"true\">2010-2026 </span>"
 msgstr ""
 "版权所有 &amp;copy;\n"
-"\t            <span class=\"copyright_name_before\" contenteditable=\"true\">2009-2025 </span>"
+"\t            <span class=\"copyright_name_before\" contenteditable=\"true\">2010-2026 </span>"
 
 #. module: app_odoo_customize
 #: model:ir.model.fields,field_description:app_odoo_customize.field_ir_module_addons_path__create_uid
