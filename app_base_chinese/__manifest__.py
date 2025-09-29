@@ -18,7 +18,7 @@
 
 {
     'name': 'odoo中国版，中文本土化套件,中国会计基础,Odoo Chinese localization Enhance All in One',
-    'version': '18.0.25.08.14',
+    'version': '18.0.25.09.29',
     'author': 'odooai.cn',
     'category': 'Base',
     'website': 'https://www.odooai.cn',
@@ -77,6 +77,7 @@
     'post_init_hook': 'post_init_hook',
     'depends': [
         'base_address_extended',
+        'resource',
         'account',
         'sales_team',
         'sale',
@@ -103,6 +104,7 @@
         'data/res_company_data.xml',
         'data/res_partner_data.xml',
         'data/res_users_data.xml',
+        'data/resource_calendar_data.xml',
         'data/product_category_data.xml',
         'data/product_pricelist_data.xml',
         'data/stock_location_data.xml',
