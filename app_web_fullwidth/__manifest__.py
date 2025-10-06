@@ -1,63 +1,60 @@
 # -*- coding: utf-8 -*-
 
-# Created on 2019-01-04
-# author: 欧度智能，https://www.odooai.cn
-# email: 300883@qq.com
-# resource of odooai
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Created on 2018-12-01
+# author: TrixocomERP, https://www.trixocom.com
+# email: info@trixocom.com
+# Copyright (C) 2009~2024 TrixocomERP
 
-# Odoo12在线用户手册（长期更新）
-# https://www.odooai.cn/documentation/user/12.0/en/index.html
-
-# Odoo12在线开发者手册（长期更新）
-# https://www.odooai.cn/documentation/12.0/index.html
-
-# Odoo10在线中文用户手册（长期更新）
-# https://www.odooai.cn/documentation/user/10.0/zh_CN/index.html
-
-# Odoo10离线中文用户手册下载
-# https://www.odooai.cn/odoo10_user_manual_document_offline/
-# Odoo10离线开发手册下载-含python教程，jquery参考，Jinja2模板，PostgresSQL参考（odoo开发必备）
-# https://www.odooai.cn/odoo10_developer_document_offline/
+##############################################################################
+#    Copyright (C) 2009-TODAY TrixocomERP Ltd. https://www.trixocom.com
+#    Author: TrixocomERP Team, info@trixocom.com
+#    You can modify it under the terms of the GNU LESSER
+#    GENERAL PUBLIC LICENSE (LGPL v3), Version 3.
+#    See <http://www.gnu.org/licenses/>.
+#
+#    It is forbidden to publish, distribute, sublicense, or sell copies
+#    of the Software or modified copies of the Software.
+##############################################################################
 
 {
-    'name': 'Web Form Fullwidth.Chatter Position-表单表格全宽度满屏,自定义备注消息位置',
-    'version': '18.0.25.04.05',
-    'category': 'Extra tools',
-    'author': 'odooai.cn',
-    'website': 'https://www.odooai.cn',
-    'live_test_url': 'https://demo.odooapp.cn',
+    'name': 'Form View Responsive Full Width',
+    'version': '18.0.24.12.03',
+    'author': 'TrixocomERP',
+    'category': 'Hidden',
+    'website': 'https://www.trixocom.com',
+    'live_test_url': 'https://demo.trixocom.com',
     'license': 'LGPL-3',
     'sequence': 2,
-    "price": 18.00,
-    "currency": "EUR",
-    'images': ['static/description/banner.png'],
-    'summary': """
-    Chatter Position set and Form Responsive full screen, full width (fullwidth). Form Full screen full width.
-    Ready for small, medium, large, extra large screen.Ready for enterprise and communicate version.
-    Easy config the chatter position to bottom or side or Responsive.
-    """,
-    'description': """
-    UI Enhance for Odoo. Form view fullwidth, full screen.
-    Easy config the chatter position to bottom or side or Responsive form every user.
-    Easy set all company user UI for chatter position
-    """,
+    'summary': '''
+    Form view Responsive full width (fullwidth).
+    Ready for small, medium, large, extra large screen.
+    Ready for enterprise and community version.
+    ''',
+    'description': '''
+    Form View Responsive Full Width
+    
+    Form view responsive full width display.
+    Ready for all screen sizes: small, medium, large, extra large.
+    Compatible with both enterprise and community versions.
+    
+    Features:
+    - Full screen form display
+    - Responsive design
+    - Multi-screen size support
+    - Enterprise and Community compatible
+    ''',
     'depends': [
-        'app_odoo_customize'
+        'web',
     ],
-    'data': [
-        'views/res_users_views.xml',
-        'views/res_config_settings_views.xml',
-        'views/webclient_templates.xml',
-    ],
+    'images': ['static/description/banner.png'],
+    'data': [],
     'assets': {
         'web.assets_backend': [
-            ('after', 'web/static/src/views/**/*', 'app_web_fullwidth/static/src/scss/app_style_after.scss'),
-            '/app_web_fullwidth/static/src/js/form_compiler.js'
+            'app_web_fullwidth/static/src/**/*',
         ],
     },
-
+    'demo': [],
     'installable': True,
+    'application': False,
     'auto_install': False,
-    'application': True,
 }
