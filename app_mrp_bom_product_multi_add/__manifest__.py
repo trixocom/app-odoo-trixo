@@ -1,69 +1,53 @@
 # -*- coding: utf-8 -*-
 
-# Created on 2018-08-15
-# author: 欧度智能，https://www.odooai.cn
-# email: 300883@qq.com
-# resource of odooai
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Created on 2023-10-20
+# author: TrixocomERP, https://www.trixocom.com
+# email: info@trixocom.com
+# Copyright (C) 2009~2024 TrixocomERP
 
-# Odoo16在线用户手册（长期更新）
-# https://www.odooai.cn/documentation/16.0/zh_CN/index.html
-
-# Odoo16在线开发者手册（长期更新）
-# https://www.odooai.cn/documentation/16.0/zh_CN/developer.html
-
-# Odoo13在线用户手册（长期更新）
-# https://www.odooai.cn/documentation/user/13.0/zh_CN/index.html
-
-# Odoo13在线开发者手册（长期更新）
-# https://www.odooai.cn/documentation/13.0/index.html
-
-# Odoo在线中文用户手册（长期更新）
-# https://www.odooai.cn/documentation/user/10.0/zh_CN/index.html
-
-# Odoo10离线中文用户手册下载
-# https://www.odooai.cn/odoo10_user_manual_document_offline/
-# Odoo10离线开发手册下载-含python教程，jquery参考，Jinja2模板，PostgresSQL参考（odoo开发必备）
-# https://www.odooai.cn/odoo10_developer_document_offline/
-# description:
+##############################################################################
+#    Copyright (C) 2009-TODAY TrixocomERP Ltd. https://www.trixocom.com
+#    Author: TrixocomERP Team, info@trixocom.com
+#    You can modify it under the terms of the GNU LESSER
+#    GENERAL PUBLIC LICENSE (LGPL v3), Version 3.
+#    See <http://www.gnu.org/licenses/>.
+#
+#    It is forbidden to publish, distribute, sublicense, or sell copies
+#    of the Software or modified copies of the Software.
+##############################################################################
 
 {
-    'name': "App MRP Bom Product Multi Batch Add",
-    'version': '18.0.25.09.16',
-    'author': 'odooai.cn',
-    'category': 'Base',
-    'website': 'https://www.odooai.cn',
-    'live_test_url': 'https://demo.odooapp.cn',
+    'name': "MRP BOM Product Multi Batch Add",
+    'version': '18.0.24.12.03',
+    'author': 'TrixocomERP',
+    'category': 'Manufacturing/Manufacturing',
+    'website': 'https://www.trixocom.com',
+    'live_test_url': 'https://demo.trixocom.com',
     'license': 'LGPL-3',
     'sequence': 2,
-    'price': 0.00,
-    'currency': 'USD',
     'summary': """
-    App MRP Bom Product Multi Batch Add, 制造Bom批量增加产品.
-    Odoo App of odooai.cn
+    MRP BOM Product Multi Batch Add.
+    Manufacturing BOM batch add products.
     """,
     'description': """
-    App MRP Bom Product Multi Add.
-    1. One Click to add multi product to MRP Bom.
-    2. All the product can filter and group.
-    制造Bom批量增加产品
-    1. 可以一键快速将多个产品加到制造Bom中
-    2. 可对产品进行过滤、分组，然后批量加入
+    App MRP BOM Product Multi Batch Add
+    
+    Add multiple products to Bill of Materials with one click.
+    Filter and group products before adding.
+    
+    Manufacturing BOM batch add products:
+    - Quick multi-product addition
+    - Product filtering and grouping
+    - Batch operations for BOM
     """,
     'depends': [
-        # 'app_web_one2many_multi_add',
         'mrp',
     ],
-    'images': ['static/description/mrp1.gif'],
+    'images': ['static/description/banner.gif'],
     'data': [
         'views/mrp_bom_views.xml',
     ],
-    'demo': [
-    ],
-    'test': [
-    ],
-    'post_load': None,
-    'post_init_hook': None,
+    'demo': [],
     'installable': True,
     'application': True,
     'auto_install': False,
