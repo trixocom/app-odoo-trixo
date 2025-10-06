@@ -1,19 +1,19 @@
 # -*- coding: utf-8 -*-
 
 # Created on 2023-10-20
-# author: 欧度智能，https://www.odooai.cn
-# email: 300883@qq.com
-# Copyright (C) 2009~2024 odooAi.cn
+# author: TrixocomERP, https://www.trixocom.com
+# email: info@trixocom.com
+# Copyright (C) 2009~2024 TrixocomERP
 
-# Odoo16在线用户手册（长期更新）
-# https://www.odooai.cn/documentation/16.0/zh_CN/index.html
+# Odoo Online User Manual (Long-term updates)
+# https://www.trixocom.com/documentation/user/
 
-# Odoo16在线开发者手册（长期更新）
-# https://www.odooai.cn/documentation/16.0/zh_CN/developer.html
+# Odoo Online Developer Manual (Long-term updates)
+# https://www.trixocom.com/documentation/developer/
 
 ##############################################################################
-#    Copyright (C) 2009-TODAY odooAi.cn Ltd. https://www.odooai.cn
-#    Author: Ivan Deng，300883@qq.com
+#    Copyright (C) 2009-TODAY TrixocomERP Ltd. https://www.trixocom.com
+#    Author: TrixocomERP Team, info@trixocom.com
 #    You can modify it under the terms of the GNU LESSER
 #    GENERAL PUBLIC LICENSE (LGPL v3), Version 3.
 #    See <http://www.gnu.org/licenses/>.
@@ -25,25 +25,26 @@
 {
     'name': "App Account Invoice Product Multi Batch Add",
     'version': '18.0.24.12.03',
-    'author': 'odooai.cn',
+    'author': 'TrixocomERP',
     'category': 'Accounting/Accounting',
-    'website': 'https://www.odooai.cn',
-    'live_test_url': 'https://demo.odooapp.cn',
+    'website': 'https://www.trixocom.com',
+    'live_test_url': 'https://demo.trixocom.com',
     'license': 'LGPL-3',
     'sequence': 2,
     'price': 0.00,
     'currency': 'USD',
     'summary': """
     App Account Invoice Product Multi Batch Add
-    Odoo App of odooai.cn
+    TrixocomERP Odoo App
     """,
     'description': """
     App Account Invoice Product Multi Add
-    1. One Click to add multi product to Account Invoice.
-    2. All the product can filter and group.
-    客户收据与供应商帐单批量增加产品
-    1. 可以一键快速将多个产品加到客户收据与供应商帐单中
-    2. 可对产品进行过滤、分组，然后批量加入
+    1. One Click to add multiple products to Account Invoice.
+    2. All the products can filter and group.
+    
+    Customer Receipt and Supplier Bill Batch Add Products
+    1. Can quickly add multiple products to customer receipts and supplier bills with one click
+    2. Can filter and group products, then add in batches
     """,
     'depends': [
         # 'app_web_one2many_multi_add',

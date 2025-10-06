@@ -1,57 +1,61 @@
 # -*- coding: utf-8 -*-
 
-# Created on 2018-08-15
-# author: 欧度智能，https://www.odooai.cn
-# email: 300883@qq.com
-# resource of odooai
-# License LGPL-3.0 or later (http://www.gnu.org/licenses/lgpl).
+# Created on 2018-12-01
+# author: TrixocomERP, https://www.trixocom.com
+# email: info@trixocom.com
+# Copyright (C) 2009~2024 TrixocomERP
 
-# Odoo在线中文用户手册（长期更新）
-# https://www.odooai.cn/documentation/user/10.0/zh_CN/index.html
-
-# Odoo10离线中文用户手册下载
-# https://www.odooai.cn/odoo10_user_manual_document_offline/
-# Odoo10离线开发手册下载-含python教程，jquery参考，Jinja2模板，PostgresSQL参考（odoo开发必备）
-# https://www.odooai.cn/odoo10_developer_document_offline/
-# description:
+##############################################################################
+#    Copyright (C) 2009-TODAY TrixocomERP Ltd. https://www.trixocom.com
+#    Author: TrixocomERP Team, info@trixocom.com
+#    You can modify it under the terms of the GNU LESSER
+#    GENERAL PUBLIC LICENSE (LGPL v3), Version 3.
+#    See <http://www.gnu.org/licenses/>.
+#
+#    It is forbidden to publish, distribute, sublicense, or sell copies
+#    of the Software or modified copies of the Software.
+##############################################################################
 
 {
-    'name': "App account superbar navigator",
-    'version': '18.0.25.06.10',
-    'author': 'odooai.cn',
+    'name': 'Account Superbar - Multi-Level Tree Navigation',
+    'version': '18.0.24.12.03',
+    'author': 'TrixocomERP',
     'category': 'Accounting/Accounting',
-    'website': 'https://www.odooai.cn',
-    'live_test_url': 'https://demo.odooapp.cn',
+    'website': 'https://www.trixocom.com',
+    'live_test_url': 'https://demo.trixocom.com',
     'license': 'LGPL-3',
     'sequence': 2,
-    'summary': """
-    Browse journal by account chart... Use for parent children tree list kanban navigator.
-    Hierarchy Tree.Parent Children relation tree..
-    """,
-    'description': """
-    Superbar, zTree widget.
-    Advance search with real parent children tree, ListView or KanbanView. parent tree, children tree,
-    eg: Product category tree ,Department tree, stock location tree.
-    超级方便的查询，树状视图。
-    """,
     'price': 0.00,
     'currency': 'EUR',
+    'summary': '''
+    Browse journal by account chart. Use for parent-children tree list kanban navigator.
+    ztree widget. Hierarchy Tree. Parent-Children relation tree.
+    Financial module multi-level tree navigation application.
+    ''',
+    'description': '''
+    Account Superbar - Financial Module Multi-Level Tree Navigation
+    
+    Browse journal entries by account chart hierarchy.
+    Use for parent-children tree list kanban navigator.
+    
+    Features:
+    - ztree widget integration
+    - Hierarchy Tree navigation
+    - Parent-Children relation tree
+    - Financial module multi-level tree navigation
+    - Easy navigation through account structures
+    ''',
     'depends': [
         'account',
+        'app_account_ztree',
     ],
     'images': ['static/description/banner.png'],
     'data': [
         'views/account_account_views.xml',
-        'views/account_move_line_views.xml',
         'views/account_move_views.xml',
-        'views/account_analytic_line_views.xml',
     ],
-    'demo': [
-    ],
-    'test': [
-    ],
-    'post_load': None,
-    'post_init_hook': 'post_init_hook',
+    'demo': [],
+    'test': [],
     'installable': True,
     'application': True,
     'auto_install': False,

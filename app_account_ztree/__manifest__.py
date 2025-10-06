@@ -1,52 +1,64 @@
 # -*- coding: utf-8 -*-
 
-# Created on 2018-08-15
-# author: 欧度智能，https://www.odooai.cn
-# email: 300883@qq.com
-# resource of odooai
-# License AGPL-3.0 or later (http://www.gnu.org/licenses/agpl).
+# Created on 2018-12-01
+# author: TrixocomERP, https://www.trixocom.com
+# email: info@trixocom.com
+# Copyright (C) 2009~2024 TrixocomERP
 
-# Odoo在线中文用户手册（长期更新）
-# https://www.odooai.cn/documentation/user/10.0/zh_CN/index.html
-
-# Odoo10离线中文用户手册下载
-# https://www.odooai.cn/odoo10_user_manual_document_offline/
-# Odoo10离线开发手册下载-含python教程，jquery参考，Jinja2模板，PostgresSQL参考（odoo开发必备）
-# https://www.odooai.cn/odoo10_developer_document_offline/
-# description:
+##############################################################################
+#    Copyright (C) 2009-TODAY TrixocomERP Ltd. https://www.trixocom.com
+#    Author: TrixocomERP Team, info@trixocom.com
+#    You can modify it under the terms of the GNU LESSER
+#    GENERAL PUBLIC LICENSE (LGPL v3), Version 3.
+#    See <http://www.gnu.org/licenses/>.
+#
+#    It is forbidden to publish, distribute, sublicense, or sell copies
+#    of the Software or modified copies of the Software.
+##############################################################################
 
 {
-    'name': "!Account Multi Level Chart,parent children tree,多层级会计科目",
-    'version': '18.0.24.12.12',
-    'author': 'odooai.cn',
+    'name': 'Account Ztree - Tree Selector Widget',
+    'version': '18.0.24.12.03',
+    'author': 'TrixocomERP',
     'category': 'Accounting/Accounting',
-    'website': 'https://www.odooai.cn',
-    'live_test_url': 'https://demo.odooapp.cn',
+    'website': 'https://www.trixocom.com',
+    'live_test_url': 'https://demo.trixocom.com',
     'license': 'LGPL-3',
     'sequence': 2,
-    'summary': """
-    Use for parent children tree list select navigator. Multi Level Account Chart tree.
-    ztree widget.
-    """,
-    'description': """
-    zTree widget.
-    Advance search with real parent children tree, ListView or KanbanView ,
-    eg: Account Chart tree, Product category tree,Department tree, stock location tree.
-    超级方便的查询，树状视图。
-    """,
     'price': 0.00,
     'currency': 'EUR',
+    'summary': '''
+    Use for parent-children tree list select navigator. Multi Level Account Chart tree. ztree widget.
+    Financial module tree selector.
+    ''',
+    'description': '''
+    Account Ztree - Financial Module Tree Selector
+    
+    Use for parent-children tree list select navigator.
+    Multi Level Account Chart tree with ztree widget.
+    
+    Features:
+    - Tree selector for account charts
+    - Multi-level navigation
+    - Parent-children relationship display
+    - Easy account selection
+    - ztree widget integration
+    ''',
     'depends': [
         'account',
     ],
     'images': ['static/description/banner.png'],
     'data': [
         'views/account_account_views.xml',
-        'views/res_company_views.xml',
     ],
-    'post_load': None,
-    'post_init_hook': 'post_init_hook',
+    'assets': {
+        'web.assets_backend': [
+            'app_account_ztree/static/src/**/*',
+        ],
+    },
+    'demo': [],
+    'test': [],
     'installable': True,
-    'application': True,
+    'application': False,
     'auto_install': False,
 }
