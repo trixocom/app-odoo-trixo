@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
-    <!-- Handle title and theme-color -->
+    <!--    Handle title and theme-color-->
     <template id="app_layout" inherit_id="web.layout" name="app Web layout">
         <xpath expr="//title" position="replace">
             <title t-esc="title or 'TrixocomERP'"/>
         </xpath>
     </template>
-    <!-- end -->
+    <!--    end-->
     <template id="replace_login" name="Login Layout" inherit_id="web.login_layout">
         <xpath expr="//a[@target='_blank']" position="replace">
             <a href="https://www.trixocom.com" target="_blank">Powered by
-                <span>TrixocomERP</span>
+                <span>trixocom.com</span>
             </a>
         </xpath>
     </template>
