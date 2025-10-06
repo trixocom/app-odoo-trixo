@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data noupdate="0">
-<!--        将菜单管理在设置中提前-->
+<!--        Move menu management to settings section-->
         <record id="base.menu_grant_menu_access" model="ir.ui.menu">
             <field name="parent_id" ref="base.menu_administration"/>
         </record>
@@ -38,12 +38,12 @@
 <!--        </record>-->
         <menuitem
                 id="menu_app_group"
-                name="odooAi"
+                name="TrixocomERP"
                 parent="base.menu_administration"
                 sequence="1"
                 groups="base.group_system"/>
         <menuitem
-                id="menu_odooai_cloud_config"
+                id="menu_trixocom_cloud_config"
                 parent="menu_app_group"
                 sequence="1"
                 action="app_common.action_odooai_cloud_config"
@@ -63,7 +63,7 @@
                 action="action_ir_module_addons_path"
                 groups="base.group_system"/>
 
-        <!--增加导入Demo数据-->
+        <!--Add import Demo data-->
         <menuitem
                 id="menu_app_demo_data"
                 parent="menu_app_group"
@@ -78,23 +78,23 @@
                 action="base.ir_config_list_action"
                 groups="base.group_system"/>
         <menuitem
-            id="menu_module_odooapp"
-            name="Odoo中文应用"
+            id="menu_module_trixocom_apps"
+            name="Trixocom Apps"
             parent="base.menu_apps"
             sequence="6"
-            action="action_module_odooapp"/>
+            action="action_module_trixocom_apps"/>
 
-        <record model='ir.actions.act_url' id='action_odooapp_store'>
-            <field name='name'>Odoo中文应用商店</field>
-            <field name='url'>https://www.odooapp.cn</field>
+        <record model='ir.actions.act_url' id='action_trixocom_store'>
+            <field name='name'>Trixocom App Store</field>
+            <field name='url'>https://www.trixocom.com</field>
         </record>
 
         <menuitem
-            id="menu_odooapp_store"
+            id="menu_trixocom_store"
             parent="base.menu_apps"
             sequence="7"
-            action="action_odooapp_store"/>
-        <!--        应用权限分类-->
+            action="action_trixocom_store"/>
+        <!--        Application permission categories-->
         <menuitem
             id="menu_ir_module_category_list"
             parent="base.menu_apps"
