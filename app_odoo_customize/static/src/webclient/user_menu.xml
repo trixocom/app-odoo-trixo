@@ -14,7 +14,7 @@
             </t>
         </xpath>
     </t>
-<!--    移动端独立-->
+    <!-- Mobile menu separate -->
     <t t-name="app_odoo_customize.UserMenu" t-inherit="web.BurgerUserMenu" t-inherit-mode="extension">
         <xpath expr="//t[@t-key='element_index']" position="before">
             <t t-if="app_show_lang">
