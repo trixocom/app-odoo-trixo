@@ -44,7 +44,7 @@
                     <filter string="Addons Path" name="addons_path" domain="[]" context="{'group_by': 'addons_path_id'}" groups="base.group_no_one"/>
                 </xpath>
                 <xpath expr="//filter[@name='app']" position="before">
-                    <filter name="odooapp" string="Odoo中文应用" domain="[('module_type', '=', 'odooapp.cn')]"/>
+                    <filter name="trixocom_apps" string="Trixocom Apps" domain="[('module_type', '=', 'trixocom.com')]"/>
                 </xpath>
             </field>
         </record>
@@ -55,14 +55,14 @@
             <field name="inherit_id" ref="base.module_form"/>
 	        <field name="arch" type="xml">
                 <xpath expr="//field[@name='author']/.." position="attributes">
-			        <attribute name="groups">app_odoo_customize.group_show_author_in_apps</attribute>
+		            <attribute name="groups">app_odoo_customize.group_show_author_in_apps</attribute>
                 </xpath>
-		        <field name="category_id" position="after">
-			        <field name="module_type" groups="base.group_no_one"/>
-			        <field name="to_buy" groups="base.group_no_one"/>
-			        <field name="addons_path_id" invisible="1"/>
-			        <field name="addons_path" groups="base.group_no_one"/>
-		        </field>
+	            <field name="category_id" position="after">
+		            <field name="module_type" groups="base.group_no_one"/>
+		            <field name="to_buy" groups="base.group_no_one"/>
+		            <field name="addons_path_id" invisible="1"/>
+		            <field name="addons_path" groups="base.group_no_one"/>
+	            </field>
             </field>
         </record>
 
@@ -72,16 +72,16 @@
             <field name="inherit_id" ref="base_import_module.module_form_apps_inherit"/>
             <field name="arch" type="xml">
                 <xpath expr="//button[@name='button_immediate_install_app']" position="attributes">
-                    <attribute name="invisible">state != 'uninstalled' or module_type in ('official', 'odooapp.cn', False)</attribute>
+                    <attribute name="invisible">state != 'uninstalled' or module_type in ('official', 'trixocom.com', False)</attribute>
                 </xpath>
                 <xpath expr="//button[@name='button_immediate_install_app'][2]" position="attributes">
-                    <attribute name="invisible">state == 'uninstalled' or module_type in ('official', 'odooapp.cn', False)</attribute>
+                    <attribute name="invisible">state == 'uninstalled' or module_type in ('official', 'trixocom.com', False)</attribute>
                 </xpath>
                 <xpath expr="//button[@name='button_immediate_install']" position="attributes">
-                    <attribute name="invisible">to_buy or state != 'uninstalled' or (module_type and module_type not in ('official', 'odooapp.cn', False))</attribute>
+                    <attribute name="invisible">to_buy or state != 'uninstalled' or (module_type and module_type not in ('official', 'trixocom.com', False))</attribute>
                 </xpath>
                 <xpath expr="//button[@name='button_immediate_upgrade']" position="attributes">
-                    <attribute name="invisible">state != 'installed' or (module_type and module_type not in ('official', 'odooapp.cn', False))</attribute>
+                    <attribute name="invisible">state != 'installed' or (module_type and module_type not in ('official', 'trixocom.com', False))</attribute>
                 </xpath>
             </field>
         </record>
@@ -91,25 +91,25 @@
             <field name="model">ir.module.module</field>
             <field name="inherit_id" ref="base.module_view_kanban"/>
             <field name="arch" type="xml">
-                <!--点击模块看详情-->
+                <!--Click module to see details-->
 <!--                <xpath expr="//aside/.." position="attributes" groups="app_odoo_customize.group_show_quick_upgrade">-->
 <!--                    <attribute name="class" position="add" separator=" ">oe_kanban_global_click</attribute>-->
 <!--                </xpath>-->
-                <!--让模块名更显眼-->
+                <!--Make module name more visible-->
                 <xpath expr="//main//code" position="attributes">
                     <attribute name="groups"></attribute>
                 </xpath>
                 <xpath expr="//button[@name='button_immediate_install']" position="attributes">
-                    <attribute name="invisible">state != 'uninstalled' or (module_type and module_type not in ('official', 'odooapp.cn', False))</attribute>
+                    <attribute name="invisible">state != 'uninstalled' or (module_type and module_type not in ('official', 'trixocom.com', False))</attribute>
                 </xpath>
-                <!--显示快速升级-->
+                <!--Show quick upgrade-->
                 <xpath expr="//button[@name='button_immediate_install']" position="after">
                     <button type="object" class="btn btn-default btn-sm float-right" name="button_uninstall_wizard"
                              groups="base.group_system" invisible="state != 'installed'">Uninstall</button>
                     <button type="object" class="btn btn-success btn-sm float-right" name="button_immediate_upgrade"
                              groups="base.group_system" invisible="state != 'installed'">Upgrade</button>
                 </xpath>
-                <!--显示导出翻译-->
+                <!--Show export translation-->
                 <xpath expr="//t[@t-name='menu']" position="inside">
                     <a t-if="installed" name="%(app_odoo_customize.action_server_module_multi_get_po)d" type="action" role="menuitem" class="dropdown-item">Export Translation</a>
                     <a t-if="installed" name="%(app_odoo_customize.action_server_module_multi_refresh_po)d" type="action" role="menuitem" class="dropdown-item">Refresh Translation</a>
@@ -122,22 +122,22 @@
             <field name="inherit_id" ref="base_import_module.module_view_kanban_apps_inherit"/>
             <field name="arch" type="xml">
                 <xpath expr="//button[@name='button_immediate_install_app']" position="attributes">
-                    <attribute name="invisible">state != 'uninstalled' or module_type in ('official', 'odooapp.cn', False)</attribute>
+                    <attribute name="invisible">state != 'uninstalled' or module_type in ('official', 'trixocom.com', False)</attribute>
                 </xpath>
                 <xpath expr="//button[@name='button_immediate_install_app'][2]" position="attributes">
-                    <attribute name="invisible">state == 'uninstalled' or module_type in ('official', 'odooapp.cn', False)</attribute>
+                    <attribute name="invisible">state == 'uninstalled' or module_type in ('official', 'trixocom.com', False)</attribute>
                 </xpath>
             </field>
         </record>
-    <!--默认打开可更新模块-->
+    <!--Open updatable modules by default-->
         <!--<record id="base.open_module_tree" model="ir.actions.act_window">-->
             <!--<field name="context">{'search_default_is_local_updatable':1}</field>-->
         <!--</record>-->
-        <record id="action_module_odooapp" model="ir.actions.act_window">
-            <field name="name">Odoo中文应用</field>
-            <field name="path">odooapp</field>
+        <record id="action_module_trixocom_apps" model="ir.actions.act_window">
+            <field name="name">Trixocom Apps</field>
+            <field name="path">trixocom-apps</field>
             <field name="res_model">ir.module.module</field>
             <field name="view_mode">kanban,list,form</field>
-            <field name="context">{'search_default_odooapp': 1}</field>
+            <field name="context">{'search_default_trixocom_apps': 1}</field>
         </record>
 </odoo>
