@@ -507,13 +507,13 @@ msgstr "Odoo欧度"
 #: model:ir.ui.menu,name:app_odoo_customize.menu_module_odooapp
 #: model_terms:ir.ui.view,arch_db:app_odoo_customize.app_view_module_filter
 msgid "Odoo中文应用"
-msgstr ""
+msgstr "Trixocom Apps"
 
 #. module: app_odoo_customize
 #: model:ir.actions.act_url,name:app_odoo_customize.action_odooapp_store
 #: model:ir.ui.menu,name:app_odoo_customize.menu_odooapp_store
 msgid "Odoo中文应用商店"
-msgstr ""
+msgstr "Trixocom App Store"
 
 #. module: app_odoo_customize
 #: model:ir.model.fields,field_description:app_odoo_customize.field_ir_module_addons_path__path
@@ -535,7 +535,7 @@ msgstr "您确认要删除指定数据？"
 msgid ""
 "Powered by\n"
 "                <span>odooai.cn</span>"
-msgstr "技术支持 <span>odooai.cn</span>"
+msgstr "技术支持 <span>trixocom.com</span>"
 
 #. module: app_odoo_customize
 #. odoo-javascript
@@ -816,16 +816,16 @@ msgstr "XmlId"
 
 #. module: app_odoo_customize
 #: model:ir.ui.menu,name:app_odoo_customize.menu_app_group
-msgid "odooAi"
-msgstr ""
+msgid "TrixocomERP"
+msgstr "TrixocomERP"
 
 #. module: app_odoo_customize
 #: model:ir.ui.menu,name:app_odoo_customize.menu_odooai_cloud_config
-msgid "odooAi Cloud"
-msgstr "odooAi云面板"
+msgid "TrixocomERP Cloud"
+msgstr "TrixocomERP 云面板"
 
 #. module: app_odoo_customize
 #. odoo-javascript
 #: code:addons/app_odoo_customize/static/src/xml/res_config_edition.xml:0
-msgid "odooai.cn"
-msgstr "odooAi.cn"
+msgid "trixocom.com"
+msgstr "trixocom.com"
