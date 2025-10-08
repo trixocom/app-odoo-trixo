@@ -54,7 +54,7 @@
 			</field>
 		</record>
 
-		<record id="action_odooai_cloud_config" model="ir.actions.act_window">
+		<record id="action_trixocom_cloud_config" model="ir.actions.act_window">
 			<field name="name">TrixocomERP Cloud</field>
 			<field name="type">ir.actions.act_window</field>
 			<field name="res_model">res.config.settings</field>
